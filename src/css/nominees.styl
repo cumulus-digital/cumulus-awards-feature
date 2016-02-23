@@ -1,0 +1,133 @@
+.caf-nominees {
+	background-color: #DDD;
+	background-repeat: no-repeat;
+	margin-bottom: 25px;
+	
+	h2, h3, h4, h5, h6 {
+		font-size: 18px;
+		line-height: 1;
+		text-transform: uppercase;
+	}
+
+	ul {
+		margin: 0 auto;
+		max-width: $module_width;
+	}
+	li {
+		display: inline-block;
+		font-size: 18px;
+		letter-spacing: 0.15em;
+		margin: 0 7px 10px;
+		text-indent: (@letter-spacing/2);
+		text-transform: uppercase;
+		vertical-align: top;
+		width: 180px
+
+		&:first-child {
+			margin-left: 0;
+		}
+		
+		&:last-child {
+			margin-right: 0;
+		}
+		img {
+			display: block;
+			margin-bottom: 10px;
+		}
+		small {
+			font-size: 60%;
+		}
+		
+		@media (max-width: 430px) {
+			max-width: 160px;
+			margin: 0 5px 10px;
+		}
+		
+		.caf-song-artist {
+			font-size: 75%;
+			letter-spacing: 0.1em;
+			margin-top: 5px;
+			text-indent: (@letter-spacing/2);
+			
+			em {
+				font-size: 70%;
+				font-style: normal;
+			}
+		}
+	}
+	
+	// Columns
+	&.caf-nominees-1column {
+		li {
+			font-size: 22px;
+			letter-spacing: .25em;
+			margin: 0 auto 30px;
+			max-width: 638px;
+			text-indent: (@letter-spacing/2);
+			width: auto;
+			
+			img {
+				max-width: initial;
+			}
+			
+			@media (max-width: 700px), (max-width: 430px) {
+				max-width: 98%
+				margin: @margin;
+				overflow: hidden;
+				
+				img {
+					position: relative;
+					left: 50%;
+					transform: translate(-50%, 0);
+				}
+			}
+		}
+	}
+	&.caf-nominees-2column {
+		li {
+			margin: 0 9px 30px;
+			max-width: 445px;
+			width: 445px;
+		}
+			@media (max-width: 500px) {
+				display: block;
+				margin: 0 auto 20px;
+			}
+	}
+	&.caf-nominees-3column {
+		li {
+			letter-spacing: 0.15em;
+			margin: 0 9px 15px;
+			max-width: 300px;
+			text-indent: (@letter-spacing/2);
+			width: 300px;
+			
+			@media (max-width: 430px) {
+				display: block;
+				max-width: @max-width;
+				margin: 0 auto 10px;
+			}
+		}
+		
+		.caf-cube {
+			margin: 20px 15px 20px 5px !important;
+		}
+	}
+	
+	// Low tier nominees category
+	&.caf-lowtier {
+		.caf-nominee-column {
+			display: inline-block;
+			margin: 0 13px;
+			max-width: 472px;
+		}
+		li {
+			display: block;
+			font-size: 24px;
+			letter-spacing: .25em;
+			line-height: 1.1;
+			margin-bottom: 25px;
+			text-indent: (@letter-spacing/2);
+		}
+	}
+}

@@ -1,0 +1,162 @@
+@import 'nib'
+
+// Width for all section contents
+$module_width = 970px;
+
+// Remove title, metadata, thumbnails, comments
+.wrapper-content .row-1 .column-1 {
+	#comments,
+	header,
+	.entry-title,
+	.entry-meta,
+	.post-thumbnail,
+	#nav-below,
+	.hideme {
+		display: none !important;
+	}
+	.entry-content {
+		margin-top: 0 !important;
+	}
+}
+.wrapper-content {
+	// Expand content area to full browser width
+	&,
+	.grid-container,
+	.column-1,
+	.column-1 > div,
+	.column-1 article,
+	.entry-content,
+	.themify_builder_row {
+		border: 0 !important;
+		margin: 0 !important;
+		max-width: 100% !important;
+		padding: 0 !important;
+		width: 100% !important;
+	}
+	.column-2 {
+		display: none;
+	}
+
+	// Resets
+	article .entry-content {
+		color: #333;
+		font-size: 12px;
+		line-height: 1.1;
+		text-align: center;
+		position: relative;
+		
+		* {
+			box-sizing: border-box;
+		}
+		ol,ul,li {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		h1, h2, h3, h4, h5, h6 {
+			font-family: inherit;
+			font-size: 100%;
+			font-weight: inherit;
+			letter-spacing: .8em;
+			line-height: 1.1;
+			margin: 0;
+			padding: 0;
+			text-indent: (@letter-spacing/2);
+			text-transform: uppercase;
+			
+			@media (max-width: ($module_width/1.5)) {
+				letter-spacing: (@letter-spacing/2) !important;
+				text-indent: (@letter-spacing/2) !important;
+			}
+			@media (max-width: ($module_width/2)) {
+				letter-spacing: (@letter-spacing/2.5) !important;
+				text-indent: (@letter-spacing/2.5) !important;
+			}
+		}
+		.themify_builder_row {
+			.widgettitle {
+				display: none;
+			}
+			.textwidget {
+				& > div, & > ul, & > ol {
+					background-color: #EEE;
+					background-repeat: no-repeat;
+					background-size: cover;
+					display: block;
+					line-height: 1;
+					margin: 0;
+					overflow: visible;
+					padding: 35px 15px;
+					width: 100%;
+					
+					@media (max-width: ($module_width+1)) {
+						&.caf-with_cube {
+							position: relative;
+							padding-bottom: 320px;
+						}						
+						.caf-cube {
+							bottom: 35px;
+							left: 50%;
+							margin: 0 0 inherit !important;
+							position: absolute !important;
+							transform: translate(-50%, 0%);
+						}
+					}
+				}
+			}
+		}
+		
+		.caf-section-header {
+			letter-spacing: 0.25em;
+			margin-bottom: 30px;
+			padding-left: 1em;
+			padding-right: 1em;
+			text-indent: (@letter-spacing/2);
+			
+			small {
+				display: block;
+				font-size: 70%;
+				margin-top: 3px;
+				opacity: 0.8;
+			}
+		}
+		
+		.caf-cube {
+			background: rgba(0,0,0,0.25);
+			float: right !important;
+			height: 250px !important;
+			margin: 0 0 13px 13px !important;
+			overflow: visible !important;
+			position: relative !important;
+			width: 300px !important;
+			max-width: 300px !important;
+			
+			@media (max-width: ($module_width+1)) {
+				display: block !important;
+				float: none !important;
+				margin: 0 auto 20px !important;
+			}
+
+			&:after {
+				bottom: -12px;
+				color: #CCC;
+				color: rgba(255,255,255,0.4);
+				content: 'ADVERTISEMENT';
+				display: block;
+				font-size: 9px;
+				letter-spacing: 0.1em;
+				opacity: 0.5;
+				position: absolute;
+				right: 0;
+				text-align: right;
+			}
+		}
+
+		@import 'header.styl'
+		@import 'intro.styl'
+		@import 'video.styl'
+		@import 'nominees.styl'
+		@import 'outro.styl'
+
+	}
+}

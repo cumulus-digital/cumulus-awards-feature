@@ -1,0 +1,52 @@
+.caf-video {
+	background: #000;
+	
+	.caf-video-container {
+		margin: 0 auto;
+		max-width: $module_width;
+		position: relative;
+	}
+	
+	&.caf-with_cube {
+		.caf-video-container {
+			padding-right: 320px;
+		}
+		.caf-cube {
+			position: absolute !important;
+			right: 0;
+			top: 50%;
+			transform: translate(0%, -50%);
+		}
+		
+		@media (max-width: $module_width) {
+			padding-bottom: 0 !important;
+
+			.caf-video-container {
+				padding-bottom: 320px
+				padding-right: 0;
+			}
+			.caf-cube {
+				right: inherit;
+				top: inherit;
+			}
+		}
+	}
+}
+.caf-embed-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	max-width: 100%;
+
+	iframe,object,embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+.caf-embed-container-short {
+	padding-bottom: 15%;
+}
