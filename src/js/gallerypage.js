@@ -3,7 +3,7 @@
 	// Deconstruct existing gallery and rebuild it as Slick
 	$('.module-gallery').each(function(){
 		var $originalGal = $(this),
-			$newGal = $('<div class="cmls-gallery" />');
+			$newGal = $('<div class="cmls-gallery-container" />');
 		$originalGal.find('.gallery-images > a').each(function(){
 			var $this = $(this),
 				$img = $this.find('img'),
@@ -18,7 +18,7 @@
 			}
 			$newGal.append($newItem);
 		});
-		$originalGal.parent().append($newGal);
+		$originalGal.parent().append($newGal.wrap('<div class="cmls-gallery" />'));
 		installSlick();
 	});
 

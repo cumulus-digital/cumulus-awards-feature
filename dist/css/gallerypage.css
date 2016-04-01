@@ -31,9 +31,6 @@ article {
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
-.cmls-gallery .cmls-gallery-item > img {
-  height: 100%;
-}
 .cmls-gallery .cmls-gallery-caption {
   background: #000;
   background: rgba(0,0,0,0.5);
