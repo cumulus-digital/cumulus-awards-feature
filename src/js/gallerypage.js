@@ -36,7 +36,7 @@
 			slidesToScroll: 1
 		};
 		if (window.SLICK_OPTIONS) {
-			options = window.SLICK_OPTIONS;
+			options = $.extend({}, options, window.SLICK_OPTIONS);
 		}
 		$.getScript('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js', function() {
 			$('body')
