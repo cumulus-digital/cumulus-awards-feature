@@ -21,7 +21,6 @@ article {
 }
 .cmls-gallery {
   background: transparent;
-  position: relative;
 }
 .cmls-gallery .cmls-gallery-item {
   opacity: 0.3;
