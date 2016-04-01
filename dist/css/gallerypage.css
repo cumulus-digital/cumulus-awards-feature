@@ -26,7 +26,7 @@ article {
 .cmls-gallery .cmls-gallery-item {
   opacity: 0.3;
   outline: 0 !important;
-  padding: 0 5px;
+  padding: 0;
   position: relative;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
