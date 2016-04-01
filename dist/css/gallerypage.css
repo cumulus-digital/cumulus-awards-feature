@@ -21,6 +21,7 @@ article {
 }
 .cmls-gallery {
   background: transparent;
+  position: relative;
 }
 .cmls-gallery .cmls-gallery-item {
   opacity: 0.3;
@@ -29,6 +30,9 @@ article {
   position: relative;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
+}
+.cmls-gallery .cmls-gallery-item > img {
+  height: 100%;
 }
 .cmls-gallery .cmls-gallery-caption {
   background: #000;
