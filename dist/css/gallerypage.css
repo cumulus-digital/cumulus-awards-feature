@@ -54,12 +54,14 @@ article {
 .cmls-gallery .slick-track {
   height: 100%;
 }
-.cmls-gallery .slick-center {
+.cmls-gallery .slick-active,
+.cmls-gallery .slick-current {
   opacity: 1;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
-.cmls-gallery .slick-center .cmls-gallery-caption {
+.cmls-gallery .slick-active .cmls-gallery-caption,
+.cmls-gallery .slick-current .cmls-gallery-caption {
   opacity: 1;
 }
 .cmls-gallery .slick-prev,
