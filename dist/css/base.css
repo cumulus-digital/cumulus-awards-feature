@@ -5,7 +5,8 @@ body .wrapper-content .CMLS_FEATURE_CONTENT .entry-title,
 body .wrapper-content .CMLS_FEATURE_CONTENT .entry-meta,
 body .wrapper-content .CMLS_FEATURE_CONTENT .post-thumbnail,
 body .wrapper-content .CMLS_FEATURE_CONTENT #nav-below,
-body .wrapper-content .CMLS_FEATURE_CONTENT .hideme {
+body .wrapper-content .CMLS_FEATURE_CONTENT .hideme,
+body .wrapper-content .CMLS_FEATURE_CONTENT .module-title {
   display: none !important;
 }
 body .wrapper-content .CMLS_FEATURE_CONTENT .entry-content {
