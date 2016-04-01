@@ -10,9 +10,8 @@
 				'<iframe src="URLTOGALLERYPAGE?cmlsts=' + ts.getTime() + '" frameborder="0" width="100%" height="400px" allowtransparency="true" scrolling="no" class="CMLS_GALLERY_IFRAME"></iframe>'
 			);
 
-			var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1); // Detect IE10 and below
 			$('.CMLS_GALLERY_IFRAME').iFrameResize({
-				heightCalculationMethod: isOldIE ? 'max' : 'lowestElement'
+				heightCalculationMethod: 'taggedElement'
 			});
 		}(jQuery, window));
 	</script>
