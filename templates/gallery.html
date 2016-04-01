@@ -1,0 +1,19 @@
+<div class="caf-gallery">
+	<h3 class="caf-section-header">Photo Gallery Title</h3>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.3/iframeResizer.min.js"></script>
+	<script id="CMLS_GALLERY">
+		(function($, window, undefined) {
+			var ts = (new Date());
+			ts.setHours(ts.getHours() + Math.round(ts.getMinutes()/60));
+			ts.setMinutes(0);
+			$('#CMLS_GALLERY').after(
+				'<iframe src="URLTOGALLERYPAGE?cmlsts=' + ts.getTime() + '" frameborder="0" width="100%" height="400px" allowtransparency="true" scrolling="no" class="CMLS_GALLERY_IFRAME"></iframe>'
+			);
+
+			var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1); // Detect IE10 and below
+			$('.CMLS_GALLERY_IFRAME').iFrameResize({
+				heightCalculationMethod: isOldIE ? 'max' : 'lowestElement'
+			});
+		}(jQuery, window));
+	</script>
+</div>
