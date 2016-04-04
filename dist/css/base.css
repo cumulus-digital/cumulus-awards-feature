@@ -242,6 +242,14 @@ body .wrapper-content .CMLS_FEATURE_CONTENT .caf-embed-container embed {
 body .wrapper-content .CMLS_FEATURE_CONTENT .caf-embed-container-short {
   padding-bottom: 15%;
 }
+body .wrapper-content .CMLS_FEATURE_CONTENT .caf-gallery {
+  background: #000;
+  padding: 0;
+}
+body .wrapper-content .CMLS_FEATURE_CONTENT .caf-gallery iframe {
+  min-width: 100%;
+  width: 1px;
+}
 body .wrapper-content .CMLS_FEATURE_CONTENT .caf-nominees {
   background-color: #ddd;
   background-repeat: no-repeat;
