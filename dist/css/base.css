@@ -371,11 +371,13 @@ body .wrapper-content .CMLS_FEATURE_CONTENT .caf-nominees.caf-lowtier .caf-nomin
 }
 body .wrapper-content .CMLS_FEATURE_CONTENT .caf-nominees.caf-lowtier li {
   display: block;
-  font-size: 24px;
+  font-size: 22px;
   letter-spacing: 0.25em;
   line-height: 1.1;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+  text-align: center;
   text-indent: 0.125em;
+  width: 100%;
 }
 body .wrapper-content .CMLS_FEATURE_CONTENT .caf-outro {
   padding: 100px 10% !important;
