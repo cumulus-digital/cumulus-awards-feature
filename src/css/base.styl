@@ -26,12 +26,13 @@ body .wrapper-content {
 	.grid-container,
 	.column,
 	.CMLS_FEATURE_CONTENT,
-	/.CMLS_FEATURE_CONTENT,
 	.CMLS_FEATURE_CONTENT > div,
 	.CMLS_FEATURE_CONTENT article,
-	/section.CMLS_FEATURE_CONTENT,
 	.entry-content,
-	.themify_builder_row {
+	.themify_builder_row
+	// KGO-specific fix
+	/.column.column-1.grid-left-0.grid-width-16
+	{
 		border: 0 !important;
 		margin: 0 !important;
 		max-width: 100% !important;
