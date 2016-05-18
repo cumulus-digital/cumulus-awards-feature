@@ -40,11 +40,11 @@
 		if (window.SLICK_OPTIONS) {
 			options = $.extend({}, options, window.SLICK_OPTIONS);
 		}
-		$.getScript('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js', function() {
+		$.getScript('https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js', function() {
 			$('body')
-				.append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">')
-				.append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">')
-				.append('<style>.slick-prev,.slick-next { left: 5px; z-index: 9999; } .slick-next { left: auto; right: 5px; }');
+				.append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css">')
+				.append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css">')
+				.append('<style>.slick-prev,.slick-next { left: 10px; z-index: 9999; } .slick-next { left: auto; right: 10px; } .slick-next:before,.slick-prev:before { font-size: 40px; }');
 			$('.cmls-gallery').each(function(){
 				var $this = $(this);
 				if ( ! $this.data('isSlick')) {
