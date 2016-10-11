@@ -1,6 +1,7 @@
 body .wrapper-content .column,
 body .wrapper-content .row,
-body .wrapper-content .column > * {
+body .wrapper-content .column > *,
+.themify_builder_turn_on {
   display: none !important;
 }
 body .wrapper-content .CMLS_FEATURE_CONTENT {
