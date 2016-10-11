@@ -1,10 +1,38 @@
 @import 'nib'
 
 // Max width for all section contents
-$module_width = 970px;
+$module_max_width = 970px;
 
-// Remove title, metadata, thumbnails, comments
-body .wrapper-content .CMLS_FEATURE_CONTENT {
+body .wrapper-content {
+	// Remove any other content from the page
+	.column,
+	.row,
+	.column > * {
+		display: none !important;
+	}
+	
+	// Expand content area to fill page
+	&,
+	.grid-container,
+	.column,
+	.entry-content,
+	.themify_builder_row,
+	.CMLS_FEATURE_CONTENT > div,
+	.CMLS_FEATURE_CONTENT article {
+		border: 0 !important;
+		margin: 0 !important;
+		max-width: 100% !important;
+		padding: 0 !important;
+		width: 100% !important;
+	}
+}
+
+.CMLS_FEATURE_CONTENT {
+	display: block !important;
+	line-height: 1 !important;
+	
+	// Remove title, meta, thumbnails, comments
+	.hideme,
 	#comments,
 	article > header,
 	article > footer,
@@ -12,162 +40,119 @@ body .wrapper-content .CMLS_FEATURE_CONTENT {
 	.entry-meta,
 	.post-thumbnail,
 	#nav-below,
-	.hideme,
-	.module-title {
+	.module-title,
+	.themify_builder_row .widgettitle {
 		display: none !important;
 	}
-	.entry-content {
-		margin-top: 0 !important;
-	}
-}
-
-body .wrapper-content {
-	&,
-	.grid-container,
-	.column,
-	.CMLS_FEATURE_CONTENT,
-	.CMLS_FEATURE_CONTENT > div,
-	.CMLS_FEATURE_CONTENT article,
-	.entry-content,
-	.themify_builder_row
-	// KGO-specific fix
-	.column.column-1.grid-left-0.CMLS_FEATURE_CONTENT
-	{
-		border: 0 !important;
+	
+	// Reset generic elements
+	* { box-sizing: border-box; }
+	ol,ul,li {
+		list-style: none !important;
 		margin: 0 !important;
-		max-width: 100% !important;
 		padding: 0 !important;
-		width: 100% !important;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		font-family: inherit !important;
+		font-size: 100% !important;
+		font-weight: inherit !important;
+		letter-spacing: .8em !important;
+		line-height: 1.1 !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		text-indent: (@letter-spacing/2) !important;
+		text-transform: uppercase !important;
+		
+		@media (max-width: ($module_max_width/1.5)) {
+			letter-spacing: (@letter-spacing/2) !important;
+			text-indent: (@letter-spacing/2) !important;
+		}
+		@media (max-width: ($module_max_width/2)) {
+			letter-spacing: (@letter-spacing/2.5) !important;
+			text-indent: (@letter-spacing/2.5) !important;
+		}
+	}
+	strong {
+		color: inherit !important;
+		font-weight: bold !important;
+	}
+	em {
+		font-style: italic !important;
+	}
+	a {
+		color: inherit !important;
+		text-decoration: none !important;
 	}
 	
-	.column,
-	.row,
-	.column > * {
-		display: none;
-	}
-	.CMLS_FEATURE_CONTENT {
+	// Generic row
+	.caf-row {
+		background-color: #eee;
+		background-repeat: no-repeat;
+		background-size: cover;
 		display: block;
+		line-height: 1;
+		margin: 0;
+		overflow: hidden;
+		padding: 35px 15px;
+		padding: 6vh 5vw;
+		position: relative;
+		width: 100%;
 	}
 	
-	// Resets
-	.CMLS_FEATURE_CONTENT {
-		.entry-content {
-			color: #333;
-			font-size: 12px;
-			line-height: 1.1;
-			text-align: center;
-			position: relative;
-		}
-		* { box-sizing: border-box; }
-		ol,ul,li {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-		}
-		h1, h2, h3, h4, h5, h6 {
-			font-family: inherit;
-			font-size: 100%;
-			font-weight: inherit;
-			letter-spacing: .8em;
-			line-height: 1.1;
-			margin: 0;
-			padding: 0;
-			text-indent: (@letter-spacing/2);
-			text-transform: uppercase;
-			
-			@media (max-width: ($module_width/1.5)) {
-				letter-spacing: (@letter-spacing/2) !important;
-				text-indent: (@letter-spacing/2) !important;
-			}
-			@media (max-width: ($module_width/2)) {
-				letter-spacing: (@letter-spacing/2.5) !important;
-				text-indent: (@letter-spacing/2.5) !important;
-			}
-		}
-		.themify_builder_row {
-			.widgettitle {
-				display: none;
-			}
-			.textwidget {
-				& > div, & > ul, & > ol {
-					background-color: #EEE;
-					background-repeat: no-repeat;
-					background-size: cover;
-					display: block;
-					line-height: 1;
-					margin: 0;
-					overflow: visible;
-					padding: 35px 15px;
-					width: 100%;
-					
-					@media (max-width: ($module_width+1)) {
-						&.caf-with_cube {
-							position: relative;
-							padding-bottom: 320px;
-						}						
-						.caf-cube {
-							bottom: 35px;
-							left: 50%;
-							margin: 0 0 inherit !important;
-							position: absolute !important;
-							transform: translate(-50%, 0%);
-						}
-					}
-				}
-			}
-		}
+	// Generic row header
+	.caf-row-header {
+		letter-spacing: 0.25em;
+		margin-bottom: 30px;
+		margin-bottom: 5vh;
+		padding-left: 1em;
+		padding-right: 1em;
+		text-indent: (@letter-spacing/2);
 		
-		.caf-section-header {
-			letter-spacing: 0.25em;
-			margin-bottom: 30px;
-			padding-left: 1em;
-			padding-right: 1em;
-			text-indent: (@letter-spacing/2);
-			
-			small {
-				display: block;
-				font-size: 70%;
-				margin-top: 3px;
-				opacity: 0.8;
-			}
+		// Sub-head
+		small {
+			display: block;
+			font-size: 70%;
+			margin-top: .5em;
+			opacity: 0.8;
 		}
-		
-		.caf-cube {
-			background: rgba(0,0,0,0.25);
-			float: right !important;
-			height: 250px !important;
-			margin: 0 0 13px 13px !important;
-			overflow: visible !important;
-			position: relative !important;
-			width: 300px !important;
-			max-width: 300px !important;
-			
-			@media (max-width: ($module_width+1)) {
-				display: block !important;
-				float: none !important;
-				margin: 0 auto 20px !important;
-			}
-
-			&:after {
-				bottom: -12px;
-				color: #CCC;
-				color: rgba(255,255,255,0.4);
-				content: 'ADVERTISEMENT';
-				display: block;
-				font-size: 9px;
-				letter-spacing: 0.1em;
-				opacity: 0.5;
-				position: absolute;
-				right: 0;
-				text-align: right;
-			}
-		}
-
-		@import 'header.styl'
-		@import 'intro.styl'
-		@import 'video.styl'
-		@import 'gallery.styl'
-		@import 'nominees.styl'
-		@import 'outro.styl'
 	}
+	
+	// Inline cube ad
+	.caf-cube {
+		background: #aaa;
+		float: right !important;
+		height: 250px !important;
+		margin: 0 0 1em 1em !important;
+		overflow: visible !important;
+		position: relative !important;
+		width: 300px !important;
+		max-width: 300px !important;
+		
+		&:after {
+			bottom: -12px;
+			color: #fff;
+			content: 'ADVERTISEMENT';
+			display: block;
+			font-size: 9px;
+			letter-spacing: 0.1em;
+			opacity: 0.4;
+			position: absolute;
+			right: 0;
+			text-align: right;
+		}
+		
+		@media (max-width: ($module_max_width+1)) {
+			display: block !important;
+			float: none !important;
+			margin: 0 auto 20px !important;
+		}
+	}
+	
+	// Import row styles
+	@import 'header.styl'
+	@import 'intro.styl'
+	@import 'video.styl'
+	@import 'gallery.styl'
+	@import 'nominees.styl'
+	@import 'outro.styl'
 }
