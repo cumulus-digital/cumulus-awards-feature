@@ -307,22 +307,16 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
 .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-1column li img {
   max-width: 100%;
 }
-@media (max-width: 700px), (max-width: 430px) {
-  .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-1column li {
-    max-width: 100% !important;
-    margin: 0 auto 30px !important !important;
-    overflow: hidden !important;
-  }
-}
 .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-2column li {
   margin: 0 9px 30px !important;
-  max-width: 100% !important;
+  max-width: 50% !important;
   width: 465px !important;
 }
 @media (max-width: 500px) {
   .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-2column li {
     display: block !important;
     margin: 0 auto 20px !important;
+    width: 100%;
   }
 }
 .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-3column li {
@@ -332,10 +326,11 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   text-indent: 0.075em !important;
   width: 303.0000000033333px !important;
 }
-@media (max-width: 430px) {
+@media (max-width: 500px) {
   .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-3column li {
     display: block !important;
     margin: 0 auto 10px !important;
+    width: 100% !important;
   }
 }
 .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-3column .caf-cube {
@@ -345,6 +340,13 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   margin: 0 9px 15px !important;
   max-width: 100% !important;
   width: 173px !important;
+}
+@media (max-width: 400px) {
+  .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-5column li {
+    display: block !important;
+    margin: 0 auto 10px !important;
+    width: 100% !important;
+  }
 }
 .CMLS_FEATURE_CONTENT .caf-nominees.caf-lowtier {
   padding-top: 0 !important;

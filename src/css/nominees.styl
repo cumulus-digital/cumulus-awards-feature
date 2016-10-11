@@ -76,23 +76,18 @@
 			img {
 				max-width: 100%;
 			}
-			
-			@media (max-width: 700px), (max-width: 430px) {
-				max-width: 100% !important;
-				margin: @margin !important;
-				overflow: hidden !important;
-			}
 		}
 	}
 	&.caf-nominees-2column {
 		li {
 			margin: 0 9px 30px !important;
-			max-width: 100% !important;
+			max-width: 50% !important;
 			width: (($module_max_width/2) - 20) !important;
 
 			@media (max-width: 500px) {
 				display: block !important;
 				margin: 0 auto 20px !important;
+				width: 100%;
 			}
 		}
 	}
@@ -104,9 +99,10 @@
 			text-indent: (@letter-spacing/2) !important;
 			width: (($module_max_width/3) - 20.33333333) !important;
 			
-			@media (max-width: 430px) {
+			@media (max-width: 500px) {
 				display: block !important;
 				margin: 0 auto 10px !important;
+				width: 100% !important;
 			}
 		}
 		
@@ -119,6 +115,12 @@
 			margin: 0 9px 15px !important;
 			max-width: 100% !important;
 			width: (($module_max_width/5) - 21) !important;
+			
+			@media (max-width: 400px) {
+				display: block !important;
+				margin: 0 auto 10px !important;
+				width: 100% !important;
+			}
 		}
 	}
 	
