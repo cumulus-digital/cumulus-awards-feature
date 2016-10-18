@@ -125,33 +125,35 @@ body .wrapper-content {
 	}
 	
 	// Inline cube ad
-	.caf-cube {
-		background: #aaa;
-		float: right !important;
-		height: 250px !important;
-		margin: 0 0 1em 1em !important;
-		overflow: visible !important;
-		position: relative !important;
-		width: 300px !important;
-		max-width: 300px !important;
-		
-		&:after {
-			bottom: -12px;
-			color: #fff;
-			content: 'ADVERTISEMENT';
-			display: block;
-			font-size: 9px;
-			letter-spacing: 0.1em;
-			opacity: 0.4;
-			position: absolute;
-			right: 0;
-			text-align: right;
-		}
-		
-		@media (max-width: ($module_max_width+1)) {
-			display: block !important;
-			float: none !important;
-			margin: 0 auto 20px !important;
+	.caf-row {
+		.caf-cube {
+			background: #aaa;
+			float: right !important;
+			height: 250px !important;
+			margin: 0 0 1em 1em !important;
+			overflow: visible !important;
+			position: relative !important;
+			width: 300px !important;
+			max-width: 300px !important;
+			
+			&:after {
+				bottom: -12px;
+				color: #fff;
+				content: 'ADVERTISEMENT';
+				display: block;
+				font-size: 9px;
+				letter-spacing: 0.1em;
+				opacity: 0.4;
+				position: absolute;
+				right: 0;
+				text-align: right;
+			}
+			
+			@media (max-width: ($module_max_width+1)) {
+				display: block !important;
+				float: none !important;
+				margin: 0 auto 20px !important;
+			}
 		}
 	}
 	

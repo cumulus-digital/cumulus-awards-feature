@@ -126,7 +126,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=80);
 }
-.CMLS_FEATURE_CONTENT .caf-cube {
+.CMLS_FEATURE_CONTENT .caf-row .caf-cube {
   background: #aaa;
   float: right !important;
   height: 250px !important;
@@ -136,7 +136,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   width: 300px !important;
   max-width: 300px !important;
 }
-.CMLS_FEATURE_CONTENT .caf-cube:after {
+.CMLS_FEATURE_CONTENT .caf-row .caf-cube:after {
   bottom: -12px;
   color: #fff;
   content: 'ADVERTISEMENT';
@@ -151,7 +151,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   text-align: right;
 }
 @media (max-width: 971px) {
-  .CMLS_FEATURE_CONTENT .caf-cube {
+  .CMLS_FEATURE_CONTENT .caf-row .caf-cube {
     display: block !important;
     float: none !important;
     margin: 0 auto 20px !important;
@@ -255,7 +255,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   margin: 0 auto !important;
   max-width: 970px !important;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees li {
+.CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube) {
   display: inline-block !important;
   font-size: 18px !important;
   letter-spacing: 0.15em !important;
@@ -265,41 +265,41 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   vertical-align: top !important;
   width: 180px !important;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees li:first-child {
+.CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube):first-child {
   margin-left: 0 !important;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees li:last-child {
+.CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube):last-child {
   margin-right: 0 !important;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees li img {
+.CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube) img {
   display: block !important;
   margin-bottom: 10px !important;
   max-width: 100% !important;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees li small {
+.CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube) small {
   font-size: 60% !important;
 }
 @media (max-width: 430px) {
-  .CMLS_FEATURE_CONTENT .caf-nominees li {
+  .CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube) {
     max-width: 160px !important;
     margin: 0 5px 10px !important;
   }
 }
-.CMLS_FEATURE_CONTENT .caf-nominees li a {
+.CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube) a {
   color: inherit !important;
   text-decoration: none !important;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees li .caf-song-artist {
+.CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube) .caf-song-artist {
   font-size: 75%;
   letter-spacing: 0.1em;
   margin-top: 5px;
   text-indent: 0.05em;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees li .caf-song-artist em {
+.CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube) .caf-song-artist em {
   font-size: 70% !important;
   font-style: normal !important;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-1column li {
+.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-1column li:not(.caf-cube) {
   display: block !important;
   font-size: 22px !important;
   letter-spacing: 0.25em !important;
@@ -308,22 +308,22 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   text-indent: 0.125em !important;
   width: auto !important;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-1column li img {
+.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-1column li:not(.caf-cube) img {
   max-width: 100%;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-2column li {
+.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-2column li:not(.caf-cube) {
   margin: 0 9px 30px !important;
   max-width: 50% !important;
   width: 465px !important;
 }
 @media (max-width: 500px) {
-  .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-2column li {
+  .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-2column li:not(.caf-cube) {
     display: block !important;
     margin: 0 auto 20px !important;
     width: 100%;
   }
 }
-.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-3column li {
+.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-3column li:not(.caf-cube) {
   letter-spacing: 0.15em !important;
   margin: 0 9px 15px !important;
   max-width: 100% !important;
@@ -331,7 +331,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   width: 303.0000000033333px !important;
 }
 @media (max-width: 500px) {
-  .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-3column li {
+  .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-3column li:not(.caf-cube) {
     display: block !important;
     margin: 0 auto 10px !important;
     width: 100% !important;
@@ -340,13 +340,13 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
 .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-3column .caf-cube {
   margin: 20px 15px 20px 5px !important;
 }
-.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-5column li {
+.CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-5column li:not(.caf-cube) {
   margin: 0 9px 15px !important;
   max-width: 100% !important;
   width: 173px !important;
 }
 @media (max-width: 500px) {
-  .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-5column li {
+  .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-5column li:not(.caf-cube) {
     display: block !important;
     margin: 0 auto 10px !important;
     width: 100% !important;
