@@ -63,7 +63,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   text-indent: 0.4em !important;
   text-transform: uppercase !important;
 }
-@media (max-width: 650px) {
+@media (max-width: 653.3333333333334px) {
   .CMLS_FEATURE_CONTENT h1,
   .CMLS_FEATURE_CONTENT h2,
   .CMLS_FEATURE_CONTENT h3,
@@ -74,7 +74,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
     text-indent: 0.2em !important;
   }
 }
-@media (max-width: 487.5px) {
+@media (max-width: 490px) {
   .CMLS_FEATURE_CONTENT h1,
   .CMLS_FEATURE_CONTENT h2,
   .CMLS_FEATURE_CONTENT h3,
@@ -150,7 +150,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   right: 0;
   text-align: right;
 }
-@media (max-width: 976px) {
+@media (max-width: 981px) {
   .CMLS_FEATURE_CONTENT .caf-row .caf-cube {
     display: block !important;
     float: none !important;
@@ -184,7 +184,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
 }
 .CMLS_FEATURE_CONTENT .caf-video .caf-video-container {
   margin: 0 auto;
-  max-width: 975px;
+  max-width: 980px;
   position: relative;
 }
 .CMLS_FEATURE_CONTENT .caf-video.caf-with_cube .caf-video-container {
@@ -198,7 +198,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   -ms-transform: translate(0%, -50%);
   transform: translate(0%, -50%);
 }
-@media (max-width: 975px) {
+@media (max-width: 980px) {
   .CMLS_FEATURE_CONTENT .caf-video.caf-with_cube {
     padding-bottom: 0 !important;
   }
@@ -253,7 +253,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
 }
 .CMLS_FEATURE_CONTENT .caf-nominees ul {
   margin: 0 auto !important;
-  max-width: 975px !important;
+  max-width: 980px !important;
 }
 .CMLS_FEATURE_CONTENT .caf-nominees li:not(.caf-cube) {
   display: inline-block !important;
@@ -314,7 +314,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
 .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-2column li:not(.caf-cube) {
   margin: 0 9px 30px !important;
   max-width: 50% !important;
-  width: 467.5px !important;
+  width: 470px !important;
 }
 @media (max-width: 500px) {
   .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-2column li:not(.caf-cube) {
@@ -328,7 +328,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   margin: 0 9px 15px !important;
   max-width: 100% !important;
   text-indent: 0.075em !important;
-  width: 304.66666667px !important;
+  width: 306.33333333666667px !important;
 }
 @media (max-width: 500px) {
   .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-3column li:not(.caf-cube) {
@@ -343,7 +343,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
 .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-5column li:not(.caf-cube) {
   margin: 0 9px 15px !important;
   max-width: 100% !important;
-  width: 174px !important;
+  width: 175px !important;
 }
 @media (max-width: 500px) {
   .CMLS_FEATURE_CONTENT .caf-nominees.caf-nominees-5column li:not(.caf-cube) {
@@ -400,7 +400,7 @@ body .wrapper-content .CMLS_FEATURE_CONTENT article {
   line-height: 1 !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  max-width: 975px !important;
+  max-width: 980px !important;
 }
 .CMLS_FEATURE_CONTENT .caf-outro h3 {
   font-size: 22px !important;
