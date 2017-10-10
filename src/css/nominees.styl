@@ -14,8 +14,8 @@
 	}
 	li:not(.caf-cube) {
 		display: inline-block !important;
-		font-size: 18px !important;
-		letter-spacing: 0.15em !important;
+		font-size: 15px !important;
+		letter-spacing: 0.05em !important;
 		margin: 0 7px 10px !important;
 		text-indent: (@letter-spacing/2) !important;
 		text-transform: uppercase !important;
@@ -31,7 +31,7 @@
 		}
 		img {
 			display: block !important;
-			margin-bottom: 10px !important;
+			margin: 0 auto 10px !important;
 			max-width: 100% !important;
 		}
 		small {
@@ -111,13 +111,15 @@
 	}
 	&.caf-nominees-5column {
 		li:not(.caf-cube) {
-			// margin: 0 9px 15px !important;
+			margin: 0 5px 15px !important;
+			margin: 0 5px 3.25vh !important;
 			max-width: 100% !important;
-			width: (($module_max_width/5) - 21) !important;
+			width: (($module_max_width/5) - 25) !important;
 			
 			@media (max-width: 500px) {
 				display: block !important;
 				margin: 0 auto 10px !important;
+				margin: 0 auto 2vh !important;
 				width: 100% !important;
 			}
 		}
@@ -125,8 +127,9 @@
 	
 	// Low tier nominees category
 	&.caf-lowtier {
-		padding-top: 0 !important;
-		
+		padding: 35px 15px !important;
+		padding: 6vh 5vh !important;
+
 		.caf-row-header {
 			margin-bottom: 20px;
 			margin-bottom: 4vh;
@@ -138,13 +141,19 @@
 		}
 		li {
 			display: block !important;
-			font-size: 22px !important;
+			font-size: 20px !important;
 			letter-spacing: .01em !important;
 			line-height: 0.96 !important;
 			margin-bottom: 20px !important;
+			margin-bottom: 4vh !important;
 			text-align: center !important;
 			text-indent: 0 !important;
 			width: 100% !important;
+			
+			&:not(.caf-cube) {
+				margin-left: auto !important;
+				margin-right: auto !important;
+			}
 		}
 	}
 	
