@@ -104,10 +104,9 @@ body .wrapper-content .themify_builder_row {
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
-  margin: 0;
   overflow: hidden;
-  padding: 35px 15px;
-  padding: 6vh 5vw;
+  padding: 35px 15px !important;
+  padding: 6vh 5vw !important;
   position: relative;
   text-align: center;
   width: 100%;
@@ -177,6 +176,7 @@ body .wrapper-content .themify_builder_row {
 .CMLS_CCC .caf-intro h6 {
   font-size: 18px !important;
   line-height: 1 !important;
+  margin: 0 !important;
 }
 .CMLS_CCC .caf-video {
   background: #000;
