@@ -152,7 +152,7 @@ body .wrapper-content .themify_builder_row {
 @media (max-width: 981px) {
   .CMLS_CCC .caf-row .caf-cube {
     float: none;
-    margin: 0 auto 20px;
+    margin: 0 auto 20px !important;
   }
 }
 .CMLS_CCC .caf-header {
