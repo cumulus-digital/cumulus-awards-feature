@@ -363,13 +363,16 @@ body .wrapper-content .CMLS_CCC {
   padding: 6vh 5vh !important;
 }
 .CMLS_CCC .caf-nominees.caf-lowtier .caf-row-header {
-  margin-bottom: 20px;
-  margin-bottom: 4vh;
+  margin-bottom: 20px !important;
+  margin-bottom: 4vh !important;
 }
 .CMLS_CCC .caf-nominees.caf-lowtier .caf-nominee-column {
   display: inline-block;
   margin: 0 13px;
   max-width: 472px;
+}
+.CMLS_CCC .caf-nominees.caf-lowtier .caf-nominee-column h2 {
+  letter-spacing: 0.24em !important;
 }
 .CMLS_CCC .caf-nominees.caf-lowtier li {
   display: block !important;
