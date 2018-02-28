@@ -39,8 +39,8 @@
 			});
 
 			window._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
-				var iwin = newframe.contentWindow,
-					idoc = newframe.contentDocument;
+				var iwin = newframe[0].contentWindow,
+					idoc = newframe[0].contentDocument;
 
 				idoc.title = window.document.title;
 
