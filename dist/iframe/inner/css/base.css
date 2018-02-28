@@ -306,6 +306,7 @@ em {
   line-height: 1;
   margin: 1.5em auto;
   max-width: 980px;
+  opacity: 1;
 }
 .row.outro h3 {
   font-size: 1.2em;
