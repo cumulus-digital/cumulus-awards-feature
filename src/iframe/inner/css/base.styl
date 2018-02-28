@@ -3,13 +3,16 @@
 // Max width for section contents
 $module_max_width = 980px;
 
+* { box-sizing: border-box }
+
 html,body {
+	font-size: 20px
 	margin: 0;
 	padding: 0;
-}
-
-body {
-	font-size: 18px
+	
+	@media (max-width: ($module_max_width/1.5)) {
+		font-size: 18px;
+	}
 }
 
 strong {
@@ -23,24 +26,26 @@ em {
 	background-repeat: no-repeat;
 	background-size: cover;
 	overflow: hidden;
-	padding: 35px 15px;
-	padding: 6vh 5vh;
+	padding: 2.25em 1em;
 	position: relative;
 	text-align: center;
 	width: 100%;
 	
 	h1,h2,h3,h4,h5 {
+		font-weight: normal;
 		margin: 0;
 		padding: 0;
+		text-transform: uppercase;
 	}
 
-	h2 {
-		letter-spacing: .25em;
-		margin-bottom: 1.5em;
+	h3 {
+		letter-spacing: .4em;
+		margin-bottom: 2.25em;
 		padding: 0 1em;
+		text-indent: (@letter-spacing/2);
 	}
 	
-	h3 {
+	h4 {
 		font-size: 70%;
 		margin-top: .5em;
 		opacity: 0.8;
@@ -73,6 +78,7 @@ em {
 			position: absolute;
 			right: 0;
 			text-align: right;
+			text-indent: (@letter-spacing/2);
 		}
 		
 		@media (max-width: ($module_max_width+1)) {

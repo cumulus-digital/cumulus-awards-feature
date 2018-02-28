@@ -1,11 +1,14 @@
+<!-- REMOVE BEFORE POSTING -->
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- REMOVE BEFORE POSTING -->
 <script
-	src="https://cdn.rawgit.com/cumulus-digital/cumulus-awards-feature/6ef455d/dist/iframe/outer/js/base-min.js"
+	src="https://cdn.rawgit.com/cumulus-digital/cumulus-awards-feature/0d31885/dist/iframe/outer/js/base-min.js"
 	id="CMLS_FEATURE"
 
 	data-google-analytics-id="UA-########-##"
 ></script>
-<link href="https://cdn.rawgit.com/cumulus-digital/cumulus-awards-feature/6ef455d/dist/iframe/outer/css/base.css" rel="stylesheet" type="text/css">
+<link href="../../dist/iframe/outer/css/base.css" rel="stylesheet" type="text/css">
 <iframe id="CMLS_TEMPLATE" style="display:none">
 	<!DOCTYPE html>
 	<html>
@@ -14,12 +17,16 @@
 			<meta name="viewport" content="width=device-width,initial-scale=1.0">
 			<meta http-equiv="x-ua-compatible" content="ie=edge">
 			<title>Cumulus</title>
-			<link href="https://cdn.rawgit.com/cumulus-digital/cumulus-awards-feature/6ef455d/dist/iframe/inner/css/base.css" rel="stylesheet" type="text/css">
-			<script src="https://cdn.rawgit.com/cumulus-digital/cumulus-awards-feature/6ef455d/dist/iframe/inner/js/base-min.js"></script>
+			<link href="../../dist/iframe/inner/css/base.css" rel="stylesheet" type="text/css">
+			<script src="https://cdn.rawgit.com/cumulus-digital/cumulus-awards-feature/0d31885/dist/iframe/inner/js/base-min.js"></script>
 
 			<!-- LOCAL STYLES HERE -->
+			<link href="https://fonts.googleapis.com/css?family=Signika:300,400,700" rel="stylesheet">
 			<style>
-
+				body {
+					font-family: 'Signika';
+					font-weight: 300;
+				}
 			</style>
 			<!-- END LOCAL STYLES -->
 		</head>
@@ -27,54 +34,62 @@
 			<base target="_parent">
 
 			<div class="generic row header">
-				<h1>
-					<img src="whatever.jpg" class="logo" alt="Awards Show!">
-				</h1>
+				<div class="container">
+					<h1>
+						<img src="whatever.jpg" class="logo" alt="Awards Show!">
+					</h1>
+				</div>
 			</div>
 
 			<div class="generic row intro">
-				<h2>Announcing the Nominees</h2>
+				<div class="container">
+					<h2>Announcing the Nominees</h2>
+				</div>
 			</div>
 
-			<div class="generic row nominees 5column">
-				<h3>Top Artists</h3>
-				<ul>
-					<li>
-						<img src="artist.jpg">
-						Artist Name
-					</li>
-					<li>
-						<img src="artist.jpg">
-						Artist Name
-					</li>
-					<li>
-						<img src="artist.jpg">
-						Artist Name
-					</li>
-					<li>
-						<img src="artist.jpg">
-						Artist Name
-					</li>
-					<li>
-						<img src="artist.jpg">
-						Artist Name
-					</li>					
-				</ul>
+			<div class="generic row nominees column5">
+				<div class="container">
+					<h3>Top Artists</h3>
+					<ul>
+						<li>
+							<img src="artist.jpg">
+							Artist Name
+						</li>
+						<li>
+							<img src="artist.jpg">
+							Artist Name
+						</li>
+						<li>
+							<img src="artist.jpg">
+							Artist Name
+						</li>
+						<li>
+							<img src="artist.jpg">
+							Artist Name
+						</li>
+						<li>
+							<img src="artist.jpg">
+							Artist Name
+						</li>					
+					</ul>
+				</div>
 			</div>
 
 			<div class="generic row outro">
-				<h3>
-					<a href="http://showsite.com" target="_blank">
-						Check out the complete list of nominees at
-						<wbr>
-						<span>showsite.com</span>
-					</a>
-				</h3>
-				<h4>
-					2018 Awards Show<br>
-					Live Sunday Month 12 8|7c
-				</h4>
-				<img class="network-logo" src="network-logo.png" alt="Only on ABC">
+				<div class="container">
+					<h3>
+						<a href="http://showsite.com" target="_blank">
+							Check out the complete list of nominees at
+							<wbr>
+							<span>showsite.com</span>
+						</a>
+					</h3>
+					<h4>
+						2018 Awards Show<br>
+						Live Sunday Month 12 8|7c
+					</h4>
+					<img class="network-logo" src="network-logo.png" alt="Only on ABC">
+				</div>
 			</div>
 		</body>
 	</html>
