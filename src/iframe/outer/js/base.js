@@ -25,15 +25,18 @@
 		}
 
 		if (tag.is('iframe')) {
-			var newframe = window.document.createElement('iframe'),
+			var newframe = $('<iframe></iframe>'),
 				frame_id = 'CMLS_CCC_IFRAME-' + Date.now();
 
-			newframe.id = newframe.name = frame_id;
-			newframe.width = '100%';
-			newframe.frameBorder = 0;
-			newframe.className = 'CMLS_CCC_IFRAME';
-			newframe.scrolling = false;
-			newframe.allowTransparency = true;
+			newframe.attr({
+				id: frame_id,
+				name: frame_id,
+				width: '100%',
+				frameBorder: 0,
+				className: 'CMLS_CCC_IFRAME',
+				scrolling: false,
+				allowTransparency: true
+			});
 
 			window._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
 				var iwin = newframe.contentWindow,
