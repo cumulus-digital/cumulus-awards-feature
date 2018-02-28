@@ -101,7 +101,7 @@ em {
   }
 }
 .row.intro {
-  padding: 1.5em;
+  padding: 1.5em 1em;
 }
 .row.intro h2,
 .row.intro h3 {
@@ -115,6 +115,7 @@ em {
   .row.intro h2,
   .row.intro h3 {
     font-size: 0.8em;
+    letter-spacing: 0.25em;
   }
 }
 .row.video {
