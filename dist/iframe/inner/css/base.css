@@ -87,10 +87,17 @@ em {
 .row.header {
   padding: 1.3rem 0.8rem;
 }
-.row.header .logo {
+.row.header .logo,
+.row.header .tunein {
   display: block;
   margin: 0 auto;
-  max-width: 90%;
+  max-width: 60%;
+}
+@media (max-width: 653.3333333333334px) {
+  .row.header .logo,
+  .row.header .tunein {
+    max-width: 90%;
+  }
 }
 .row.intro h2,
 .row.intro h3 {

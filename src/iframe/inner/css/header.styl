@@ -1,9 +1,13 @@
 .row.header {
 	padding: 1.3rem 0.8rem;
 
-	.logo {
+	.logo,.tunein {
 		display: block;
 		margin: 0 auto;
-		max-width: 90%;
+		max-width: 60%;
+		
+		@media (max-width: ($module_max_width/1.5)) {
+			max-width: 90%;
+		}
 	}
 }
