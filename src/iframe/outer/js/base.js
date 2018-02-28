@@ -72,13 +72,12 @@
 			ifscr.onload = function(){
 				var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1);
 				w.iFrameResize({
-					log: false,
+					log: true,
 					checkOrigin: false,
 					heightCalculationMethod: isOldIE ? 'max' : 'lowestElement'
 				}, '#' + frame_id);
 			};
 			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js';
-			ifscr.crossorigin = 'anonymous';
 			window.document.head.appendChild(ifscr);
 
 		} else {
