@@ -62,11 +62,9 @@
 			};
 
 			tag.after(newframe);
-			newframe.ready(function(){
-				$(this).contents().append(
-					tag.contents()
-				);
-			});
+			newframe[0].contentDocument.open();
+			newframe[0].contentDocument.write(tag.text());
+			newframe[0].contentDocument.close();
 
 			// Set up iframe resizer
 			var ifscr = window.document.createElement('script'),
