@@ -69,15 +69,16 @@
 			// Set up iframe resizer
 			var ifscr = window.document.createElement('script'),
 				w = window;
+			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js';
+			ifscr.type = 'text/javascript';
 			ifscr.onload = function(){
 				var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1);
 				w.iFrameResize({
-					log: true,
+					log: window.IFR_DEBUG || false,
 					checkOrigin: false,
 					heightCalculationMethod: isOldIE ? 'max' : 'lowestElement'
 				}, '#' + frame_id);
 			};
-			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js';
 			window.document.head.appendChild(ifscr);
 
 		} else {
