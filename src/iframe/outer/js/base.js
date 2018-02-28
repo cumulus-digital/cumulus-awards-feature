@@ -63,7 +63,7 @@
 
 			tag.after(newframe);
 			newframe.ready(function(){
-				newframe.contents().append(
+				$(this).contents().append(
 					tag.contents()
 				);
 			});
