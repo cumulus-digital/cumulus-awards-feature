@@ -58,11 +58,12 @@
 				});
 			};
 
+			newframe.ready(function(){
+				newframe.contents().append(
+					tag.innerText
+				);
+			});
 			tag.after(newframe);
-
-			newframe.contents().append(
-				tag.innerText
-			);
 
 			// Set up iframe resizer
 			var ifscr = window.document.createElement('script'),
