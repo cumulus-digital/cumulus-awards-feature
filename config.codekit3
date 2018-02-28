@@ -7,76 +7,19 @@
 		"uuidString": "818D07DB-6AEA-44A2-A3A6-47D2333C6A85"
 		}
 	],
-"creatorBuild": "25900",
+"creatorBuild": "26268",
 "files": {
 	"\/.gitignore": {
+		"cB": 0,
 		"ft": 8192,
 		"oA": 2,
-		"oAP": "\/.gitignore",
+		"oAP": "\/dist\/.gitignore",
 		"oF": 0
 		},
-	"\/dist\/css\/base.css": {
-		"aP": 0,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
+	"\/dist": {
+		"ft": 65536,
 		"oA": 1,
-		"oAP": "\/dist\/css\/base-min.css",
-		"oF": 0,
-		"oS": 0
-		},
-	"\/dist\/css\/base.css.map": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/css\/base.css.map",
-		"oF": 0
-		},
-	"\/dist\/css\/gallerypage.css": {
-		"aP": 0,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 1,
-		"oAP": "\/dist\/css\/gallerypage-min.css",
-		"oF": 0,
-		"oS": 0
-		},
-	"\/dist\/css\/gallerypage.css.map": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/css\/gallerypage.css.map",
-		"oF": 0
-		},
-	"\/dist\/js\/base-min.js": {
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/dist\/js\/base-min-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
-	"\/dist\/js\/base-min.js.map": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/js\/base-min.js.map",
-		"oF": 0
-		},
-	"\/dist\/js\/gallerypage-min.js": {
-		"ft": 64,
-		"ma": 1,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/dist\/js\/gallerypage-min-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
-	"\/dist\/js\/gallerypage-min.js.map": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/js\/gallerypage-min.js.map",
+		"oAP": "\/dist\/dist",
 		"oF": 0
 		},
 	"\/src\/css\/base.styl": {
@@ -183,11 +126,135 @@
 		"oS": 0,
 		"rrU": 0
 		},
-	"\/src\/js\/base.js": {
+	"\/src\/iframe\/inner\/css\/base.styl": {
+		"aP": 1,
+		"bl": 0,
+		"dS": 0,
+		"ft": 8,
+		"iC": 0,
+		"ma": 1,
+		"oA": 0,
+		"oAP": "\/dist\/iframe\/inner\/css\/base.css",
+		"oF": 0,
+		"oS": 0,
+		"rrU": 0
+		},
+	"\/src\/iframe\/inner\/css\/gallery.styl": {
+		"aP": 1,
+		"bl": 0,
+		"dS": 0,
+		"ft": 8,
+		"iC": 0,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/dist\/iframe\/inner\/css\/gallery.css",
+		"oF": 0,
+		"oS": 0,
+		"rrU": 0
+		},
+	"\/src\/iframe\/inner\/css\/header.styl": {
+		"aP": 1,
+		"bl": 0,
+		"dS": 0,
+		"ft": 8,
+		"iC": 0,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/dist\/iframe\/inner\/css\/header.css",
+		"oF": 0,
+		"oS": 0,
+		"rrU": 0
+		},
+	"\/src\/iframe\/inner\/css\/intro.styl": {
+		"aP": 1,
+		"bl": 0,
+		"dS": 0,
+		"ft": 8,
+		"iC": 0,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/dist\/iframe\/inner\/css\/intro.css",
+		"oF": 0,
+		"oS": 0,
+		"rrU": 0
+		},
+	"\/src\/iframe\/inner\/css\/nominees.styl": {
+		"aP": 1,
+		"bl": 0,
+		"dS": 0,
+		"ft": 8,
+		"iC": 0,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/dist\/iframe\/inner\/css\/nominees.css",
+		"oF": 0,
+		"oS": 0,
+		"rrU": 0
+		},
+	"\/src\/iframe\/inner\/css\/outro.styl": {
+		"aP": 1,
+		"bl": 0,
+		"dS": 0,
+		"ft": 8,
+		"iC": 0,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/dist\/iframe\/inner\/css\/outro.css",
+		"oF": 0,
+		"oS": 0,
+		"rrU": 0
+		},
+	"\/src\/iframe\/inner\/css\/video.styl": {
+		"aP": 1,
+		"bl": 0,
+		"dS": 0,
+		"ft": 8,
+		"iC": 0,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "\/dist\/iframe\/inner\/css\/video.css",
+		"oF": 0,
+		"oS": 0,
+		"rrU": 0
+		},
+	"\/src\/iframe\/inner\/js\/base.js": {
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
 		"oA": 0,
+		"oAP": "\/dist\/iframe\/inner\/js\/base-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/src\/iframe\/outer\/css\/base.styl": {
+		"aP": 1,
+		"bl": 0,
+		"dS": 0,
+		"ft": 8,
+		"iC": 0,
+		"ma": 1,
+		"oA": 0,
+		"oAP": "\/dist\/iframe\/outer\/css\/base.css",
+		"oF": 0,
+		"oS": 0,
+		"rrU": 0
+		},
+	"\/src\/iframe\/outer\/js\/base.js": {
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/dist\/iframe\/outer\/js\/base-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/src\/js\/base.js": {
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
 		"oAP": "\/dist\/js\/base-min.js",
 		"oF": 0,
 		"sC": 1,
@@ -204,64 +271,81 @@
 		"tS": 0
 		},
 	"\/templates\/gallery.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/gallery.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/gallery.html",
+		"oF": 1
 		},
 	"\/templates\/gallerypage.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/gallerypage.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/gallerypage.html",
+		"oF": 1
 		},
 	"\/templates\/header.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/header.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/header.html",
+		"oF": 1
+		},
+	"\/templates\/iframe\/outer.html": {
+		"cB": 0,
+		"ft": 8192,
+		"oA": 1,
+		"oAP": "\/dist\/templates\/iframe\/outer.html",
+		"oF": 1
 		},
 	"\/templates\/intro.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/intro.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/intro.html",
+		"oF": 1
 		},
 	"\/templates\/nominees-featured.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/nominees-featured.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/nominees-featured.html",
+		"oF": 1
 		},
 	"\/templates\/nominees-lowtier.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/nominees-lowtier.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/nominees-lowtier.html",
+		"oF": 1
 		},
 	"\/templates\/nominees.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/nominees.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/nominees.html",
+		"oF": 1
 		},
 	"\/templates\/outro.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/outro.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/outro.html",
+		"oF": 1
 		},
 	"\/templates\/scripts-and-styles.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/scripts-and-styles.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/scripts-and-styles.html",
+		"oF": 1
 		},
 	"\/templates\/video.html": {
+		"cB": 0,
 		"ft": 8192,
-		"oA": 0,
-		"oAP": "\/templates\/video.html",
-		"oF": 0
+		"oA": 1,
+		"oAP": "\/dist\/templates\/video.html",
+		"oF": 1
 		}
 	},
 "hooks": [
@@ -280,6 +364,7 @@
 	"animateCSSInjections": 1,
 	"autoBuildNewItems": 1,
 	"autoprefixerBrowserString": "> 1%, last 4 versions, Firefox ESR, Opera 12.1",
+	"autoprefixerEnableIEGrid": 0,
 	"babelAuxiliaryCommentAfter": "",
 	"babelAuxiliaryCommentBefore": "",
 	"babelConfigFileHandlingType": 0,
@@ -527,8 +612,8 @@
 	"bowerSaveDevDependencies": 0,
 	"bowerUseExactVersion": 0,
 	"browserRefreshDelay": 0,
-	"buildFolderActive": 0,
-	"buildFolderName": "build",
+	"buildFolderActive": 1,
+	"buildFolderName": "dist",
 	"cleanBuild": 1,
 	"coffeeLintFlags2": {
 		"arrow_spacing": {
@@ -808,6 +893,10 @@
 			"active": 0,
 			"optionString": "'expression'"
 			},
+		"function-paren-newline": {
+			"active": 0,
+			"optionString": "'multiline'"
+			},
 		"generator-star-spacing": {
 			"active": 0,
 			"optionString": "{'before': true, 'after': false}"
@@ -839,6 +928,10 @@
 		"id-match": {
 			"active": 0,
 			"optionString": "'^[a-z]+([A-Z][a-z]+)*$', {'properties': false, 'onlyDeclarations': true}"
+			},
+		"implicit-arrow-linebreak": {
+			"active": 0,
+			"optionString": "'beside'"
 			},
 		"indent": {
 			"active": 0,
@@ -872,9 +965,9 @@
 			"active": 0,
 			"optionString": "{'beforeBlockComment': true}"
 			},
-		"lines-around-directive": {
+		"lines-between-class-members": {
 			"active": 0,
-			"optionString": "{'before': 'always', 'after': 'always'}"
+			"optionString": "'always', {exceptAfterSingleLine: false}"
 			},
 		"max-depth": {
 			"active": 0,
@@ -904,6 +997,10 @@
 			"active": 0,
 			"optionString": "{'max': 1}"
 			},
+		"multiline-comment-style": {
+			"active": 0,
+			"optionString": "'starred-block'"
+			},
 		"multiline-ternary": {
 			"active": 0,
 			"optionString": "'always'"
@@ -913,14 +1010,6 @@
 			"optionString": "{'newIsCap': true, 'capIsNew': true, 'newIsCapExceptions': [], 'capIsNewExceptions': ['Array', 'Boolean', 'Date', 'Error', 'Function', 'Number', 'Object', 'RegExp', 'String', 'Symbol'], 'properties': true}"
 			},
 		"new-parens": {
-			"active": 0,
-			"optionString": ""
-			},
-		"newline-after-var": {
-			"active": 0,
-			"optionString": "'always'"
-			},
-		"newline-before-return": {
 			"active": 0,
 			"optionString": ""
 			},
@@ -2024,7 +2113,8 @@
 		"createSourceMap": 0,
 		"minifyOutput": 1,
 		"outputStyle": 0,
-		"syntaxCheckerStyle": 1
+		"syntaxCheckerStyle": 1,
+		"transpilerStyle": 1
 		},
 	"languageDefaultsCSS": {
 		"autoOutputAction": 2,
@@ -2057,6 +2147,7 @@
 		"noEscapeInAttributes": 0,
 		"outputFormat": 2,
 		"outputStyle": 0,
+		"shouldRunCacheBuster": 0,
 		"useCDATA": 0,
 		"useDoubleQuotes": 0,
 		"useUnixNewlines": 0
@@ -2076,7 +2167,7 @@
 		"autoOutputPathRelativePath": "dist\/js",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
-		"autoOutputPathStyle": 1,
+		"autoOutputPathStyle": 0,
 		"createSourceMap": 1,
 		"minifyOutput": 1,
 		"syntaxCheckerStyle": 1,
@@ -2098,7 +2189,8 @@
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
-		"autoOutputPathStyle": 0
+		"autoOutputPathStyle": 0,
+		"shouldRunCacheBuster": 0
 		},
 	"languageDefaultsLESS": {
 		"allowInsecureImports": 0,
@@ -2130,13 +2222,13 @@
 		"enableFootnotes": 1,
 		"enableLabels": 1,
 		"enableSmartQuotes": 1,
-		"escapeLineBreaks": 0,
 		"maskEmailAddresses": 1,
 		"outputFormat": 0,
 		"outputStyle": 0,
 		"parseMetadata": 1,
 		"processHTML": 0,
 		"randomFootnoteNumbers": 0,
+		"shouldRunCacheBuster": 0,
 		"useCompatibilityMode": 0
 		},
 	"languageDefaultsOTHER": {
@@ -2145,7 +2237,8 @@
 		"autoOutputPathRelativePath": "",
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
-		"autoOutputPathStyle": 0
+		"autoOutputPathStyle": 0,
+		"shouldRunCacheBuster": 0
 		},
 	"languageDefaultsPNG": {
 		"autoOutputAction": 0,
@@ -2165,7 +2258,8 @@
 		"autoOutputPathReplace2": "",
 		"autoOutputPathStyle": 0,
 		"compileDebug": 1,
-		"outputStyle": 0
+		"outputStyle": 0,
+		"shouldRunCacheBuster": 0
 		},
 	"languageDefaultsSASS": {
 		"autoOutputAction": 0,
@@ -2193,7 +2287,8 @@
 		"logicless": 0,
 		"outputFormat": 0,
 		"outputStyle": 1,
-		"railsCompatible": 0
+		"railsCompatible": 0,
+		"shouldRunCacheBuster": 0
 		},
 	"languageDefaultsSTYLUS": {
 		"autoOutputAction": 0,
@@ -2201,7 +2296,7 @@
 		"autoOutputPathRelativePath": "dist\/css",
 		"autoOutputPathReplace1": "stylus",
 		"autoOutputPathReplace2": "css",
-		"autoOutputPathStyle": 1,
+		"autoOutputPathStyle": 0,
 		"createSourceMap": 1,
 		"debugStyle": 0,
 		"importCSS": 0,
@@ -2243,7 +2338,7 @@
 	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
 	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules",
-	"sourceFolderName": "source",
+	"sourceFolderName": "src",
 	"susyVersion": 3,
 	"uglifyDefinesString": "",
 	"uglifyFlags2": {
@@ -2413,7 +2508,7 @@
 			}
 		},
 	"uglifyReservedNamesString": "$",
-	"websiteRelativeRoot": ""
+	"websiteRelativeRoot": "\/dist"
 	},
 "settingsFileVersion": "3"
 }

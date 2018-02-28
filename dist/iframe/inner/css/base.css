@@ -1,0 +1,244 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css");
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 18px;
+}
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
+.generic.row {
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  padding: 35px 15px;
+  padding: 6vh 5vh;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+.generic.row h1,
+.generic.row h2,
+.generic.row h3,
+.generic.row h4,
+.generic.row h5 {
+  margin: 0;
+  padding: 0;
+}
+.generic.row h2 {
+  letter-spacing: 0.25em;
+  margin-bottom: 1.5em;
+  padding: 0 1em;
+}
+.generic.row h3 {
+  font-size: 70%;
+  margin-top: 0.5em;
+  opacity: 0.8;
+}
+.generic.row .container {
+  margin: 0 auto;
+  max-width: 980px;
+}
+.generic.row .cube-ad {
+  background: #aaa;
+  float: right;
+  height: 250px;
+  margin: 0 0 1em 1em;
+  overflow: visible;
+  position: relative;
+  width: 300px;
+  max-width: 300px;
+}
+.generic.row .cube-ad:after {
+  bottom: -12px;
+  color: #fff;
+  content: 'ADVERTISEMENT';
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  opacity: 0.4;
+  position: absolute;
+  right: 0;
+  text-align: right;
+}
+@media (max-width: 981px) {
+  .generic.row .cube-ad {
+    float: none;
+    margin: 0 auto 20px;
+  }
+}
+.header {
+  padding: 30px 20px;
+  padding: 5.5vh 4vw;
+}
+.header .logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 90%;
+}
+.intro h2,
+.intro h3 {
+  font-size: 1rem;
+  line-height: 1;
+  margin: 0;
+}
+@media (max-width: 981px) {
+  .intro h2,
+  .intro h3 {
+    font-size: 0.8rem;
+  }
+}
+.video {
+  background: #000;
+}
+.video .video-container {
+  height: 0;
+  margin: 0 auto;
+  max-width: 980px;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+}
+.video .video-container iframe,
+.video .video-container object,
+.video .video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.video .with_cube .cube {
+  float: right;
+  margin-left: 20px;
+}
+@media (max-width: $module_max_width-200) {
+  .video .with_cube .cube {
+    float: none;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+}
+.nominees {
+  font-size: 0.8rem;
+}
+.nominees h2,
+.nominees h3,
+.nominees h4,
+.nominees h5,
+.nominees h6 {
+  font-size: 1rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.nominees ul {
+  margin: 0 auto;
+  max-width: 980px;
+}
+.nominees li:not(.cube) {
+  display: inline-block;
+  letter-spacing: 0.05em;
+  margin: 0 7px 10px;
+  text-transform: uppercase;
+  vertical-align: top;
+  width: 180px;
+}
+.nominees li:not(.cube):first-child {
+  margin-left: 0;
+}
+.nominees li:not(.cube):last-child {
+  margin-right: 0;
+}
+.nominees li:not(.cube) img {
+  display: block;
+  margin: 0 auto 0.5rem;
+  max-width: 100%;
+}
+.nominees li:not(.cube) small {
+  font-size: 60%;
+}
+@media (max-width: 490px -10) {
+  .nominees li:not(.cube) {
+    max-width: 160px;
+    margin: 0 5px 10px;
+  }
+}
+.nominees .artist {
+  letter-spacing: 0.1em;
+  margin-top: 5px;
+}
+.nominees .artist em {
+  font-size: 0.8em;
+  font-style: normal;
+}
+.nominees.1column {
+  font-size: 1.2rem;
+}
+.nominees.1column li:not(.cube-ad) {
+  display: block;
+  letter-spacing: 0.25em;
+  margin: 0 auto 1.5em;
+  max-width: 100%;
+  width: auto;
+}
+.nominees.2column {
+  font-size: 1.2rem;
+}
+.nominees.2column li:not(.cube-ad) {
+  margin: 0 auto 1.5em;
+  max-width: 50%;
+  padding: 0 9px;
+}
+@media (max-width: 510px) {
+  .nominees.2column li:not(.cube-ad) {
+    display: block;
+    max-width: 100%;
+  }
+}
+.nominees.3column li:not(.cube-ad) {
+  letter-spacing: 0.15em;
+  margin: 0 auto 0.8em;
+  max-width: 100%;
+  padding: 0 9px;
+}
+@media (max-width: 510px) {
+  .nominees.3column li:not(.cube-ad) {
+    display: block;
+  }
+}
+.nominees.5column li:not(.cube-ad) {
+  margin: 0 auto 0.8em;
+  max-width: 100%;
+  padding: 0 5px;
+  width: 196px;
+}
+@media (max-width: 510px) {
+  .nominees.5column li:not(.cube-ad) {
+    display: block;
+  }
+}
+.nominees.lowtier h2 {
+  margin-bottom: 0.8em;
+  letter-spacing: 0.24em;
+}
+.nominees.lowtier .column {
+  display: inline-block;
+  max-width: 50%;
+  padding: 0 1em;
+}
+.nominees.lowtier li {
+  display: block;
+  font-size: 1.2em;
+  letter-spacing: 0.1em;
+  line-height: 0.96;
+  margin: 0;
+  margin-bottom: 1em;
+  text-align: center;
+}
+/*# sourceMappingURL=base.css.map */

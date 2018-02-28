@@ -1,0 +1,90 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css);
+
+// Max width for section contents
+$module_max_width = 980px;
+
+html,body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 18px
+}
+
+strong {
+	font-weight: bold;
+}
+em {
+	font-style: italic;
+}
+
+.generic.row {
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: hidden;
+	padding: 35px 15px;
+	padding: 6vh 5vh;
+	position: relative;
+	text-align: center;
+	width: 100%;
+	
+	h1,h2,h3,h4,h5 {
+		margin: 0;
+		padding: 0;
+	}
+
+	h2 {
+		letter-spacing: .25em;
+		margin-bottom: 1.5em;
+		padding: 0 1em;
+	}
+	
+	h3 {
+		font-size: 70%;
+		margin-top: .5em;
+		opacity: 0.8;
+	}
+	
+	.container {
+		margin: 0 auto;
+		max-width: $module_max_width;
+	}
+	
+	// Inline cube ad
+	.cube-ad {
+		background: #aaa;
+		float: right;
+		height: 250px;
+		margin: 0 0 1em 1em;
+		overflow: visible;
+		position: relative;
+		width: 300px;
+		max-width: 300px;
+		
+		&:after {
+			bottom: -12px;
+			color: #fff;
+			content: 'ADVERTISEMENT';
+			display: block;
+			font-size: 8px;
+			letter-spacing: 0.1em;
+			opacity: 0.4;
+			position: absolute;
+			right: 0;
+			text-align: right;
+		}
+		
+		@media (max-width: ($module_max_width+1)) {
+			float: none;
+			margin: 0 auto 20px;
+		}
+	}
+}
+
+@import 'header.styl';
+@import 'intro.styl';
+@import 'video.styl';
+@import 'gallery.styl';
+@import 'nominees.styl';
+@import 'outro.styl';

@@ -1,0 +1,43 @@
+.themify_builder_turn_on {
+  display: none !important;
+}
+body .wrapper-content .column,
+body .wrapper-content .row,
+body .wrapper-content .column > *,
+body .wrapper-content .module-title,
+body .wrapper-content .themify_builder_row .widgettitle,
+body .wrapper-content #comments,
+body .wrapper-content article > header,
+body .wrapper-content article > footer,
+body .wrapper-content .entry-title,
+body .wrapper-content .entry-meta,
+body .wrapper-content .post-thumbnail,
+body .wrapper-content .hideme {
+  display: none !important;
+}
+body .wrapper-content,
+body .wrapper-content .grid-container,
+.CMLS_CCC,
+.CMLS_CCC > div,
+.CMLS_CCC > article,
+.CMLS_CCC .entry-content,
+.CMLS_CCC .themify_builder_row {
+  border: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+.CMLS_CCC {
+  display: block !important;
+}
+.CMLS_CCC,
+.CMLS_CCC * {
+  -webkit-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  line-height: 1 !important;
+}
+.CMLS_CCC iframe {
+  display: inherit !important;
+}
+/*# sourceMappingURL=base.css.map */
