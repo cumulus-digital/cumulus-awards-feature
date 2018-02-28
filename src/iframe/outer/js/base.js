@@ -61,12 +61,12 @@
 				});
 			};
 
+			tag.after(newframe);
 			newframe.ready(function(){
 				newframe.contents().append(
 					tag.contents()
 				);
 			});
-			tag.after(newframe);
 
 			// Set up iframe resizer
 			var ifscr = window.document.createElement('script'),
@@ -80,7 +80,6 @@
 				}, '#' + frame_id);
 			};
 			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js';
-			ifscr.integrity = 'sha256-NZjCYaMfryuJQRMgekHuC02c/Wv4sMRzHG2zyhrVwKU=';
 			ifscr.crossorigin = 'anonymous';
 			window.document.head.appendChild(ifscr);
 
