@@ -100,9 +100,12 @@ em {
     max-width: 90%;
   }
 }
+.row.intro {
+  padding: 1.5em;
+}
 .row.intro h2,
 .row.intro h3 {
-  font-size: 1rem;
+  font-size: 1em;
   line-height: 1;
   margin: 0;
   text-transform: uppercase;
@@ -110,7 +113,7 @@ em {
 @media (max-width: 981px) {
   .row.intro h2,
   .row.intro h3 {
-    font-size: 0.8rem;
+    font-size: 0.8em;
   }
 }
 .row.video {
