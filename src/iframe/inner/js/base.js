@@ -8,21 +8,31 @@
 		window.parent._CMLS.CCC_IFRAME_SETUP(window.self);
 	}
 
-	// Handle our fake iframes
+	// For any fake iframes
 	window.document.createElement('iiframe');
-	$(function(){
-		$('iiframe').each(function() {
-			var container = $(this),
-				newframe = window.document.createElement('iframe'),
-				attrs = this.attributes;
-			$.each(attrs, function(){
-				if (this.specified) {
-					newframe[this.name] = this.value;
-				}
+
+	// Load jquery
+	var jqscr = window.document.createElement('script');
+	jqscr.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js';
+	jqscr.type = 'text/javascript';
+	jqscr.onload = function(){
+		var $ = window.jQuery;
+
+		// Handle our fake iframes
+		$(function(){
+			$('iiframe').each(function() {
+				var container = $(this),
+					newframe = window.document.createElement('iframe'),
+					attrs = this.attributes;
+				$.each(attrs, function(){
+					if (this.specified) {
+						newframe[this.name] = this.value;
+					}
+				});
+				container.append(newframe);
 			});
-			container.append(newframe);
 		});
-	});
+	};
 
 	// Start up iframe-resizer
 	var ifscr = window.document.createElement('script');
