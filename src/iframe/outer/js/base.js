@@ -63,7 +63,7 @@
 
 			newframe.ready(function(){
 				newframe.contents().append(
-					tag.innerText
+					tag.contents()
 				);
 			});
 			tag.after(newframe);
