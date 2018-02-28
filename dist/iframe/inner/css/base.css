@@ -317,4 +317,12 @@ em {
   line-height: 1.2;
   margin-bottom: 0.9em;
 }
+.row.outro .tunein {
+  max-width: 60%;
+}
+@media (max-width: 653.3333333333334px) {
+  .row.outro .tunein {
+    max-width: 90%;
+  }
+}
 /*# sourceMappingURL=base.css.map */
