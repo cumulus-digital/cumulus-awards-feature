@@ -34,6 +34,19 @@
 		});
 	};
 
+	// Start up loazy loader
+	(function(w, d){
+		var b = d.getElementsByTagName('body')[0];
+		var s = d.createElement("script"); s.async = true;
+		var v = !("IntersectionObserver" in w) ? "8.6.0" : "10.4.2";
+		s.src = "https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/" + v + "/lazyload.min.js";
+		w.lazyLoadOptions = {
+			container: window.parent.document.body
+		}; // Your options here. See "recipes" for more information about async.
+		b.appendChild(s);
+	}(window, document));
+
+
 	// Start up iframe-resizer
 	var ifscr = window.document.createElement('script');
 	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.contentWindow.min.js';
