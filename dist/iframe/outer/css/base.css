@@ -33,9 +33,9 @@ body .wrapper-content .CMLS_CCC {
 }
 .CMLS_CCC,
 .CMLS_CCC * {
-  -webkit-box-sizing: border-box !important;
-  box-sizing: border-box !important;
   line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .CMLS_CCC iframe {
   display: inherit !important;
