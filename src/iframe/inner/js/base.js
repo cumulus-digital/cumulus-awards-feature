@@ -10,15 +10,6 @@
 		}
 	}
 
-	// Run parent processor
-	if (
-		window.parent._CMLS &&
-		window.parent._CMLS.CCC_IFRAME_SETUP
-	) {
-		log('Calling parent iframe setup');
-		window.parent._CMLS.CCC_IFRAME_SETUP(window.self);
-	}
-
 	// For any fake iframes
 	var iiframe = window.document.createElement('iiframe'); // jshint ignore:line
 
@@ -62,5 +53,14 @@
 		log('iframe-resizer contentWindow loaded.');
 	};
 	window.document.head.appendChild(ifscr);
+
+	// Run parent processor
+	if (
+		window.parent._CMLS &&
+		window.parent._CMLS.CCC_IFRAME_SETUP
+	) {
+		log('Calling parent iframe setup');
+		window.parent._CMLS.CCC_IFRAME_SETUP(window.self);
+	}
 
 }(window.self));

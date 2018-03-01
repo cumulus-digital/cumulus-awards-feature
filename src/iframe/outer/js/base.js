@@ -57,7 +57,7 @@
 							this.innerText.indexOf('googletag.pubads().setTargeting') > -1
 						)
 					) {
-						log('Activating parent DFP in iframe template');
+						log('Activating parent DFP in iframe template', this);
 						iwin.eval(this.innerText);
 					}
 				});
