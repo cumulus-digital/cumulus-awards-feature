@@ -289,15 +289,18 @@ em {
   font-size: 1rem;
   padding: 3em;
 }
-.row.outro a {
+.row.outro a,
+a.row.outro {
   color: inherit;
   text-decoration: none;
 }
-.row.outro a:hover {
+.row.outro a:hover,
+a.row.outro:hover {
   color: inherit;
   text-decoration: none;
 }
-.row.outro a:hover span {
+.row.outro a:hover span,
+a.row.outro:hover span {
   border-bottom: 1px solid #eee;
   border-bottom: 1px solid rgba(255,255,255,0.5);
 }
