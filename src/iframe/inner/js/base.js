@@ -20,7 +20,7 @@
 	}
 
 	// For any fake iframes
-	window.document.createElement('iiframe');
+	var iiframe = window.document.createElement('iiframe'); // jshint ignore:line
 
 	// Load jquery
 	log('Injecting jQuery');
