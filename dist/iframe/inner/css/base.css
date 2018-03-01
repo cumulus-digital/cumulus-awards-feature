@@ -296,6 +296,21 @@ em {
   font-size: 1rem;
   padding: 3em;
 }
+@media (max-width: 784px) {
+  .row.outro {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 653.3333333333334px) {
+  .row.outro {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 560px) {
+  .row.outro {
+    font-size: 0.6rem;
+  }
+}
 .row.outro a,
 a.row.outro {
   color: inherit;
