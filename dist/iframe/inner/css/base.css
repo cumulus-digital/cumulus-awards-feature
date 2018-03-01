@@ -103,9 +103,9 @@ em {
 }
 .row.header .sponsor {
   display: block;
-  margin: 1em auto 0;
+  margin: 1.5em auto 0;
   max-width: 40%;
-  width: 300px;
+  width: 200px;
 }
 .row.intro {
   padding: 1.5em 1em;
@@ -264,7 +264,8 @@ em {
 @media (max-width: 580px) {
   .row.nominees.column5 li:not(.cube-ad) {
     display: block;
-    width: 100%;
+    font-size: 0.8em;
+    width: calc(100% / 2.1);
   }
 }
 .row.nominees.lowtier h3 {
