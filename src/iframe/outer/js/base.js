@@ -47,7 +47,8 @@
 				idoc.title = window.document.title;
 
 				// inject DFP setup
-				var googletags = [];
+				var googletags = [],
+					hasGoogletag = false;
 				$('script').each(function(){
 					if ( 
 						// don't bother with script tags that have a src
@@ -61,14 +62,17 @@
 						log('Activating parent DFP in iframe template', this);
 						if (this.innerText.indexOf('var googletag') > -1) {
 							googletags.unshift(this.innerText);
+							hasGoogletag = true;
 						} else {
 							googletags.push(this.innerText);
 						}
 					}
 				});
-				googletags.forEach(function(scr) {
-					iwin.eval(scr);
-				});
+				if (hasGoogletag) {
+					googletags.forEach(function(scr) {
+						iwin.eval(scr);
+					});
+				}
 			};
 
 			//tag.after(newframe);
