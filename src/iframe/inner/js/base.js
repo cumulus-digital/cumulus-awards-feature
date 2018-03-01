@@ -36,7 +36,7 @@
 
 	// Start up iframe-resizer
 	var ifscr = window.document.createElement('script');
-	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.contentWindow.min.js';
+	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js';
 	window.document.head.appendChild(ifscr);
 
 }(window.self));

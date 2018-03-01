@@ -69,7 +69,7 @@
 			// Set up iframe resizer
 			var ifscr = window.document.createElement('script'),
 				w = window;
-			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.15/iframeResizer.min.js';
+			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.min.js';
 			ifscr.type = 'text/javascript';
 			ifscr.onload = function(){
 				var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1);
