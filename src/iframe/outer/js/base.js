@@ -40,6 +40,7 @@
 			});
 
 			window._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
+				log('Inner frame called parent iframe setup');
 				var iwin = tag[0].contentWindow,
 					idoc = tag[0].contentDocument;
 
