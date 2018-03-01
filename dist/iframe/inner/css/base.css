@@ -93,12 +93,12 @@ em {
 .row.header .tunein {
   display: block;
   margin: 0 auto;
-  max-width: 60%;
+  width: 60%;
 }
 @media (max-width: 653.3333333333334px) {
   .row.header .logo,
   .row.header .tunein {
-    max-width: 90%;
+    width: 90%;
   }
 }
 .row.header .sponsor {
@@ -193,7 +193,7 @@ em {
 .row.nominees li:not(.cube) img {
   display: block;
   margin: 0 auto 0.5em;
-  max-width: 100%;
+  width: 100%;
   min-height: 30px;
 }
 .row.nominees li:not(.cube) small {
@@ -360,12 +360,12 @@ a.row.outro:hover span {
 }
 .row.outro .logo,
 .row.outro .tunein {
-  max-width: 60%;
+  width: 60%;
 }
 @media (max-width: 653.3333333333334px) {
   .row.outro .logo,
   .row.outro .tunein {
-    max-width: 90%;
+    width: 90%;
   }
 }
 /*# sourceMappingURL=base.css.map */
