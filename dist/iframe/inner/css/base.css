@@ -263,7 +263,6 @@ em {
 }
 @media (max-width: 580px) {
   .row.nominees.column5 li:not(.cube-ad) {
-    display: block;
     font-size: 0.8em;
     width: calc(100% / 2.1);
   }
