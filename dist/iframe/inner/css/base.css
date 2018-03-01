@@ -326,6 +326,13 @@ a.row.outro:hover span {
   border-bottom: 1px solid #eee;
   border-bottom: 1px solid rgba(255,255,255,0.5);
 }
+@media (hover: none) {
+  .row.outro a span,
+  a.row.outro span {
+    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+  }
+}
 .row.outro h3,
 .row.outro h4 {
   letter-spacing: 0.25em;
