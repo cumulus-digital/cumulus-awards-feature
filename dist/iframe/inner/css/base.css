@@ -101,6 +101,12 @@ em {
     max-width: 90%;
   }
 }
+.row.header .sponsor {
+  display: block;
+  margin: 1em auto 0;
+  max-width: 40%;
+  width: 300px;
+}
 .row.intro {
   padding: 1.5em 1em;
 }
