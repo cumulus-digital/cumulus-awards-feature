@@ -28,7 +28,7 @@
 			var newframe = $('<iframe></iframe>'),
 				frame_id = 'CMLS_CCC_IFRAME-' + Date.now();
 
-			newframe.attr({
+			tag.attr({
 				id: frame_id,
 				name: frame_id,
 				width: '100%',
@@ -61,10 +61,10 @@
 				});
 			};
 
-			tag.after(newframe);
-			newframe[0].contentDocument.open();
-			newframe[0].contentDocument.write(tag.text());
-			newframe[0].contentDocument.close();
+			//tag.after(newframe);
+			tag[0].contentDocument.open();
+			tag[0].contentDocument.write(tag.text());
+			tag[0].contentDocument.close();
 
 			// Set up iframe resizer
 			var ifscr = window.document.createElement('script'),
@@ -80,6 +80,8 @@
 				}, '#' + frame_id);
 			};
 			window.document.head.appendChild(ifscr);
+
+			tag.show();
 
 		} else {
 			log('#CMLS_TEMPLATE is not an iframe!');
