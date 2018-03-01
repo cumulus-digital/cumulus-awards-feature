@@ -125,7 +125,12 @@
 		h3 {
 			font-size: 0.8em;
 			margin-bottom: 1.5em;
-			letter-spacing: 0.2em;
+			letter-spacing: 0.24em;
+			
+			@media (max-width: ($module_max_width/1.6)) {
+				letter-spacing: 0.2em
+				padding: 0;
+			}
 		}
 		
 		.column {

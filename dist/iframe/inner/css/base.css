@@ -272,6 +272,12 @@ em {
   margin-bottom: 1.5em;
   letter-spacing: 0.24em;
 }
+@media (max-width: 612.5px) {
+  .row.nominees.lowtier h3 {
+    letter-spacing: 0.2em;
+    padding: 0;
+  }
+}
 .row.nominees.lowtier .column {
   display: inline-block;
   max-width: 100%;
