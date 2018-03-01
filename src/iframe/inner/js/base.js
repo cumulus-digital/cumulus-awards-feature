@@ -31,6 +31,12 @@
 				});
 				container.append(newframe);
 			});
+
+			$('img').load(function() {
+				if (window.self.parentIFrame) {
+					window.self.parentIFrame.reset();
+				}
+			});
 		});
 	};
 
