@@ -25,8 +25,8 @@
 		}
 
 		if (tag.is('iframe')) {
-			var newframe = $('<iframe></iframe>'),
-				frame_id = 'CMLS_CCC_IFRAME-' + Date.now();
+			//var newframe = $('<iframe></iframe>'),
+			var frame_id = 'CMLS_CCC_IFRAME-' + Date.now();
 
 			tag.attr({
 				id: frame_id,
@@ -40,8 +40,8 @@
 			});
 
 			window._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
-				var iwin = newframe[0].contentWindow,
-					idoc = newframe[0].contentDocument;
+				var iwin = tag[0].contentWindow,
+					idoc = tag[0].contentDocument;
 
 				idoc.title = window.document.title;
 
