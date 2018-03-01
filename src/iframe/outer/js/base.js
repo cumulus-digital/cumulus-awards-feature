@@ -35,7 +35,8 @@
 				frameBorder: 0,
 				className: 'CMLS_CCC_IFRAME',
 				scrolling: false,
-				allowTransparency: true
+				allowTransparency: true,
+				style: ""
 			});
 
 			window._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
@@ -80,8 +81,6 @@
 				}, '#' + frame_id);
 			};
 			window.document.head.appendChild(ifscr);
-
-			tag.show();
 
 		} else {
 			log('#CMLS_TEMPLATE is not an iframe!');
