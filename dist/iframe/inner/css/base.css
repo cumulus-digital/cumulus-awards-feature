@@ -89,6 +89,9 @@ em {
     float: none;
     margin: 0 auto 20px;
   }
+  .generic.row .cube-ad:after {
+    text-align: center;
+  }
 }
 .row.header {
   padding: 1.75em 1em;
