@@ -175,7 +175,7 @@ em {
   max-width: 980px;
   padding: 0;
 }
-.row.nominees li:not(.cube) {
+.row.nominees li:not(.cube-ad) {
   display: inline-block;
   letter-spacing: 0.05em;
   padding: 0 7px 10px;
@@ -184,23 +184,23 @@ em {
   vertical-align: top;
   width: 100%;
 }
-.row.nominees li:not(.cube):first-child {
+.row.nominees li:not(.cube-ad):first-child {
   margin-left: 0;
 }
-.row.nominees li:not(.cube):last-child {
+.row.nominees li:not(.cube-ad):last-child {
   margin-right: 0;
 }
-.row.nominees li:not(.cube) img {
+.row.nominees li:not(.cube-ad) img {
   display: block;
   margin: 0 auto 0.5em;
   width: 100%;
   min-height: 30px;
 }
-.row.nominees li:not(.cube) small {
+.row.nominees li:not(.cube-ad) small {
   font-size: 60%;
 }
 @media (max-width: 490px -10) {
-  .row.nominees li:not(.cube) {
+  .row.nominees li:not(.cube-ad) {
     max-width: 160px;
     margin: 0 5px 10px;
   }
