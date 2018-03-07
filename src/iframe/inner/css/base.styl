@@ -45,6 +45,14 @@ em {
 		margin-bottom: 2.25em;
 		padding: 0 1em;
 		text-indent: (@letter-spacing/2);
+		
+		br {
+			display: none;
+			
+			@media (max-width: 500px) {
+				display: block;
+			}	
+		}
 	}
 	
 	h4 {

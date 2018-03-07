@@ -48,6 +48,14 @@ em {
   padding: 0 1em;
   text-indent: 0.2em;
 }
+.generic.row h3 br {
+  display: none;
+}
+@media (max-width: 500px) {
+  .generic.row h3 br {
+    display: block;
+  }
+}
 .generic.row h4 {
   font-size: 70%;
   margin-top: 0.5em;
