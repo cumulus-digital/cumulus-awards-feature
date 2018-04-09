@@ -165,6 +165,16 @@ em {
 }
 .row.nominees {
   font-size: 1rem;
+/*
+	&[class*="column"] li:not(.cube-ad) {
+		&:first-child {
+			padding-left: 0;
+		}
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+	*/
 }
 .row.nominees h2,
 .row.nominees h3,
@@ -205,12 +215,6 @@ em {
     max-width: 160px;
     margin: 0 5px 10px;
   }
-}
-.row.nominees[class*="column"] li:not(.cube-ad):first-child {
-  padding-left: 0;
-}
-.row.nominees[class*="column"] li:not(.cube-ad):last-child {
-  padding-right: 0;
 }
 .row.nominees .artist {
   letter-spacing: 0.1em;
