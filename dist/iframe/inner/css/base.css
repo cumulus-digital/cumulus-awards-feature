@@ -191,12 +191,6 @@ em {
   vertical-align: top;
   width: 100%;
 }
-.row.nominees li:not(.cube-ad):first-child {
-  margin-left: 0;
-}
-.row.nominees li:not(.cube-ad):last-child {
-  margin-right: 0;
-}
 .row.nominees li:not(.cube-ad) img {
   display: block;
   margin: 0 auto 0.5em;
@@ -211,6 +205,12 @@ em {
     max-width: 160px;
     margin: 0 5px 10px;
   }
+}
+.row.nominees[class*="column"] li:not(.cube-ad):first-child {
+  padding-left: 0;
+}
+.row.nominees[class*="column"] li:not(.cube-ad):last-child {
+  padding-right: 0;
 }
 .row.nominees .artist {
   letter-spacing: 0.1em;

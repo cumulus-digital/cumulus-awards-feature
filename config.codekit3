@@ -7,7 +7,7 @@
 		"uuidString": "818D07DB-6AEA-44A2-A3A6-47D2333C6A85"
 		}
 	],
-"creatorBuild": "26330",
+"creatorBuild": "26667",
 "files": {
 	"\/.gitignore": {
 		"cB": 0,
@@ -356,7 +356,8 @@
 	"creationDate": 505944774,
 	"displayValue": "cumulus-awards-feature",
 	"displayValueWasSetByUser": 1,
-	"iconImageName": "meme-dunnoGirl"
+	"iconImageName": "meme-dunnoGirl",
+	"iconImageWasSetByUser": 0
 	},
 "projectSettings": {
 	"abortBuildOnError": 1,
@@ -2159,6 +2160,7 @@
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
 		"autoOutputPathStyle": 0,
+		"outputFormat": 0,
 		"quality": 100
 		},
 	"languageDefaultsJS": {

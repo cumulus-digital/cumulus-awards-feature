@@ -26,14 +26,6 @@
 		vertical-align: top;
 		width: 100%;
 		
-		&:first-child {
-			margin-left: 0;
-		}
-		
-		&:last-child {
-			margin-right: 0;
-		}
-		
 		img {
 			display: block;
 			margin: 0 auto .5em;
@@ -50,6 +42,14 @@
 			margin: 0 5px 10px;
 		}
 		
+	}
+	&[class*="column"] li:not(.cube-ad) {
+		&:first-child {
+			padding-left: 0;
+		}
+		&:last-child {
+			padding-right: 0;
+		}
 	}
 	
 	.artist {
