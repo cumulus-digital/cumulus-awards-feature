@@ -146,6 +146,7 @@ em {
 .row.video .video-container iframe,
 .row.video .video-container object,
 .row.video .video-container embed {
+  border: 0;
   position: absolute;
   top: 0;
   left: 0;
