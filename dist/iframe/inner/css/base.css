@@ -135,13 +135,16 @@ em {
 .row.video {
   background: #000;
 }
+.row.video .video-container-max {
+  max-width: 980px;
+}
 .row.video .video-container {
   height: 0;
   margin: 0 auto;
-  max-width: 980px;
   overflow: hidden;
   padding-bottom: 56.25%;
   position: relative;
+  width: 100%;
 }
 .row.video .video-container iframe,
 .row.video .video-container object,

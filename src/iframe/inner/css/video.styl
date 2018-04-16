@@ -1,13 +1,17 @@
 .row.video {
 	background: #000;
 	
+	.video-container-max {
+		max-width: $module_max_width;
+	}
+	
 	.video-container {
 		height: 0;
 		margin: 0 auto;
-		max-width: $module_max_width;
 		overflow: hidden;
 		padding-bottom: 56.25%;
 		position: relative;
+		width: 100%;
 		
 		iframe,object,embed {
 			border: 0;
