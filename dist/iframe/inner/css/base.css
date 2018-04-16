@@ -216,6 +216,12 @@ em {
     margin: 0 5px 10px;
   }
 }
+.row.nominees.winner li {
+  opacity: 0.5;
+}
+.row.nominees.winner li.winner {
+  opacity: 1;
+}
 .row.nominees .artist {
   letter-spacing: 0.1em;
   margin-top: 5px;
