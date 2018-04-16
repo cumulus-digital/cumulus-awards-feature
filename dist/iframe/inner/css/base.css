@@ -222,6 +222,12 @@ em {
 .row.nominees.winner li.winner {
   opacity: 1;
 }
+.row.nominees.winner li.winner small {
+  display: block;
+  font-size: 60%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .row.nominees .artist {
   letter-spacing: 0.1em;
   margin-top: 5px;
