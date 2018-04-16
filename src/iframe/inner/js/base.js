@@ -34,7 +34,8 @@
 						newframe[this.name] = this.value;
 					}
 				});
-				container.append(newframe);
+				container.after(newframe);
+				container.remove();
 			});
 
 			$('img').load(function() {
