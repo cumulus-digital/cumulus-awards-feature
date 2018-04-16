@@ -44,6 +44,7 @@
 			});
 		});
 	};
+	window.document.head.appendChild(jqscr);
 
 	// Start up iframe-resizer
 	log('Injecting iframe-resizer contentWindow library');
