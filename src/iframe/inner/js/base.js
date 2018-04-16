@@ -26,19 +26,19 @@
 		$(function(){
 			$('iiframe').each(function() {
 				log('Resolving inner iframe', this);
-				var container = $(this),
-					newframe = window.document.createElement('iframe'),
-					attrs = this.attributes;
+				var $container = $(this),
+					$newframe = $('<iframe/>'),
+					attrs = $container.prop('attributes');
 				$.each(attrs, function(){
-					//if (this.specified) {
-						newframe[this.name] = this.value;
-					//}
+					if (this.specified) {
+						$newframe.prop(this.name, this.value);
+					}
 				});
-				container.after(newframe);
-				container.remove();
+				$container.after($newframe);
+				$container.remove();
 			});
 
-			$('img').load(function() {
+			$('img,iframe').load(function() {
 				if (window.self.parentIFrame) {
 					window.self.parentIFrame.reset();
 				}
