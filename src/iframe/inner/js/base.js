@@ -30,9 +30,9 @@
 					newframe = window.document.createElement('iframe'),
 					attrs = this.attributes;
 				$.each(attrs, function(){
-					if (this.specified) {
+					//if (this.specified) {
 						newframe[this.name] = this.value;
-					}
+					//}
 				});
 				container.after(newframe);
 				container.remove();
