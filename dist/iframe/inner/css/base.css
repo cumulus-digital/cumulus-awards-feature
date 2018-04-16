@@ -136,6 +136,7 @@ em {
   background: #000;
 }
 .row.video .video-container-max {
+  margin: 0 auto;
   max-width: 980px;
 }
 .row.video .video-container {
