@@ -158,7 +158,7 @@ em {
   height: 100%;
 }
 .row.video.with_cube .video-container-max {
-  max-width: $module_max_width-320;
+  max-width: 660px;
 }
 .row.video.with_cube .video-container {
   display: inline-block;
@@ -167,11 +167,11 @@ em {
   display: inline-block;
   margin-left: 20px;
 }
-@media (max-width: $module_max_width-200) {
+@media (max-width: 780px) {
   .row.video.with_cube .cube {
-    float: none;
+    display: block;
     margin-left: 0;
-    margin-bottom: 20px;
+    margin-top: 20px;
   }
 }
 .row.nominees {
@@ -221,7 +221,7 @@ em {
 .row.nominees li:not(.cube-ad) small {
   font-size: 60%;
 }
-@media (max-width: 490px -10) {
+@media (max-width: 480px) {
   .row.nominees li:not(.cube-ad) {
     max-width: 160px;
     margin: 0 5px 10px;
