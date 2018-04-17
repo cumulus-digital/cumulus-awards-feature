@@ -163,12 +163,12 @@ em {
 .row.video.with_cube .video-container {
   display: inline-block;
 }
-.row.video.with_cube .cube {
+.row.video.with_cube .cube-ad {
   display: inline-block;
   margin-left: 20px;
 }
 @media (max-width: 780px) {
-  .row.video.with_cube .cube {
+  .row.video.with_cube .cube-ad {
     display: block;
     margin-left: 0;
     margin-top: 20px;
