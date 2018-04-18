@@ -309,7 +309,7 @@ em {
 @media (max-width: 580px) {
   .row.nominees.column5 li:not(.cube-ad) {
     font-size: 0.8em;
-    padding: 0 0.25em 0.25em;
+    padding: 0 0.25em 0.5em;
     width: calc(100% / 2.1 - 0.5em);
   }
 }
@@ -342,13 +342,12 @@ em {
   letter-spacing: 0.1em;
   line-height: 0.96;
   margin: 0;
-  margin-bottom: 1em;
+  padding-bottom: 0.5em;
   text-align: center;
 }
 @media (max-width: 480px) {
   .row.nominees.lowtier li {
     max-width: 100%;
-    padding: 0 0;
   }
 }
 .row.outro {
