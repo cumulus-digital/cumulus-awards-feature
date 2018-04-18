@@ -163,6 +163,12 @@ em {
   vertical-align: top;
   width: calc(100% - 320px);
 }
+@media (max-width: 780px) {
+  .row.video.with_cube .video-container {
+    padding-bottom: 56.25%;
+    width: 100%;
+  }
+}
 .row.video.with_cube .cube-ad {
   display: inline-block;
   margin: 0 0 0 15px;
