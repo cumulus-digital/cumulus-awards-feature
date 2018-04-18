@@ -236,7 +236,6 @@ em {
 @media (max-width: 480px) {
   .row.nominees li:not(.cube-ad) {
     max-width: 160px;
-    margin: 0 5px 10px;
   }
 }
 .row.nominees.winner li {
@@ -253,7 +252,7 @@ em {
 }
 .row.nominees .artist {
   letter-spacing: 0.1em;
-  margin-top: 5px;
+  margin-top: 0.5em;
 }
 .row.nominees .artist em {
   font-size: 0.8em;
@@ -275,7 +274,7 @@ em {
 .row.nominees.column2 li:not(.cube-ad) {
   margin: 0 auto 1.5em;
   max-width: 50%;
-  padding: 0 9px;
+  padding: 0 1em;
   width: calc(100% / 2.15);
 }
 @media (max-width: 510px) {
@@ -288,7 +287,7 @@ em {
   letter-spacing: 0.15em;
   margin: 0 auto 0.8em;
   max-width: 100%;
-  padding: 0 9px;
+  padding: 0 1em;
   width: calc(100% / 3.15);
 }
 @media (max-width: 510px) {
