@@ -309,7 +309,7 @@ em {
 @media (max-width: 580px) {
   .row.nominees.column5 li:not(.cube-ad) {
     font-size: 0.8em;
-    padding: 0 0.25em 0.5em;
+    padding: 0 0.25em 1em;
     width: calc(100% / 2.1 - 0.5em);
   }
 }
