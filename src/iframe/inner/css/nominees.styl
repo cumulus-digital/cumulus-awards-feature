@@ -20,7 +20,7 @@
 	li:not(.cube-ad) {
 		display: inline-block;
 		letter-spacing: 0.05em;
-		padding: 0 7px 10px;
+		padding: 0 .5em 1em;
 		text-indent: (@letter-spacing / 2);
 		text-transform: uppercase;
 		vertical-align: top;
@@ -39,7 +39,6 @@
 		
 		@media (max-width: ( ( $module_max_width / 2 ) - 10 ) ) {
 			max-width: 160px;
-			margin: 0 5px 10px;
 		}
 		
 	}
@@ -74,7 +73,7 @@
 	
 	.artist {
 		letter-spacing: 0.1em;
-		margin-top: 5px;
+		margin-top: .5em;
 		
 		em {
 			font-size: 0.8em;
@@ -99,7 +98,7 @@
 		li:not(.cube-ad) {
 			margin: 0 auto 1.5em;
 			max-width: 50%;
-			padding: 0 9px;
+			padding: 0 1em;
 			width: calc(100% / 2.15);
 			
 			@media (max-width: (( $module_max_width / 2 ) + 20 )) {
@@ -114,7 +113,7 @@
 			letter-spacing: 0.15em;
 			margin: 0 auto .8em;
 			max-width: 100%;
-			padding: 0 9px;
+			padding: 0 1em;
 			width: calc(100% / 3.15);
 			
 			@media (max-width: (( $module_max_width / 2 ) + 20)) {
@@ -135,7 +134,8 @@
 			}
 			@media (max-width: ( ($module_max_width / 1.75) + 20)) {
 				font-size: 0.8em;
-				width: calc(100% / 2.1);
+				padding: 0 .25em 1em;
+				width: calc(100% / 2.1 - .5em);
 			}
 		}
 	}
@@ -171,8 +171,14 @@
 			letter-spacing: 0.1em;
 			line-height: 0.96;
 			margin: 0;
-			margin-bottom: 1em;
+			padding-bottom: .5em;
 			text-align: center;
+			
+			@media (max-width: ( ( $module_max_width / 2 ) - 10 ) ) {
+				& {
+					max-width: 100%;
+				}	
+			}
 		}
 	}
 }

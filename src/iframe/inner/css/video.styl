@@ -30,6 +30,13 @@
 			padding-bottom: 38.25%;
 			vertical-align: top;
 			width: calc(100% - 320px);
+			
+			@media (max-width: ($module_max_width - 200)) {
+				& {
+					padding-bottom: 56.25%
+					width: 100%;
+				}
+			}
 		}
 
 		.cube-ad {
@@ -42,14 +49,15 @@
 				bottom: -1.5em;
 				position: absolute;
 			}
-		}
-		
-		@media (max-width: ($module_max_width - 200)) {
-			.cube-ad {
-				display: block;
-				margin-left: 0;
-				margin-bottom: 20px;
+			
+			@media (max-width: ($module_max_width - 200)) {
+				& {
+					display: block;
+					margin-left: 0;
+					margin-bottom: 20px;
+				}
 			}
 		}
+		
 	}
 }
