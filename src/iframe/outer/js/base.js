@@ -24,6 +24,9 @@
 			return;
 		}
 
+		tag.parentsUntil('.wrapper-content', '.column,.row,.block-type-content')
+			.addClass('CMLS_CCC');
+			
 		if (tag.is('iframe')) {
 			//var newframe = $('<iframe></iframe>'),
 			var frame_id = 'CMLS_CCC_IFRAME-' + Date.now();
