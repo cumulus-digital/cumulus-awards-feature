@@ -61,7 +61,7 @@
 							}
 						});
 					}
-					var targetingKeys = window.self.googletag.getTargetingKeys(),
+					var targetingKeys = window.self.googletag.pubads().getTargetingKeys(),
 						targets = [];
 					if (targetingKeys && targetingKeys.length) {
 						targetingKeys.forEach(function(key){
