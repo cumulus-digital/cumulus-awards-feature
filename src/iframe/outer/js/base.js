@@ -48,35 +48,60 @@
 
 				idoc.title = window.document.title;
 
-				// inject DFP setup
-				$('script').each(function(){
-					if ( 
-						// don't bother with script tags that have a src
-						(! this.src || this.src.length < 1) &&
-						(
-							this.innerText.indexOf('var googletag') > -1 ||
-							this.innerText.indexOf('googletag.defineSlot') > -1 ||
-							this.innerText.indexOf('googletag.pubads().setTargeting') > -1
-						)
-					) {
-						log('Retrieving DFP Property ID');
-						var idCheck = this.innerText.match(/\/6717\/([a-zA-Z\.\-]+)/);
-						if (idCheck && idCheck.length > 1) {
-							log('Activating parent DFP in iframe template for cube', this);
-							iwin.eval(
-								'googletag.cmd.push(function() {' +
-								'	googletag.defineSlot(\'/6717/'+idCheck[1]+'\', [[300, 250], [300, 600]], \'div-gpt-ad-1418849849333-0\')' +
-								'		.addService(googletag.pubads())' +
-								'		.setCollapseEmptyDiv(true)' +
-								'		.setTargeting("pos","mid");' +
-								'	googletag.pubads().enableSingleRequest();' +
-								'	googletag.enableServices();' +
-								'});'
-							);
-							return false;
-						}
+				if (window.self.googletag) {
+					var pa = window.self.googletag.pubads(),
+						slots = pa.getSlots(),
+						adPath;
+					if (slots.length) {
+						slots.some(function(slot) {
+							var p = slot.getAdUnitPath();
+							if (p.indexOf('/6717/') > -1) {
+								adPath = p;
+								return true;
+							}
+						});
 					}
-				});
+					var targetingKeys = window.self.googletag.getTargetingKeys(),
+						targets = [];
+					if (targetingKeys && targetingKeys.length) {
+						targetingKeys.forEach(function(key){
+							targets.push(
+								'googletag.pubads().setTargeting(' +
+								'\'' + key + '\', ' +
+								'\'' + window.self.googletag.pubads().getTargeting(key) + '\'' +
+								');'
+							);
+						});
+					}
+					if (adPath) {
+						log('Activating parent DFP in iframe template for cube', this);
+						iwin.eval(
+
+							'var googletag = googletag || {};' +
+							'googletag.cmd = googletag.cmd || [];' +
+							'(function() {' +
+							'var gads = document.createElement(\'script\');' +
+							'gads.async = true;' +
+							'gads.type = \'text/javascript\';' +
+							'var useSSL = \'https:\' == document.location.protocol;' +
+							'gads.src = (useSSL ? \'https:\' : \'http:\') + ' +
+							'\'//www.googletagservices.com/tag/js/gpt.js\';' +
+							'var node = document.getElementsByTagName(\'script\')[0];' +
+							'node.parentNode.insertBefore(gads, node);' +
+							'})();' +
+
+							'googletag.cmd.push(function() {' +
+							'	' + targets.join("\n") +
+							'	googletag.defineSlot(\'' + adPath +'\', [[300, 250], [300, 600]], \'div-gpt-ad-1418849849333-0\')' +
+							'		.addService(googletag.pubads())' +
+							'		.setCollapseEmptyDiv(true)' +
+							'		.setTargeting("pos","mid");' +
+							'	googletag.pubads().enableSingleRequest();' +
+							'	googletag.enableServices();' +
+							'});'
+						);
+					}
+				}
 			};
 
 			window._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
