@@ -61,7 +61,7 @@
 					) {
 						log('Retrieving DFP Property ID');
 						var idCheck = this.innerText.match(/\/6717\/([a-zA-Z\.\-]+)/);
-						if (idCheck.length > 1) {
+						if (idCheck && idCheck.length > 1) {
 							log('Activating parent DFP in iframe template for cube', this);
 							iwin.eval(
 								'googletag.cmd.push(function() {' +
