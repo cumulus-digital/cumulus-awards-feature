@@ -74,9 +74,7 @@
 						});
 					}
 					if (adPath) {
-						log('Activating parent DFP in iframe template for cube', this);
-						iwin.eval(
-
+						var dfpScript =
 							'var googletag = googletag || {};' +
 							'googletag.cmd = googletag.cmd || [];' +
 							'(function() {' +
@@ -98,8 +96,9 @@
 							'		.setTargeting("pos","mid");' +
 							'	googletag.pubads().enableSingleRequest();' +
 							'	googletag.enableServices();' +
-							'});'
-						);
+							'});';
+						log('Activating parent DFP in iframe template for cube', dfpScript);
+						iwin.eval(dfpScript);
 					}
 				}
 			};
