@@ -1,9 +1,18 @@
+<!--
+
+Encapsulate feature inside an iframe to fully isolate it
+from the station site's styles and scripts!
+HTML within the iframe tag will not be directly rendered,
+instead javascript will inject it inside the iframe document.
+
+-->
+
 <!-- REMOVE BEFORE POSTING -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- REMOVE BEFORE POSTING -->
+<!-- END REMOVE BEFORE POSTING -->
 <script
-	src="https://cdn.rawgit.com/cumulus-digital/cumulus-awards-feature/dba8af0/dist/iframe/outer/js/base-min.js"
+	src="https://cdn.jsdelivr.net/gh/cumulus-digital/cumulus-awards-feature@CHANGEME/dist/iframe/outer/js/base-min.js"
 	id="CMLS_FEATURE"
 
 	data-google-analytics-id="UA-########-##"
@@ -18,7 +27,7 @@
 			<meta http-equiv="x-ua-compatible" content="ie=edge">
 			<title>Cumulus</title>
 			<link href="../../dist/iframe/inner/css/base.css" rel="stylesheet" type="text/css">
-			<script src="https://cdn.rawgit.com/cumulus-digital/cumulus-awards-feature/dba8af0/dist/iframe/inner/js/base-min.js"></script>
+			<script src="https://cdn.jsdelivr.net/gh/cumulus-digital/cumulus-awards-feature@CHANGEME/dist/iframe/inner/js/base-min.js"></script>
 
 			<!-- LOCAL STYLES HERE -->
 			<link href="https://fonts.googleapis.com/css?family=Signika:300,400,700" rel="stylesheet">
