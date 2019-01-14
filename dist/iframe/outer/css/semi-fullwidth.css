@@ -27,7 +27,6 @@ body .wrapper-content .module-title {
   display: none !important;
 }
 body .wrapper-content,
-body .wrapper-content .grid-container,
 .CMLS_CCC,
 .CMLS_CCC > div,
 .CMLS_CCC > article,
@@ -36,6 +35,10 @@ body .wrapper-content .grid-container,
   border: 0 !important;
   margin: 0 !important;
   max-width: 100% !important;
+  padding: 0 !important;
+}
+body .wrapper-content .grid-container {
+  border: 0 !important;
   padding: 0 !important;
 }
 body .wrapper-content .CMLS_CCC {
