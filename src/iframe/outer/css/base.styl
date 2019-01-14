@@ -5,51 +5,27 @@
 }
 
 body .wrapper-content {
-	
-	.column,
-	.row,
-	.column > *,
-	.module-title,
-	.themify_builder_row .widgettitle,
 	#comments,
 	article > header,
 	article > footer,
 	.entry-title,
 	.entry-meta,
 	.post-thumbnail,
+	.themify_builder_row .widgettitle,
 	.hideme {
 		display: none !important;
 	}
 	
-	&,
-	.grid-container,
-	/.CMLS_CCC,
-	/.CMLS_CCC > div,
-	/.CMLS_CCC > article,
-	/.CMLS_CCC .entry-content,
-	/.CMLS_CCC .themify_builder_row {
-		border: 0 !important;
-		margin: 0 !important;
-		max-width: 100% !important;
-		padding: 0 !important;
-		width: 100% !important;
-	}
-	
-	.CMLS_CCC {
+	/.CMLS_CCC {
 		display: block !important;
+		
+		.entry-content {
+			margin-top: 0 !important;
+		}
+		
+		// Remove extra space under contest iframe
+		iframe[src*="digitalivy.com"] {
+			display: inherit;
+		}
 	}
-}
-
-/.CMLS_CCC {
-
-	&, * {
-		line-height: 1 !important;
-		margin: 0 !important;
-		padding: 0 !important;
-	}
-	
-	iframe {
-		display: inherit !important;
-	}
-
 }
