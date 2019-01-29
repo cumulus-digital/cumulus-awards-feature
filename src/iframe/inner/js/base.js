@@ -82,7 +82,7 @@
 		},
 		handler: function() {
 			this.getLoadable().each(function() {
-				if (this.dataset['original-src'] && this.src === this.dataset['original-src']) {
+				if (this.dataset.originalsrc && this.src === this.dataset.originalsrc) {
 					return;
 				}
 				var style = getComputedStyle(this),
@@ -93,10 +93,10 @@
 					bounds.top + frameBounds.top <= window.parent.innerHeight &&
 					style.display !== 'none'
 				) {
-					this.dataset['original-src'] = this.src;
+					this.dataset.originalsrc = this.src;
 					this.src = this.dataset.src;
 					if (this.dataset.srcset) {
-						this.dataset['original-srcset'] = this.srcset;
+						this.dataset.originalsrcset = this.srcset;
 						this.srcset = this.dataset.srcset;
 					}
 				}
