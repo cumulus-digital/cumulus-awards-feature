@@ -122,7 +122,7 @@
 				log('Resolving inner iframe', this, attrs);
 				$.each(attrs, function(){
 					if (this.specified) {
-						$newframe.prop(this.name, this.value);
+						$newframe.attr(this.name, this.value);
 					}
 				});
 				$container.after($newframe);
