@@ -37,63 +37,6 @@
 	// For any fake iframes
 	var iiframe = window.document.createElement('iiframe'); // jshint ignore:line
 
-	// Load jquery
-	log('Injecting jQuery');
-	var jqscr = window.document.createElement('script');
-	jqscr.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js';
-	jqscr.type = 'text/javascript';
-	jqscr.onload = function(){
-		log('jQuery injected.');
-		var $ = window.jQuery;
-
-		// Handle our fake iframes
-		$(function(){
-			$('iiframe').each(function() {
-				log('Resolving inner iframe', this);
-				var $container = $(this),
-					$newframe = $('<iframe/>'),
-					attrs = $container.prop('attributes');
-				$.each(attrs, function(){
-					if (this.specified) {
-						$newframe.prop(this.name, this.value);
-					}
-				});
-				$container.after($newframe);
-				$container.remove();
-			});
-
-			$('img,iframe').load(function() {
-				if (window.self.parentIFrame) {
-					window.self.parentIFrame.reset();
-				}
-			});
-
-			// Activate DFP if cube is present
-			if (window.self.document.getElementById('div-gpt-ad-1418849849333-0')) {
-				window.parent._CMLS.CCC_IFRAME_ACTIVATE_DFP(window.self);
-			}
-		});
-	};
-	window.document.head.appendChild(jqscr);
-
-	// Start up iframe-resizer
-	log('Injecting iframe-resizer contentWindow library');
-	var ifscr = window.document.createElement('script');
-	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.4/iframeResizer.contentWindow.min.js';
-	ifscr.onload = function() {
-		log('iframe-resizer contentWindow loaded.');
-	};
-	window.document.head.appendChild(ifscr);
-
-	// Run parent processor
-	if (
-		window.parent._CMLS &&
-		window.parent._CMLS.CCC_IFRAME_SETUP
-	) {
-		log('Calling parent iframe setup');
-		window.parent._CMLS.CCC_IFRAME_SETUP(window.self);
-	}
-
 	// Throttle from Underscore.js
 	var _throttle = function (func, wait) {
 		var context, args, result;
@@ -161,11 +104,68 @@
 		}
 	};
 
-	$(function(){
-		window.parent.document.addEventListener("scroll", _throttle(_lazyload.handler, 200));
-		window.parent.addEventListener("resize", _throttle(_lazyload.handler, 200));
-		window.parent.addEventListener("orientationchange", _throttle(_lazyload.handler, 200));
+	// Load jquery
+	log('Injecting jQuery');
+	var jqscr = window.document.createElement('script');
+	jqscr.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js';
+	jqscr.type = 'text/javascript';
+	jqscr.onload = function(){
+		log('jQuery injected.');
+		var $ = window.jQuery;
 
-		_lazyload.handler();
-	});
+		// Handle our fake iframes
+		$(function(){
+			$('iiframe').each(function() {
+				log('Resolving inner iframe', this);
+				var $container = $(this),
+					$newframe = $('<iframe/>'),
+					attrs = $container.prop('attributes');
+				$.each(attrs, function(){
+					if (this.specified) {
+						$newframe.prop(this.name, this.value);
+					}
+				});
+				$container.after($newframe);
+				$container.remove();
+			});
+
+			$('img,iframe').load(function() {
+				if (window.self.parentIFrame) {
+					window.self.parentIFrame.reset();
+				}
+			});
+
+			// Activate DFP if cube is present
+			if (window.self.document.getElementById('div-gpt-ad-1418849849333-0')) {
+				window.parent._CMLS.CCC_IFRAME_ACTIVATE_DFP(window.self);
+			}
+
+			// Activate LazyLoader
+			window.parent.document.addEventListener("scroll", _throttle(_lazyload.handler, 200));
+			window.parent.addEventListener("resize", _throttle(_lazyload.handler, 200));
+			window.parent.addEventListener("orientationchange", _throttle(_lazyload.handler, 200));
+
+			_lazyload.handler();
+		});
+	};
+	window.document.head.appendChild(jqscr);
+
+	// Start up iframe-resizer
+	log('Injecting iframe-resizer contentWindow library');
+	var ifscr = window.document.createElement('script');
+	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.4/iframeResizer.contentWindow.min.js';
+	ifscr.onload = function() {
+		log('iframe-resizer contentWindow loaded.');
+	};
+	window.document.head.appendChild(ifscr);
+
+	// Run parent processor
+	if (
+		window.parent._CMLS &&
+		window.parent._CMLS.CCC_IFRAME_SETUP
+	) {
+		log('Calling parent iframe setup');
+		window.parent._CMLS.CCC_IFRAME_SETUP(window.self);
+	}
+
 }(window.self));
