@@ -125,8 +125,8 @@
 						$newframe.prop(this.name, this.value);
 					}
 				});
-				$newframe.data($container.data());
 				$container.after($newframe);
+				Object.assign($newframe[0].dataset, $container[0].dataset);
 				$container.remove();
 			});
 
