@@ -81,7 +81,7 @@
 			return this.loadable;
 		},
 		handler: function() {
-			this.getLoadable().each(function() {
+			_lazyload.getLoadable().each(function() {
 				if (this.dataset.originalsrc && this.src === this.dataset.originalsrc) {
 					return;
 				}
