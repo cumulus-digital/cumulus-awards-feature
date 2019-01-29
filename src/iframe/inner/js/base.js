@@ -79,7 +79,7 @@
 	// Start up iframe-resizer
 	log('Injecting iframe-resizer contentWindow library');
 	var ifscr = window.document.createElement('script');
-	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.1/iframeResizer.contentWindow.min.js';
+	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.4/iframeResizer.contentWindow.min.js';
 	ifscr.onload = function() {
 		log('iframe-resizer contentWindow loaded.');
 	};
@@ -94,4 +94,78 @@
 		window.parent._CMLS.CCC_IFRAME_SETUP(window.self);
 	}
 
+	// Throttle from Underscore.js
+	var _throttle = function (func, wait) {
+		var context, args, result;
+		var timeout = null;
+		var previous = 0;
+
+		var later = function () {
+			previous = (new Date()).getTime();
+			timeout = null;
+			result = func.apply(context, args);
+			if (!timeout) { context = args = null; }
+		};
+		return function () {
+			var now = (new Date()).getTime();
+			if (!previous) { previous = now; }
+			var remaining = wait - (now - previous);
+			context = this;
+			args = arguments;
+			if (remaining <= 0 || remaining > wait) {
+				if (timeout) {
+					clearTimeout(timeout);
+					timeout = null;
+				}
+				previous = now;
+				result = func.apply(context, args);
+				if (!timeout) { context = args = null; }
+			} else if (!timeout) {
+				timeout = setTimeout(later, remaining);
+			}
+			return result;
+		};
+	};
+
+	// Handle lazyload
+	var _lazyload = {
+		selector: '[lazyload="on"]',
+		advance: 200,
+		getLoadable: function() {
+			if ( ! this.loadable) {
+				this.loadable = $(this.selector);
+			}
+			return this.loadable;
+		},
+		handler: function() {
+			this.getLoadable().each(function() {
+				if (this.dataset['original-src'] && this.src === this.dataset['original-src']) {
+					return;
+				}
+				var style = getComputedStyle(this),
+					bounds = this.getBoundingClientRect(),
+					frameBounds = this.ownerDocument.defaultView.frameElement.getBoundingClientRect();
+				if (
+					(bounds && frameBounds) &&
+					bounds.top + frameBounds.top <= window.parent.innerHeight &&
+					style.display !== 'none'
+				) {
+					this.dataset['original-src'] = this.src;
+					this.src = this.dataset.src;
+					if (this.dataset.srcset) {
+						this.dataset['original-srcset'] = this.srcset;
+						this.srcset = this.dataset.srcset;
+					}
+				}
+			});
+		}
+	};
+
+	$(function(){
+		window.parent.document.addEventListener("scroll", _throttle(_lazyload.handler, 200));
+		window.parent.addEventListener("resize", _throttle(_lazyload.handler, 200));
+		window.parent.addEventListener("orientationchange", _throttle(_lazyload.handler, 200));
+
+		_lazyload.handler();
+	});
 }(window.self));
