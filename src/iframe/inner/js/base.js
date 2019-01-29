@@ -116,15 +116,16 @@
 		// Handle our fake iframes
 		$(function(){
 			$('iiframe').each(function() {
-				log('Resolving inner iframe', this);
 				var $container = $(this),
 					$newframe = $('<iframe/>'),
 					attrs = $container.prop('attributes');
+				log('Resolving inner iframe', this, attrs);
 				$.each(attrs, function(){
 					if (this.specified) {
 						$newframe.prop(this.name, this.value);
 					}
 				});
+				$newframe.data($container.data());
 				$container.after($newframe);
 				$container.remove();
 			});
