@@ -49,6 +49,7 @@
 
 			// Add DFP cube ad on load
 			window._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(parent) {
+				log('Activating DFP inside iframe');
 				var iwin = tag[0].contentWindow,
 					idoc = tag[0].contentDocument;
 
