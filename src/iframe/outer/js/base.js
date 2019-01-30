@@ -82,6 +82,9 @@
 
 					if (adPath) {
 						var dfpScript =
+							"var googletag = googletag || {};" +
+							"googletag.cmd = googletag.cmd || [];" +
+							
 							"googletag.cmd.unshift(function() {" +
 							"	" + targets.join("\n") +
 							"});" +
@@ -95,8 +98,6 @@
 							"	googletag.enableServices();" +
 							"});" +
 
-							"var googletag = googletag || {};" +
-							"googletag.cmd = googletag.cmd || [];" +
 							"(function() {" +
 							"var gads = document.createElement('script');" +
 							"gads.async = true;" +
