@@ -49,6 +49,11 @@
 
 			// Add DFP cube ad on load
 			window._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(parent) {
+				if ( ! parent.googletag || ! parent.googletag.pubads) {
+					log('Main window does not have DFP');
+					return;
+				}
+				
 				log('Activating DFP inside iframe');
 				var iwin = tag[0].contentWindow,
 					idoc = tag[0].contentDocument;
@@ -75,7 +80,7 @@
 							targets.push(
 								'googletag.pubads().setTargeting(' +
 								'\'' + key + '\', ' +
-								'\'' + window.self.googletag.pubads().getTargeting(key) + '\'' +
+								'\'' + parent.googletag.pubads().getTargeting(key) + '\'' +
 								');'
 							);
 						});
