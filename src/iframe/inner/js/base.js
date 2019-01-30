@@ -90,13 +90,17 @@
 					frameBounds = this.ownerDocument.defaultView.frameElement.getBoundingClientRect();
 				if (
 					(bounds && frameBounds) &&
-					bounds.top + frameBounds.top <= window.parent.innerHeight &&
+					bounds.top + frameBounds.top + _lazyload.advance <= window.parent.innerHeight &&
 					style.display !== 'none'
 				) {
-					this.dataset.originalsrc = this.src;
+					if ( ! this.dataset.original_src) {
+						this.dataset.original_src = this.src;
+					}
 					this.src = this.dataset.src;
 					if (this.dataset.srcset) {
-						this.dataset.originalsrcset = this.srcset;
+						if ( ! this.dataset.original_srcset) {
+							this.dataset.original_srcset = this.srcset;
+						}
 						this.srcset = this.dataset.srcset;
 					}
 				}
