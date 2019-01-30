@@ -90,7 +90,7 @@
 					frameBounds = this.ownerDocument.defaultView.frameElement.getBoundingClientRect();
 				if (
 					(bounds && frameBounds) &&
-					bounds.top + frameBounds.top + _lazyload.advance <= window.parent.innerHeight &&
+					bounds.top + frameBounds.top - _lazyload.advance <= window.parent.innerHeight &&
 					style.display !== 'none'
 				) {
 					if ( ! this.dataset.original_src) {
