@@ -93,18 +93,21 @@
 					bounds.top + frameBounds.top - _lazyload.advance <= window.parent.innerHeight &&
 					style.display !== 'none'
 				) {
-					if ( ! this.dataset.original_src) {
-						this.dataset.original_src = this.src;
-					}
-					if (this.src !== this.dataset.src) {
-						this.src = this.dataset.src;
-					}
-					if (this.dataset.srcset) {
-						if ( ! this.dataset.original_srcset) {
-							this.dataset.original_srcset = this.srcset;
+					if (this.dataset.src) {
+						if ( ! this.dataset.original_src) {
+							this.dataset.original_src = this.src;
 						}
-						if (this.srcset !== this.dataset.srcset) {
-							this.srcset = this.dataset.srcset;
+						if (this.src !== this.dataset.src) {
+							log('Setting src', this, this.dataset.src, this.src);
+							this.src = this.dataset.src;
+						}
+						if (this.dataset.srcset) {
+							if ( ! this.dataset.original_srcset) {
+								this.dataset.original_srcset = this.srcset;
+							}
+							if (this.srcset !== this.dataset.srcset) {
+								this.srcset = this.dataset.srcset;
+							}
 						}
 					}
 				}
