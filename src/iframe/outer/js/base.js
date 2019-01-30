@@ -80,16 +80,18 @@
 						});
 					}
 
+					log('DFP targets defined', targets);
+
 					if (adPath) {
 						var dfpScript =
 							"var googletag = googletag || {};" +
 							"googletag.cmd = googletag.cmd || [];" +
-							
-							"googletag.cmd.unshift(function() {" +
+
+							"googletag.cmd.unshift(function defineTargets() {" +
 							"	" + targets.join("\n") +
 							"});" +
 
-							"googletag.cmd.unshift(function() {" +
+							"googletag.cmd.unshift(function defineSlot() {" +
 							"	googletag.defineSlot('" + adPath + "', [[300, 250], [300, 600]], 'div-gpt-ad-1418849849333-0')" +
 							"		.addService(googletag.pubads())" +
 							"		.setCollapseEmptyDiv(true)" +
