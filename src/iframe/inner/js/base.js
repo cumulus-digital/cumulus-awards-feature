@@ -150,9 +150,9 @@
 			}
 
 			// Activate LazyLoader
-			window.parent.document.addEventListener("scroll", _throttle(_lazyload.handler, 200));
-			window.parent.addEventListener("resize", _throttle(_lazyload.handler, 200));
-			window.parent.addEventListener("orientationchange", _throttle(_lazyload.handler, 200));
+			window.parent.document.addEventListener("scroll", _throttle(_lazyload.handler, 500));
+			window.parent.addEventListener("resize", _throttle(_lazyload.handler, 500));
+			window.parent.addEventListener("orientationchange", _throttle(_lazyload.handler, 500));
 
 			_lazyload.handler();
 		});
