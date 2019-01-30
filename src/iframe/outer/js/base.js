@@ -137,6 +137,7 @@
 					checkOrigin: false,
 					sizeWidth: false,
 					tolerance: 2,
+					minSize: 100,
 					heightCalculationMethod: isOldIE ? 'max' : 'lowestElement'
 				}, '#' + frame_id);
 			};
