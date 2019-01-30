@@ -54,8 +54,8 @@
 
 				idoc.title = window.document.title;
 
-				if (parent.googletag) {
-					var pa = window.self.googletag.pubads(),
+				if (parent.googletag && parent.googletag.pubads) {
+					var pa = parent.googletag.pubads(),
 						slots = pa.getSlots(),
 						adPath;
 					if (slots.length) {
@@ -67,7 +67,7 @@
 							}
 						});
 					}
-					var targetingKeys = window.self.googletag.pubads().getTargetingKeys(),
+					var targetingKeys = parent.googletag.pubads().getTargetingKeys(),
 						targets = [];
 					if (targetingKeys && targetingKeys.length) {
 						targetingKeys.forEach(function(key){
