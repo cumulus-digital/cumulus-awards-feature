@@ -136,7 +136,7 @@
 					log: window.IFR_DEBUG || false,
 					checkOrigin: false,
 					sizeWidth: false,
-					tolerance: 1,
+					tolerance: 2,
 					heightCalculationMethod: isOldIE ? 'max' : 'lowestElement'
 				}, '#' + frame_id);
 			};
