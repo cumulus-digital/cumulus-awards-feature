@@ -48,13 +48,13 @@
 			tag[0].id = frame_id;
 
 			// Add DFP cube ad on load
-			window._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP() {
+			window._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(parent) {
 				var iwin = tag[0].contentWindow,
 					idoc = tag[0].contentDocument;
 
 				idoc.title = window.document.title;
 
-				if (window.self.googletag) {
+				if (parent.googletag) {
 					var pa = window.self.googletag.pubads(),
 						slots = pa.getSlots(),
 						adPath;
