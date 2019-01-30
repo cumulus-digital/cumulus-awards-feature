@@ -123,6 +123,7 @@
 	jqscr.onload = function(){
 		log('jQuery injected.');
 		var $ = window.jQuery;
+		$(window).trigger('jquery.loaded');
 
 		// Handle our fake iframes
 		$(function(){
@@ -158,6 +159,7 @@
 			window.parent.addEventListener("orientationchange", _throttle(_lazyload.handler, 500));
 
 			_lazyload.handler();
+
 		});
 	};
 	window.document.head.appendChild(jqscr);
