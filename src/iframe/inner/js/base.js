@@ -96,12 +96,16 @@
 					if ( ! this.dataset.original_src) {
 						this.dataset.original_src = this.src;
 					}
-					this.src = this.dataset.src;
+					if (this.src !== this.dataset.src) {
+						this.src = this.dataset.src;
+					}
 					if (this.dataset.srcset) {
 						if ( ! this.dataset.original_srcset) {
 							this.dataset.original_srcset = this.srcset;
 						}
-						this.srcset = this.dataset.srcset;
+						if (this.srcset !== this.dataset.srcset) {
+							this.srcset = this.dataset.srcset;
+						}
 					}
 				}
 			});
