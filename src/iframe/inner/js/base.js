@@ -97,7 +97,7 @@
 						if ( ! this.dataset.original_src) {
 							this.dataset.original_src = this.src;
 						}
-						if (this.src !== this.dataset.src && this.dataset.src.indexOf(this.src) > -1) {
+						if (this.src !== this.dataset.src && this.dataset.src.indexOf(this.src) < 0) {
 							log('Setting src', this, this.dataset.src, this.src);
 							this.src = this.dataset.src;
 						}
