@@ -123,7 +123,9 @@
 	jqscr.onload = function(){
 		log('jQuery injected.');
 		var $ = window.jQuery;
-		$(window).trigger('jquery.loaded');
+		var loadedEvent = window.self.document.createEvent('Event');
+		loadedEvent.initEvent('jquery.loaded', true, true);
+		window.self.dispatchEvent(loadedEvent);
 
 		// Handle our fake iframes
 		$(function(){
