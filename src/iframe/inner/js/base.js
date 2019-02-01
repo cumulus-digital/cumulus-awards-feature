@@ -149,7 +149,7 @@
 			});
 
 			// Activate DFP if cube is present
-			if (window.self.document.getElementById('div-gpt-ad-1418849849333-0')) {
+			if (window.self.document.getElementById('div-gpt-ad-1418849849333-0') && window.self.parent._CMLS.CCC_IFRAME_ACTIVATE_DFP) {
 				window.self.parent._CMLS.CCC_IFRAME_ACTIVATE_DFP(window.self.parent);
 			}
 
