@@ -49,7 +49,7 @@
 			tag[0].id = frame_id;
 
 			// Add DFP cube ad on load
-			window._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP() {
+			window._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(sizes) {
 				if ( ! frame_parent.googletag || ! frame_parent.googletag.pubads) {
 					log('Iframe content contains DFP slots, but main window does not have DFP');
 					return;
@@ -89,6 +89,20 @@
 				log('DFP targets defined', targets);
 
 				if (adPath) {
+					var sizeString = '[[300,250],[300,600]]';
+					if (sizes && Array.isArray(sizes)) {
+						var tmpSizeString = '[';
+						if (Array.isArray(sizes[0])) {
+							sizes.forEach(function(size) {
+								tmpSizeString += '[' + size.join(',') + ']';
+							});
+						} else {
+							tmpSizeString += sizes.join(',');
+						}
+						tmpSizeString += ']';
+						sizeString = tmpSizeString;
+					}
+					log('Injecting DFP for sizes', sizeString);
 					var dfpScript =
 						"var googletag = googletag || {};" +
 						"googletag.cmd = googletag.cmd || [];" +
@@ -98,7 +112,7 @@
 						"});" +
 
 						"googletag.cmd.unshift(function defineSlot() {" +
-						"	googletag.defineSlot('" + adPath + "', [[300, 250], [300, 600]], 'div-gpt-ad-1418849849333-0')" +
+						"	googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-ad-1418849849333-0')" +
 						"		.addService(googletag.pubads())" +
 						"		.setCollapseEmptyDiv(true)" +
 						"		.setTargeting('pos','mid');" +
