@@ -90,7 +90,7 @@
 					frameBounds = this.ownerDocument.defaultView.frameElement.getBoundingClientRect();
 				if (
 					(bounds && frameBounds) &&
-					bounds.top + frameBounds.top - _lazyload.advance <= window.parent.innerHeight &&
+					bounds.top + frameBounds.top - _lazyload.advance <= window.self.parent.innerHeight &&
 					style.display !== 'none'
 				) {
 					if (this.dataset.src) {
@@ -150,13 +150,13 @@
 
 			// Activate DFP if cube is present
 			if (window.self.document.getElementById('div-gpt-ad-1418849849333-0')) {
-				window.parent._CMLS.CCC_IFRAME_ACTIVATE_DFP(window.parent);
+				window.self.parent._CMLS.CCC_IFRAME_ACTIVATE_DFP(window.self.parent);
 			}
 
 			// Activate LazyLoader
-			window.parent.document.addEventListener("scroll", _throttle(_lazyload.handler, 500));
-			window.parent.addEventListener("resize", _throttle(_lazyload.handler, 500));
-			window.parent.addEventListener("orientationchange", _throttle(_lazyload.handler, 500));
+			window.self.parent.document.addEventListener("scroll", _throttle(_lazyload.handler, 500));
+			window.self.parent.addEventListener("resize", _throttle(_lazyload.handler, 500));
+			window.self.parent.addEventListener("orientationchange", _throttle(_lazyload.handler, 500));
 
 			_lazyload.handler();
 
@@ -175,11 +175,11 @@
 
 	// Run parent processor
 	if (
-		window.parent._CMLS &&
-		window.parent._CMLS.CCC_IFRAME_SETUP
+		window.self.parent._CMLS &&
+		window.self.parent._CMLS.CCC_IFRAME_SETUP
 	) {
 		log('Calling parent iframe setup');
-		window.parent._CMLS.CCC_IFRAME_SETUP(window.self);
+		window.self.parent._CMLS.CCC_IFRAME_SETUP(window.self);
 	}
 
 }(window.self));

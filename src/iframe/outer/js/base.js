@@ -32,7 +32,8 @@
 		// If identifying tag is an iframe, set it up
 		if (tag.is('iframe')) {
 			
-			var frame_id = 'CMLS_CCC_IFRAME-' + Date.now();
+			var frame_id = 'CMLS_CCC_IFRAME-' + Date.now(),
+				frame_parent = window.self;
 
 			tag.attr({
 				id: frame_id,
@@ -48,8 +49,8 @@
 			tag[0].id = frame_id;
 
 			// Add DFP cube ad on load
-			window._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(parent) {
-				if ( ! parent.googletag || ! parent.googletag.pubads) {
+			window._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP() {
+				if ( ! frame_parent.googletag || ! frame_parent.googletag.pubads) {
 					log('Iframe content contains DFP slots, but main window does not have DFP');
 					return;
 				}
@@ -60,66 +61,64 @@
 
 				idoc.title = window.document.title;
 
-				if (parent.googletag && parent.googletag.pubads) {
-					var pa = parent.googletag.pubads(),
-						slots = pa.getSlots(),
-						adPath;
-					if (slots.length) {
-						slots.some(function(slot) {
-							var p = slot.getAdUnitPath();
-							if (p.indexOf('/6717/') > -1) {
-								adPath = p;
-								return true;
-							}
-						});
-					}
-					var targetingKeys = parent.googletag.pubads().getTargetingKeys(),
-						targets = [];
-					if (targetingKeys && targetingKeys.length) {
-						targetingKeys.forEach(function(key){
-							targets.push(
-								'googletag.pubads().setTargeting(' +
-								'\'' + key + '\', ' +
-								'\'' + parent.googletag.pubads().getTargeting(key) + '\'' +
-								');'
-							);
-						});
-					}
+				var pa = frame_parent.googletag.pubads(),
+					slots = pa.getSlots(),
+					adPath;
+				if (slots.length) {
+					slots.some(function(slot) {
+						var p = slot.getAdUnitPath();
+						if (p.indexOf('/6717/') > -1) {
+							adPath = p;
+							return true;
+						}
+					});
+				}
+				var targetingKeys = frame_parent.googletag.pubads().getTargetingKeys(),
+					targets = [];
+				if (targetingKeys && targetingKeys.length) {
+					targetingKeys.forEach(function(key){
+						targets.push(
+							'googletag.pubads().setTargeting(' +
+							'\'' + key + '\', ' +
+							'\'' + frame_parent.googletag.pubads().getTargeting(key) + '\'' +
+							');'
+						);
+					});
+				}
 
-					log('DFP targets defined', targets);
+				log('DFP targets defined', targets);
 
-					if (adPath) {
-						var dfpScript =
-							"var googletag = googletag || {};" +
-							"googletag.cmd = googletag.cmd || [];" +
+				if (adPath) {
+					var dfpScript =
+						"var googletag = googletag || {};" +
+						"googletag.cmd = googletag.cmd || [];" +
 
-							"googletag.cmd.unshift(function defineTargets() {" +
-							"	" + targets.join("\n") +
-							"});" +
+						"googletag.cmd.unshift(function defineTargets() {" +
+						"	" + targets.join("\n") +
+						"});" +
 
-							"googletag.cmd.unshift(function defineSlot() {" +
-							"	googletag.defineSlot('" + adPath + "', [[300, 250], [300, 600]], 'div-gpt-ad-1418849849333-0')" +
-							"		.addService(googletag.pubads())" +
-							"		.setCollapseEmptyDiv(true)" +
-							"		.setTargeting('pos','mid');" +
-							"	googletag.pubads().enableSingleRequest();" +
-							"	googletag.enableServices();" +
-							"});" +
+						"googletag.cmd.unshift(function defineSlot() {" +
+						"	googletag.defineSlot('" + adPath + "', [[300, 250], [300, 600]], 'div-gpt-ad-1418849849333-0')" +
+						"		.addService(googletag.pubads())" +
+						"		.setCollapseEmptyDiv(true)" +
+						"		.setTargeting('pos','mid');" +
+						"	googletag.pubads().enableSingleRequest();" +
+						"	googletag.enableServices();" +
+						"});" +
 
-							"(function() {" +
-							"var gads = document.createElement('script');" +
-							"gads.async = true;" +
-							"gads.type = 'text/javascript';" +
-							"var useSSL = 'https:' == document.location.protocol;" +
-							"gads.src = (useSSL ? 'https:' : 'http:') + " +
-							"'//www.googletagservices.com/tag/js/gpt.js';" +
-							"var node = document.getElementsByTagName('script')[0];" +
-							"node.parentNode.insertBefore(gads, node);" +
-							"})();";
+						"(function() {" +
+						"var gads = document.createElement('script');" +
+						"gads.async = true;" +
+						"gads.type = 'text/javascript';" +
+						"var useSSL = 'https:' == document.location.protocol;" +
+						"gads.src = (useSSL ? 'https:' : 'http:') + " +
+						"'//www.googletagservices.com/tag/js/gpt.js';" +
+						"var node = document.getElementsByTagName('script')[0];" +
+						"node.parentNode.insertBefore(gads, node);" +
+						"})();";
 
-						log('Activating parent DFP in iframe template for cube', dfpScript);
-						iwin.eval(dfpScript);
-					}
+					log('Activating parent DFP in iframe template for cube', dfpScript);
+					iwin.eval(dfpScript);
 				}
 			};
 
