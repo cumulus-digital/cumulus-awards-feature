@@ -127,8 +127,9 @@
 		loadedEvent.initEvent('jquery.loaded', true, true);
 		window.self.dispatchEvent(loadedEvent);
 
-		// Handle our fake iframes
 		$(function(){
+
+			// Handle our fake iframes
 			$('iiframe').each(function() {
 				var $container = $(this),
 					$newframe = $('<iframe/>'),
@@ -173,7 +174,7 @@
 	// Start up iframe-resizer
 	log('Injecting iframe-resizer contentWindow library');
 	var ifscr = window.document.createElement('script');
-	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.4/iframeResizer.contentWindow.min.js';
+	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.2.3/iframeResizer.contentWindow.min.js';
 	ifscr.onload = function() {
 		log('iframe-resizer contentWindow loaded.');
 	};
