@@ -150,10 +150,11 @@
 			// Set up iframe resizer
 			var ifscr = window.document.createElement('script'),
 				w = window;
-			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.2.10/iframeResizer.min.js';
+			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js';
 			ifscr.type = 'text/javascript';
 			ifscr.onload = function(){
 				var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1);
+				var hasTaggedElement = (tag.text().indexOf('data-iframe-height') > -1) ? true : false;
 				w.iFrameResize({
 					//log: window.IFR_DEBUG || false,
 					log: (window._CMLS && window._CMLS.debug) || window.IFR_DEBUG ? true : false,
@@ -161,7 +162,7 @@
 					sizeWidth: false,
 					tolerance: 10,
 					minSize: 100,
-					heightCalculationMethod: isOldIE ? 'max' : 'lowestElement',
+					heightCalculationMethod: hasTaggedElement ? 'taggedElement' : isOldIE ? 'max' : 'bodyOffset',
 					initCallback: function(ifr) {
 						$(ifr).trigger('cmls-ifr-init');
 					}
