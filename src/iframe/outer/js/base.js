@@ -155,6 +155,9 @@
 			ifscr.onload = function(){
 				var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1);
 				var hasTaggedElement = (tag.text().indexOf('data-iframe-height') > -1) ? true : false;
+				if (hasTaggedElement) {
+					log('iframe content has tagged element for IFR');
+				}
 				w.iFrameResize({
 					//log: window.IFR_DEBUG || false,
 					log: (window._CMLS && window._CMLS.debug) || window.IFR_DEBUG ? true : false,
