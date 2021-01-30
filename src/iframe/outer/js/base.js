@@ -159,7 +159,7 @@
 					log: (window._CMLS && window._CMLS.debug) || window.IFR_DEBUG ? true : false,
 					checkOrigin: false,
 					sizeWidth: false,
-					tolerance: 2,
+					tolerance: 10,
 					minSize: 100,
 					heightCalculationMethod: isOldIE ? 'max' : 'lowestElement',
 					initCallback: function(ifr) {
