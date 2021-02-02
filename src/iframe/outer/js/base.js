@@ -35,7 +35,7 @@
 			var frame_id = 'CMLS_CCC_IFRAME-' + Date.now(),
 				frame_parent = window.self;
 
-			tag.attr({
+			var new_tag = $('<iframe/>', {
 				id: frame_id,
 				name: frame_id,
 				width: '100%',
@@ -43,10 +43,10 @@
 				class: 'CMLS_CCC_IFRAME',
 				scrolling: false,
 				allowTransparency: true,
-				style: ""
+				style: ""				
 			});
-			tag[0].name = frame_id;
-			tag[0].id = frame_id;
+			
+			tag.hide().after(new_tag);
 
 			// Add DFP cube ad on load
 			frame_parent._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(sizes) {
@@ -56,8 +56,8 @@
 				}
 
 				log('Activating DFP inside iframe');
-				var iwin = tag[0].contentWindow,
-					idoc = tag[0].contentDocument;
+				var iwin = new_tag[0].contentWindow,
+					idoc = new_tag[0].contentDocument;
 
 				idoc.title = frame_parent.document.title;
 
@@ -139,13 +139,13 @@
 			// Add title to interior frame from container site
 			frame_parent._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
 				log('Inner frame called parent iframe setup');
-				tag[0].contentDocument.title = frame_parent.document.title;
+				new_tag[0].contentDocument.title = frame_parent.document.title;
 			};
 
 			// Write contents of iframe tag into iframe window
-			tag[0].contentDocument.open();
-			tag[0].contentDocument.write(tag.text());
-			tag[0].contentDocument.close();
+			new_tag[0].contentDocument.open();
+			new_tag[0].contentDocument.write(tag.text());
+			new_tag[0].contentDocument.close();
 
 			// Set up iframe resizer
 			var ifscr = frame_parent.document.createElement('script'),
