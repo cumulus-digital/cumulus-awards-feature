@@ -43,7 +43,7 @@
 				class: 'CMLS_CCC_IFRAME',
 				scrolling: false,
 				allowTransparency: true,
-				style: ""				
+				style: "width: 100%"
 			});
 			
 			tag.before(new_tag);
