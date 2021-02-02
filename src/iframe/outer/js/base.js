@@ -16,6 +16,9 @@
 		}
 	}
 
+	var frame_id = 'CMLS_CCC_IFRAME-' + Date.now(),
+		frame_parent = window.self;
+
 	$(function(){
 
 		// Check for required identification tag of iframe
@@ -32,9 +35,6 @@
 		// If identifying tag is an iframe, set it up
 		if (tag.is('iframe')) {
 			
-			var frame_id = 'CMLS_CCC_IFRAME-' + Date.now(),
-				frame_parent = window.self;
-
 			var new_tag = $('<iframe/>', {
 				id: frame_id,
 				name: frame_id,
@@ -150,12 +150,12 @@
 
 			// Set up iframe resizer
 			var ifscr = frame_parent.document.createElement('script'),
+				hasTaggedElement = (tag.text().indexOf('data-iframe-height') > -1) ? true : false,
 				w = frame_parent;
 			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js';
 			ifscr.type = 'text/javascript';
 			ifscr.onload = function(){
 				var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1);
-				var hasTaggedElement = (tag.text().indexOf('data-iframe-height') > -1) ? true : false;
 				if (hasTaggedElement) {
 					log('iframe content has tagged element for IFR');
 				}
