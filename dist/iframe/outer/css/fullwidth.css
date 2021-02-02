@@ -54,4 +54,9 @@ body .wrapper-content .CMLS_CCC {
 .CMLS_CCC iframe {
   display: inherit !important;
 }
+body .wrapper-content .CMLS_CCC_IFRAME {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
 /*# sourceMappingURL=fullwidth.css.map */
