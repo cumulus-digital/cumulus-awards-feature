@@ -47,7 +47,7 @@
 			});
 			
 			tag.before(new_tag);
-			tag.hide();
+			tag.detach();
 
 			// Add DFP cube ad on load
 			frame_parent._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(sizes) {
