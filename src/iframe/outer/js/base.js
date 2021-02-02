@@ -5,7 +5,7 @@
 
 ;(function($, window, undefined){
 
-	window._CMLS = window._CMLS || {};
+	window.self._CMLS = window.self._CMLS || {};
 
 	// Safe wrapper for console.log
 	function log(){
@@ -49,7 +49,7 @@
 			tag[0].id = frame_id;
 
 			// Add DFP cube ad on load
-			window._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(sizes) {
+			frame_parent._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(sizes) {
 				if ( ! frame_parent.googletag || ! frame_parent.googletag.pubads) {
 					log('Iframe content contains DFP slots, but main window does not have DFP');
 					return;
@@ -59,7 +59,7 @@
 				var iwin = tag[0].contentWindow,
 					idoc = tag[0].contentDocument;
 
-				idoc.title = window.document.title;
+				idoc.title = frame_parent.document.title;
 
 				var pa = frame_parent.googletag.pubads(),
 					slots = pa.getSlots(),
@@ -137,9 +137,9 @@
 			};
 
 			// Add title to interior frame from container site
-			window._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
+			frame_parent._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
 				log('Inner frame called parent iframe setup');
-				tag[0].contentDocument.title = window.document.title;
+				tag[0].contentDocument.title = frame_parent.document.title;
 			};
 
 			// Write contents of iframe tag into iframe window
@@ -148,8 +148,8 @@
 			tag[0].contentDocument.close();
 
 			// Set up iframe resizer
-			var ifscr = window.document.createElement('script'),
-				w = window;
+			var ifscr = frame_parent.document.createElement('script'),
+				w = frame_parent;
 			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js';
 			ifscr.type = 'text/javascript';
 			ifscr.onload = function(){
@@ -160,18 +160,18 @@
 				}
 				w.iFrameResize({
 					//log: window.IFR_DEBUG || false,
-					log: (window._CMLS && window._CMLS.debug) || window.IFR_DEBUG ? true : false,
+					log: (frame_parent._CMLS && frame_parent._CMLS.debug) || frame_parent.IFR_DEBUG ? true : false,
 					checkOrigin: false,
 					sizeWidth: false,
 					tolerance: 10,
 					minSize: 100,
 					heightCalculationMethod: hasTaggedElement ? 'taggedElement' : isOldIE ? 'max' : 'bodyOffset',
-					initCallback: function(ifr) {
+					onInit: function(ifr) {
 						$(ifr).trigger('cmls-ifr-init');
 					}
 				}, '#' + frame_id);
 			};
-			window.document.head.appendChild(ifscr);
+			frame_parent.self.document.head.appendChild(ifscr);
 
 		} else {
 			log('#CMLS_TEMPLATE is not an iframe!');
