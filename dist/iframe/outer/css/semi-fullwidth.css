@@ -20,13 +20,13 @@ body .wrapper-content .hideme {
 .CMLS_CCC iframe[src*="digitalivy.com"] {
   display: inherit;
 }
-body .wrapper-content .column,
-body .wrapper-content .row,
-body .wrapper-content .column > *,
-body .wrapper-content .module-title {
+:root body .wrapper-content .column,
+:root body .wrapper-content .row,
+:root body .wrapper-content .column > *,
+:root body .wrapper-content .module-title {
   display: none !important;
 }
-body .wrapper-content,
+:root body .wrapper-content,
 .CMLS_CCC,
 .CMLS_CCC > div,
 .CMLS_CCC > article,
@@ -37,27 +37,33 @@ body .wrapper-content,
   max-width: 100% !important;
   padding: 0 !important;
 }
-body .wrapper-content .grid-container {
+:root body .wrapper-content .grid-container {
   border: 0 !important;
   padding: 0 !important;
 }
-body .wrapper-content .CMLS_CCC {
+:root body .wrapper-content .CMLS_CCC {
   display: block !important;
-}
-.CMLS_CCC {
-  display: block !important;
-  width: 100% !important;
 }
 .CMLS_CCC,
-.CMLS_CCC * {
+:root body .wrapper-content .column.CMLS_CCC {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.CMLS_CCC,
+:root body .wrapper-content .column.CMLS_CCC,
+.CMLS_CCC *,
+:root body .wrapper-content .column.CMLS_CCC * {
   line-height: 1 !important;
   margin: 0 !important;
   padding: 0 !important;
 }
-.CMLS_CCC iframe {
+.CMLS_CCC iframe,
+:root body .wrapper-content .column.CMLS_CCC iframe {
   display: inherit !important;
 }
-.CMLS_CCC iframe[width="100%"] {
+.CMLS_CCC iframe[width="100%"],
+:root body .wrapper-content .column.CMLS_CCC iframe[width="100%"] {
   width: 0;
   min-width: 100%;
 }

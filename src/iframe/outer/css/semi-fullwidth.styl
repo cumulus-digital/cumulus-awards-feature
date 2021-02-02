@@ -1,6 +1,6 @@
 @require 'base.styl'
 
-body .wrapper-content {
+:root body .wrapper-content {
 	.column,
 	.row,
 	.column > *,
@@ -27,9 +27,11 @@ body .wrapper-content {
 	
 	.CMLS_CCC { display: block !important; }
 
-	/.CMLS_CCC {
+	/.CMLS_CCC,
+	.column.CMLS_CCC {
 		display: block !important;
 		width: 100% !important;
+		max-width: 100% !important;
 		
 		&, * {
 			line-height: 1 !important;
