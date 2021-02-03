@@ -19,163 +19,196 @@
 	var frame_id = 'CMLS_CCC_IFRAME-' + Date.now(),
 		frame_parent = window.self;
 
+	/**
+	 * Allow generated frame to inject parent DFP setup for a cube ad
+	 * @param {array} sizes Array of ad sizes to inject for cube, default is [[300,250], [300,600]]
+	 */
+	frame_parent._CMLS.CCC_IFRAME_ACTIVATE_DFP = function CCC_IFRAME_ACTIVATE_DFP(sizes){
+		$(function() {
+			if ( ! frame_parent.googletag || ! frame_parent.googletag.pubads) {
+				log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP');
+				return;
+			}
+
+			var $frame = $('#' + frame_id, frame_parent);
+
+			if ( ! $frame.length) {
+				log('Could not find generated frame when attempting to activate DFP');
+				return;
+			}
+
+			var fwin = $frame[0].contentWindow,
+				g = frame_parent.googletag,
+				pa = g.pubads,
+				slots = pa.getSlots(),
+				adPath = null,
+				targetingKeys = null,
+				targets = [],
+				sizeString = '[[300,250],[300,600]]';
+
+			// Find the slots that correspond to our network ID
+			if (slots.length) {
+				slots.some(function(slot) {
+					var p = slot.getAdUnitPath();
+					if (p.indexOf('/6717/') > -1) {
+						adPath = p;
+						return true;
+					}
+				});
+			}
+
+			// Make sure we have an adpath
+			if ( ! adPath) {
+				log('Could not determine parent adPath, exiting DFP activation');
+				return;
+			}
+
+			// Find existing global targeting keys from the parent window
+			targetingKeys = frame_parent.googletag.pubads().getTargetingKeys();
+			if (targetingKeys && targetingKeys.length) {
+				targetingKeys.forEach(function(key){
+					targets.push(
+						'googletag.pubads().setTargeting(' +
+						'\'' + key + '\', ' +
+						'\'' + frame_parent.googletag.pubads().getTargeting(key) + '\'' +
+						');'
+					);
+				});
+
+				if (targets.length) {
+					log('DFP targets defined', targets);
+				}
+			}
+
+			// Generate new sizeString if requested
+			if (sizes && Array.isArray(sizes)) {
+				var tmpSizeString = '[';
+				if (Array.isArray(sizes[0])) {
+					sizes.forEach(function(size) {
+						tmpSizeString += '[' + size.join(',') + ']';
+					});
+				} else {
+					tmpSizeString += sizes.join(',');
+				}
+				tmpSizeString += ']';
+				sizeString = tmpSizeString;
+			}
+			log('Injecting DFP for sizeString:', sizeString);
+
+			var dfpScript =
+				"var googletag = googletag || {};" +
+				"googletag.cmd = googletag.cmd || [];" +
+
+				"googletag.cmd.unshift(function defineTargets() {" +
+				"	" + targets.join("\n") +
+				"});" +
+
+				"googletag.cmd.unshift(function defineSlot() {" +
+				"	googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-ad-1418849849333-0')" +
+				"		.addService(googletag.pubads())" +
+				"		.setCollapseEmptyDiv(true)" +
+				"		.setTargeting('pos','mid');" +
+				"	googletag.pubads().enableSingleRequest();" +
+				"	googletag.enableServices();" +
+				"});" +
+
+				"(function() {" +
+				"var gads = document.createElement('script');" +
+				"gads.async = true;" +
+				"gads.type = 'text/javascript';" +
+				"var useSSL = 'https:' == document.location.protocol;" +
+				"gads.src = (useSSL ? 'https:' : 'http:') + " +
+				"'//www.googletagservices.com/tag/js/gpt.js';" +
+				"var node = document.getElementsByTagName('script')[0];" +
+				"node.parentNode.insertBefore(gads, node);" +
+				"})();";
+
+			log('Activating parent DFP in iframe template for cube', dfpScript);
+			fwin.eval(dfpScript);
+		});
+	};
+
+	// Add title to interior frame from container site
+	frame_parent._CMLS.CCC_IFRAME_SETUP = function CCC_IFRAME_SETUP() {
+		var $frame = $('#' + frame_id, frame_parent);
+
+		if ( ! $frame.length) {
+			log('Could not find generated frame when attempting to activate DFP');
+			return;
+		}
+
+		log('Setting title on generated frame document');
+		$frame.each(function() {
+			this.contentDocument.title = frame_parent.document.title;
+		});
+	};
+
 	$(function(){
 
 		// Check for required identification tag of iframe
-		var tag = $('#CMLS_TEMPLATE:first');
-		if (!tag.length) {
+		var $tag = $('#CMLS_TEMPLATE:first', frame_parent);
+		if ( ! $tag.length) {
 			log('No #CMLS_TEMPLATE found, not an iframe feature');
 			return;
 		}
 
+		// Ensure tag is an iframe
+		if ( ! $tag.is('iframe')) {
+			log('#CMLS_TEMPLATE is not an iframe feature!');
+			return;
+		}
+
 		// Wrap our content in a recognizable class
-		tag.parentsUntil('.wrapper-content', '.column,.row,.block-type-content')
+		$tag.parentsUntil('.wrapper-content', '.column,.row,.block-type-content')
 			.addClass('CMLS_CCC');
 		
-		// If identifying tag is an iframe, set it up
-		if (tag.is('iframe')) {
-			
-			var new_tag = $('<iframe/>', {
-				id: frame_id,
-				name: frame_id,
-				width: '100%',
-				frameBorder: 0,
-				class: 'CMLS_CCC_IFRAME',
-				scrolling: false,
-				allowTransparency: true,
-				style: "width: 100%"
-			});
-			
-			tag.before(new_tag);
-			tag.detach();
+		// Generate new iframe
+		var $new_frame = $('<iframe/>', {
+			id: frame_id,
+			name: frame_id,
+			frameBorder: 0,
+			width: '100%',
+			class: 'CMLS_CCC_IFRAME',
+			scrolling: false,
+			allowTransparency: true,
+			style: 'width: 100%',
+		});
+		
+		$new_frame.insertBefore($tag);
+		$tag.detach();
 
-			// Add DFP cube ad on load
-			frame_parent._CMLS.CCC_IFRAME_ACTIVATE_DFP = function setupDFP(sizes) {
-				if ( ! frame_parent.googletag || ! frame_parent.googletag.pubads) {
-					log('Iframe content contains DFP slots, but main window does not have DFP');
-					return;
+		var new_frame_doc = $new_frame[0].contentDocument;
+
+		// Write contents of template into generated iframe
+		var template_content = $tag.text();
+		new_frame_doc.open();
+		new_frame_doc.write(template_content);
+		new_frame_doc.close();
+
+		// Inject iFrameResizer into parent window
+		var ifscr = frame_parent.document.createElement('script'),
+			hasTaggedElement = (template_content.indexOf('data-iframe-height') > -1) ? true : false;
+		ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js';
+		ifscr.type = 'text/javascript';
+		ifscr.onload = function(){
+			var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1);
+			if (hasTaggedElement) {
+				log('Template content has tagged element for IFR');
+			}
+			frame_parent.iFrameResize({
+				//log: window.IFR_DEBUG || false,
+				log: (frame_parent._CMLS && frame_parent._CMLS.debug) || frame_parent.IFR_DEBUG ? true : false,
+				checkOrigin: false,
+				sizeWidth: false,
+				tolerance: 10,
+				minSize: 100,
+				heightCalculationMethod: hasTaggedElement ? 'taggedElement' : isOldIE ? 'max' : 'bodyOffset',
+				onInit: function(ifr) {
+					$(ifr).trigger('cmls-ifr-init');
 				}
+			}, '#' + frame_id);
+		};
+		frame_parent.document.head.appendChild(ifscr);
 
-				log('Activating DFP inside iframe');
-				var iwin = new_tag[0].contentWindow,
-					idoc = new_tag[0].contentDocument;
-
-				idoc.title = frame_parent.document.title;
-
-				var pa = frame_parent.googletag.pubads(),
-					slots = pa.getSlots(),
-					adPath;
-				if (slots.length) {
-					slots.some(function(slot) {
-						var p = slot.getAdUnitPath();
-						if (p.indexOf('/6717/') > -1) {
-							adPath = p;
-							return true;
-						}
-					});
-				}
-				var targetingKeys = frame_parent.googletag.pubads().getTargetingKeys(),
-					targets = [];
-				if (targetingKeys && targetingKeys.length) {
-					targetingKeys.forEach(function(key){
-						targets.push(
-							'googletag.pubads().setTargeting(' +
-							'\'' + key + '\', ' +
-							'\'' + frame_parent.googletag.pubads().getTargeting(key) + '\'' +
-							');'
-						);
-					});
-				}
-
-				log('DFP targets defined', targets);
-
-				if (adPath) {
-					var sizeString = '[[300,250],[300,600]]';
-					if (sizes && Array.isArray(sizes)) {
-						var tmpSizeString = '[';
-						if (Array.isArray(sizes[0])) {
-							sizes.forEach(function(size) {
-								tmpSizeString += '[' + size.join(',') + ']';
-							});
-						} else {
-							tmpSizeString += sizes.join(',');
-						}
-						tmpSizeString += ']';
-						sizeString = tmpSizeString;
-					}
-					log('Injecting DFP for sizes', sizeString);
-					var dfpScript =
-						"var googletag = googletag || {};" +
-						"googletag.cmd = googletag.cmd || [];" +
-
-						"googletag.cmd.unshift(function defineTargets() {" +
-						"	" + targets.join("\n") +
-						"});" +
-
-						"googletag.cmd.unshift(function defineSlot() {" +
-						"	googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-ad-1418849849333-0')" +
-						"		.addService(googletag.pubads())" +
-						"		.setCollapseEmptyDiv(true)" +
-						"		.setTargeting('pos','mid');" +
-						"	googletag.pubads().enableSingleRequest();" +
-						"	googletag.enableServices();" +
-						"});" +
-
-						"(function() {" +
-						"var gads = document.createElement('script');" +
-						"gads.async = true;" +
-						"gads.type = 'text/javascript';" +
-						"var useSSL = 'https:' == document.location.protocol;" +
-						"gads.src = (useSSL ? 'https:' : 'http:') + " +
-						"'//www.googletagservices.com/tag/js/gpt.js';" +
-						"var node = document.getElementsByTagName('script')[0];" +
-						"node.parentNode.insertBefore(gads, node);" +
-						"})();";
-
-					log('Activating parent DFP in iframe template for cube', dfpScript);
-					iwin.eval(dfpScript);
-				}
-			};
-
-			// Add title to interior frame from container site
-			frame_parent._CMLS.CCC_IFRAME_SETUP = function setupIframe() {
-				log('Inner frame called parent iframe setup');
-				new_tag[0].contentDocument.title = frame_parent.document.title;
-			};
-
-			// Write contents of iframe tag into iframe window
-			new_tag[0].contentDocument.open();
-			new_tag[0].contentDocument.write(tag.text());
-			new_tag[0].contentDocument.close();
-
-			// Set up iframe resizer
-			var ifscr = frame_parent.document.createElement('script'),
-				hasTaggedElement = (tag.text().indexOf('data-iframe-height') > -1) ? true : false,
-				w = frame_parent;
-			ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js';
-			ifscr.type = 'text/javascript';
-			ifscr.onload = function(){
-				var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1);
-				if (hasTaggedElement) {
-					log('iframe content has tagged element for IFR');
-				}
-				w.iFrameResize({
-					//log: window.IFR_DEBUG || false,
-					log: (frame_parent._CMLS && frame_parent._CMLS.debug) || frame_parent.IFR_DEBUG ? true : false,
-					checkOrigin: false,
-					sizeWidth: false,
-					tolerance: 10,
-					minSize: 100,
-					heightCalculationMethod: hasTaggedElement ? 'taggedElement' : isOldIE ? 'max' : 'bodyOffset',
-					onInit: function(ifr) {
-						$(ifr).trigger('cmls-ifr-init');
-					}
-				}, '#' + frame_id);
-			};
-			frame_parent.self.document.head.appendChild(ifscr);
-
-		} else {
-			log('#CMLS_TEMPLATE is not an iframe!');
-		}
 	});
 }(jQuery, window.self));
