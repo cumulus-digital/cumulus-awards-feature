@@ -96,21 +96,21 @@
 			log('Injecting DFP for sizeString:', sizeString);
 
 			var dfpScript =
-				"var googletag = googletag || {};" +
-				"googletag.cmd = googletag.cmd || [];" +
+				"var googletag = googletag || {};\n" +
+				"googletag.cmd = googletag.cmd || [];\n" +
 
-				"googletag.cmd.unshift(function defineTargets() {" +
-				"	" + targets.join("\n") +
-				"});" +
+				"googletag.cmd.unshift(function defineTargets() {\n" +
+					targets.join("\n") +
+				"});\n" +
 
 				"googletag.cmd.unshift(function defineSlot() {" +
-				"	googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-ad-1418849849333-0')" +
-				"		.addService(googletag.pubads())" +
-				"		.setCollapseEmptyDiv(true)" +
-				"		.setTargeting('pos','mid');" +
-				"	googletag.pubads().enableSingleRequest();" +
-				"	googletag.enableServices();" +
-				"});" +
+					"googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-ad-1418849849333-0')" +
+						".addService(googletag.pubads())" +
+						".setCollapseEmptyDiv(true)" +
+						".setTargeting('pos','mid');" +
+					"googletag.pubads().enableSingleRequest();" +
+					"googletag.enableServices();" +
+				"});\n" +
 
 				"(function() {" +
 				"var gads = document.createElement('script');" +
