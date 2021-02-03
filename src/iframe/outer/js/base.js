@@ -40,7 +40,7 @@
 			var fwin = $frame[0].contentWindow,
 				g = frame_parent.googletag,
 				pa = g.pubads,
-				slots = pa.getSlots(),
+				slots = pa().getSlots(),
 				adPath = null,
 				targetingKeys = null,
 				targets = [],
