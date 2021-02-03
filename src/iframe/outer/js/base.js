@@ -103,13 +103,11 @@
 					targets.join("\n") +
 				"});\n" +
 
-				"googletag.cmd.push(function defineSlot() {" +
-					"var slot = googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-ad-1418849849333-0');" +
-				/*
+				"googletag.cmd.unshift(function defineSlot() {" +
+					"var slot = googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-cube');" +
 						"slot.addService(googletag.pubads());" +
 						"slot.setCollapseEmptyDiv(true);" +
 						"slot.setTargeting('pos','mid');" +
-				*/
 					"googletag.pubads().enableSingleRequest();" +
 					"googletag.enableServices();" +
 				"});\n" +
