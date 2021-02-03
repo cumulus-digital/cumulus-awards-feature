@@ -105,9 +105,11 @@
 
 				"googletag.cmd.unshift(function defineSlot() {" +
 					"var slot = googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-cube');" +
+					"if (slot) {" +
 						"slot.addService(googletag.pubads());" +
 						"slot.setCollapseEmptyDiv(true);" +
 						"slot.setTargeting('pos','mid');" +
+					"}\n" +
 					"googletag.pubads().enableSingleRequest();" +
 					"googletag.enableServices();" +
 				"});\n" +
