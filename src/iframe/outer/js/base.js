@@ -30,7 +30,7 @@
 				return;
 			}
 
-			var $frame = $('#' + frame_id, frame_parent);
+			var $frame = $('#' + frame_id, frame_parent.document);
 
 			if ( ! $frame.length) {
 				log('Could not find generated frame when attempting to activate DFP');
@@ -130,7 +130,7 @@
 
 	// Add title to interior frame from container site
 	frame_parent._CMLS.CCC_IFRAME_SETUP = function CCC_IFRAME_SETUP() {
-		var $frame = $('#' + frame_id, frame_parent);
+		var $frame = $('#' + frame_id, frame_parent.document);
 
 		if ( ! $frame.length) {
 			log('Could not find generated frame when attempting to activate DFP');
@@ -146,7 +146,7 @@
 	$(function(){
 
 		// Check for required identification tag of iframe
-		var $tag = $('#CMLS_TEMPLATE:first', frame_parent);
+		var $tag = $('#CMLS_TEMPLATE:first', frame_parent.document);
 		if ( ! $tag.length) {
 			log('No #CMLS_TEMPLATE found, not an iframe feature');
 			return;
