@@ -24,108 +24,111 @@
 	 * Allow generated frame to inject parent DFP setup for a cube ad
 	 * @param {array} sizes Array of ad sizes to inject for cube, default is [[300,250], [300,600]]
 	 */
+	function init_DFP(sizes) {
+		if ( ! frame_parent.googletag || ! frame_parent.googletag.pubads) {
+			log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP');
+			return;
+		}
+
+		var $frame = $('#' + frame_id, frame_parent.document);
+
+		if ( ! $frame.length) {
+			log('Could not find generated frame when attempting to activate DFP, setting listener', '#' + frame_id);
+			$(frame_parent).on('cmls-ifr-init', init_DFP(sizes));
+			return;
+		}
+
+		var fwin = $frame[0].contentWindow,
+			g = frame_parent.googletag,
+			pa = g.pubads,
+			slots = pa().getSlots(),
+			adPath = null,
+			targetingKeys = null,
+			targets = [],
+			sizeString = '[[300,250],[300,600]]';
+
+		// Find the slots that correspond to our network ID
+		if (slots.length) {
+			slots.some(function(slot) {
+				var p = slot.getAdUnitPath();
+				if (p.indexOf('/6717/') > -1) {
+					adPath = p;
+					return true;
+				}
+			});
+		}
+
+		// Make sure we have an adpath
+		if ( ! adPath) {
+			log('Could not determine parent adPath, exiting DFP activation');
+			return;
+		}
+
+		// Find existing global targeting keys from the parent window
+		targetingKeys = frame_parent.googletag.pubads().getTargetingKeys();
+		if (targetingKeys && targetingKeys.length) {
+			targetingKeys.forEach(function(key){
+				targets.push(
+					'googletag.pubads().setTargeting(' +
+					'\'' + key + '\', ' +
+					'\'' + frame_parent.googletag.pubads().getTargeting(key) + '\'' +
+					');'
+				);
+			});
+
+			if (targets.length) {
+				log('DFP targets defined', targets);
+			}
+		}
+
+		// Generate new sizeString if requested
+		if (sizes && Array.isArray(sizes)) {
+			var tmpSizeString = '[';
+			if (Array.isArray(sizes[0])) {
+				sizes.forEach(function(size) {
+					tmpSizeString += '[' + size.join(',') + ']';
+				});
+			} else {
+				tmpSizeString += sizes.join(',');
+			}
+			tmpSizeString += ']';
+			sizeString = tmpSizeString;
+		}
+		log('Injecting DFP for sizeString:', sizeString);
+
+		var dfpScript =
+			"var googletag = googletag || {cmd: []};\n" +
+
+			"googletag.cmd.unshift(function defineTargets() {\n" +
+				targets.join("\n") +
+			"});\n" +
+
+			"googletag.cmd.unshift(function defineSlot() {" +
+				"var slot = googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-cube');" +
+				"if (slot) {" +
+					"slot.addService(googletag.pubads());" +
+					"slot.setCollapseEmptyDiv(true);" +
+					"slot.setTargeting('pos','mid');" +
+				"}\n" +
+				"googletag.pubads().enableSingleRequest();" +
+				"googletag.enableServices();" +
+			"});\n" +
+
+			"(function() {" +
+			"var gads = document.createElement('script');" +
+			"gads.async = true;" +
+			"gads.type = 'text/javascript';" +
+			"gads.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';" +
+			"var node = document.getElementsByTagName('script')[0];" +
+			"node.parentNode.insertBefore(gads, node);" +
+			"})();";
+
+		log('Activating parent DFP in iframe template for cube', dfpScript);
+		fwin.eval(dfpScript);
+	}
+
 	frame_parent._CMLS.CCC_IFRAME_ACTIVATE_DFP = function CCC_IFRAME_ACTIVATE_DFP(sizes){
-		$(function() {
-			if ( ! frame_parent.googletag || ! frame_parent.googletag.pubads) {
-				log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP');
-				return;
-			}
-
-			var $frame = $('#' + frame_id, frame_parent.document);
-
-			if ( ! $frame.length) {
-				log('Could not find generated frame when attempting to activate DFP');
-				return;
-			}
-
-			var fwin = $frame[0].contentWindow,
-				g = frame_parent.googletag,
-				pa = g.pubads,
-				slots = pa().getSlots(),
-				adPath = null,
-				targetingKeys = null,
-				targets = [],
-				sizeString = '[[300,250],[300,600]]';
-
-			// Find the slots that correspond to our network ID
-			if (slots.length) {
-				slots.some(function(slot) {
-					var p = slot.getAdUnitPath();
-					if (p.indexOf('/6717/') > -1) {
-						adPath = p;
-						return true;
-					}
-				});
-			}
-
-			// Make sure we have an adpath
-			if ( ! adPath) {
-				log('Could not determine parent adPath, exiting DFP activation');
-				return;
-			}
-
-			// Find existing global targeting keys from the parent window
-			targetingKeys = frame_parent.googletag.pubads().getTargetingKeys();
-			if (targetingKeys && targetingKeys.length) {
-				targetingKeys.forEach(function(key){
-					targets.push(
-						'googletag.pubads().setTargeting(' +
-						'\'' + key + '\', ' +
-						'\'' + frame_parent.googletag.pubads().getTargeting(key) + '\'' +
-						');'
-					);
-				});
-
-				if (targets.length) {
-					log('DFP targets defined', targets);
-				}
-			}
-
-			// Generate new sizeString if requested
-			if (sizes && Array.isArray(sizes)) {
-				var tmpSizeString = '[';
-				if (Array.isArray(sizes[0])) {
-					sizes.forEach(function(size) {
-						tmpSizeString += '[' + size.join(',') + ']';
-					});
-				} else {
-					tmpSizeString += sizes.join(',');
-				}
-				tmpSizeString += ']';
-				sizeString = tmpSizeString;
-			}
-			log('Injecting DFP for sizeString:', sizeString);
-
-			var dfpScript =
-				"var googletag = googletag || {cmd: []};\n" +
-
-				"googletag.cmd.unshift(function defineTargets() {\n" +
-					targets.join("\n") +
-				"});\n" +
-
-				"googletag.cmd.unshift(function defineSlot() {" +
-					"var slot = googletag.defineSlot('" + adPath + "', " + sizeString + ", 'div-gpt-cube');" +
-					"if (slot) {" +
-						"slot.addService(googletag.pubads());" +
-						"slot.setCollapseEmptyDiv(true);" +
-						"slot.setTargeting('pos','mid');" +
-					"}\n" +
-					"googletag.pubads().enableSingleRequest();" +
-					"googletag.enableServices();" +
-				"});\n" +
-
-				"(function() {" +
-				"var gads = document.createElement('script');" +
-				"gads.async = true;" +
-				"gads.type = 'text/javascript';" +
-				"gads.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';" +
-				"var node = document.getElementsByTagName('script')[0];" +
-				"node.parentNode.insertBefore(gads, node);" +
-				"})();";
-
-			log('Activating parent DFP in iframe template for cube', dfpScript);
-			fwin.eval(dfpScript);
-		}, frame_parent.document);
+		init_DFP(sizes);
 	};
 
 	// Add title to interior frame from container site
@@ -204,7 +207,8 @@
 				minSize: 100,
 				heightCalculationMethod: hasTaggedElement ? 'taggedElement' : isOldIE ? 'max' : 'bodyOffset',
 				onInit: function(ifr) {
-					$(ifr).trigger('cmls-ifr-init');
+					$(ifr).setAttribute('init', true).trigger('cmls-ifr-init');
+					frame_parent.trigger('cmls-ifr-init');
 				}
 			}, '#' + frame_id);
 		};
