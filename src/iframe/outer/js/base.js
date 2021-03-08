@@ -125,7 +125,7 @@
 
 			log('Activating parent DFP in iframe template for cube', dfpScript);
 			fwin.eval(dfpScript);
-		});
+		}, frame_parent.document);
 	};
 
 	// Add title to interior frame from container site
@@ -210,5 +210,5 @@
 		};
 		frame_parent.document.head.appendChild(ifscr);
 
-	});
+	}, frame_parent.document);
 }(jQuery, window.self));
