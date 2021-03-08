@@ -135,7 +135,10 @@
 		var $frame = $('#' + frame_id, frame_parent.document);
 
 		if ( ! $frame.length) {
-			log('Could not find generated frame when attempting to activate DFP');
+			log('Could not find generated frame when attempting to setup iframe');
+			setTimeout(function(){
+				frame_parent._CMLS.CCC_IFRAME_SETUP();
+			}, 200);
 			return;
 		}
 
