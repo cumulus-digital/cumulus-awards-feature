@@ -182,13 +182,16 @@
 
 	// Handle DFP
 	window.self.INIT_DFP = function INIT_DFP(sizes) {
-		if ( ! window.parent.googletag || ! window.parent.googletag.pubads) {
-			log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP');
+		if ( ! window.self.parent.googletag || ! window.self.parent.googletag.pubads) {
+			log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP, trying again in 1 second');
+			setTimeout(function() {
+				window.self.init_DFP(sizes);
+			}, 1000);
 			return;
 		}
 
 		var googletag = window.self.googletag || {cmd: []},
-			wp = window.parent,
+			wp = window.self.parent,
 			g = wp.googletag,
 			gpa = g.pubads,
 			slots = gpa().getSlots(),
