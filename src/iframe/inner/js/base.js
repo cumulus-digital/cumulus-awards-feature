@@ -252,13 +252,7 @@
 		log('DFP activated.');
 	};
 
-	// Run parent processor
-	if (
-		window.self.parent._CMLS &&
-		window.self.parent._CMLS.CCC_IFRAME_SETUP
-	) {
-		log('Calling parent iframe setup');
-		window.self.parent._CMLS.CCC_IFRAME_SETUP(window.self);
-	}
+	log('Setting document title from parent');
+	window.self.document.title = window.self.parent.document.title;
 
 }(window.self));
