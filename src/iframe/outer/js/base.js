@@ -16,7 +16,7 @@
 		}
 	}
 
-	var frame_id = 'CMLS_CCC_IFRAME-' + Date.now(),
+	var frame_id = 'CMLS_CCC_IFRAME',
 		frame_parent = window.self,
 		dfptimer;
 		frame_parent._CMLS = frame_parent._CMLS || {};
