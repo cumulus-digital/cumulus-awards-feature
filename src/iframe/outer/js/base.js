@@ -206,8 +206,10 @@
 				minSize: 100,
 				heightCalculationMethod: hasTaggedElement ? 'taggedElement' : isOldIE ? 'max' : 'bodyOffset',
 				onInit: function(ifr) {
-					$(ifr).attr('init', true).trigger('cmls-ifr-init');
-					frame_parent.trigger('cmls-ifr-init');
+					var $ifr = $(ifr);
+					$ifr.attr('init', true);
+					$ifr.trigger('cmls-ifr-init');
+					$(frame_parent).trigger('cmls-ifr-init');
 				}
 			}, '#' + frame_id);
 		};
