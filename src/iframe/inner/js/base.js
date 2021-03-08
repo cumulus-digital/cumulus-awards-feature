@@ -185,7 +185,7 @@
 		if ( ! window.self.parent.googletag || ! window.self.parent.googletag.pubads) {
 			log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP, trying again in 1 second');
 			setTimeout(function() {
-				window.self.init_DFP(sizes);
+				window.self.INIT_DFP(sizes);
 			}, 1000);
 			return;
 		}
