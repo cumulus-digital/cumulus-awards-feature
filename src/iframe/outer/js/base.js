@@ -18,6 +18,7 @@
 
 	var frame_id = 'CMLS_CCC_IFRAME-' + Date.now(),
 		frame_parent = window.self;
+		frame_parent._CMLS = frame_parent._CMLS || {};
 
 	/**
 	 * Allow generated frame to inject parent DFP setup for a cube ad
@@ -96,8 +97,7 @@
 			log('Injecting DFP for sizeString:', sizeString);
 
 			var dfpScript =
-				"var googletag = googletag || {};\n" +
-				"googletag.cmd = googletag.cmd || [];\n" +
+				"var googletag = googletag || {cmd: []};\n" +
 
 				"googletag.cmd.unshift(function defineTargets() {\n" +
 					targets.join("\n") +
@@ -113,17 +113,6 @@
 					"googletag.pubads().enableSingleRequest();" +
 					"googletag.enableServices();" +
 				"});\n" +
-
-				"(function() {" +
-				"var gads = document.createElement('script');" +
-				"gads.async = true;" +
-				"gads.type = 'text/javascript';" +
-				"var useSSL = 'https:' == document.location.protocol;" +
-				"gads.src = (useSSL ? 'https:' : 'http:') + " +
-				"'//www.googletagservices.com/tag/js/gpt.js';" +
-				"var node = document.getElementsByTagName('script')[0];" +
-				"node.parentNode.insertBefore(gads, node);" +
-				"})();";
 
 			log('Activating parent DFP in iframe template for cube', dfpScript);
 			fwin.eval(dfpScript);
