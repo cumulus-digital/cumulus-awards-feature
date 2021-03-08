@@ -228,7 +228,7 @@
 			targetingKeys.forEach(function(key) {
 				var t = gpa().getTargeting(key);
 				googletag.cmd.push(function() {
-					log('Defining DFP target', key, t);
+					window.top.console.log('Defining DFP target', key, t);
 					googletag.pubads().setTargeting(key, t);
 				});
 			});
@@ -236,7 +236,7 @@
 
 		log('Setting up DFP slot');
 		googletag.cmd.push(function() {
-			log('Activating DFP slot');
+			window.top.console.log('Activating DFP slot');
 			var slot = googletag.defineSlot(adPath, sizes, 'div-gpt-cube');
 			if (slot) {
 				slot.addService(googletag.pubads());
