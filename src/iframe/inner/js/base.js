@@ -189,4 +189,72 @@
 		window.self.parent._CMLS.CCC_IFRAME_SETUP(window.self);
 	}
 
+	// Handle DFP
+	window.self.INIT_DFP = function INIT_DFP(sizes) {
+		if ( ! window.parent.googletag || ! window.parent.googletag.pubads) {
+			log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP');
+			return;
+		}
+
+		var googletag = googletag || {cmd: []},
+			wp = window.parent,
+			g = wp.googletag,
+			gpa = g.pubads,
+			slots = gpa().getSlots(),
+			adPath = null,
+			targetingKeys = null;
+
+		// Find the slots that correspond to our network ID
+		if (slots.length) {
+			slots.some(function(slot) {
+				var p = slot.getAdUnitPath();
+				if (p.indexOf('/6717/') > -1) {
+					adPath = p;
+					return true;
+				}
+			});
+		}
+
+		// Make sure we have an adpath
+		if ( ! adPath) {
+			log('Could not determine parent adPath, exiting DFP activation');
+			return;
+		}
+
+		// Find existing global targeting keys from parent window
+		targetingKeys = gpa().getTargetingKeys();
+		if (targetingKeys && targetingKeys.length) {
+			targetingKeys.forEach(function(key) {
+				var t = gpa().getTargeting(key);
+				googletag.cmd.unshift(function() {
+					log('Defining DFP target', key, t);
+					googletag.pubads().setTargeting(key, t);
+				});
+			});
+		}
+
+		googletag.cmd.unshift(function() {
+			var slot = googletag.defineSlot(adPath, sizes, 'div-gpt-cube');
+			if (slot) {
+				slot.addService(googletag.pubads());
+				slot.setCollapseEmptyDiv(true);
+				slot.setTargeting('pos', 'mid');
+			}
+			googletag.pubads().enableSingleRequest();
+			googletag.enableServices();
+		});
+
+		(function() {
+			var gads = document.createElement('script');
+			gads.async = true;
+			gads.type = 'text/javascript';
+			gads.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
+			var node = document.getElementsByTagName('script')[0];
+			node.parentNode.insertBefore(gads, node);
+		})();
+
+		log('DFP activated.');
+	};
+
+
 }(window.self));
