@@ -180,15 +180,6 @@
 	};
 	window.document.head.appendChild(ifscr);
 
-	// Run parent processor
-	if (
-		window.self.parent._CMLS &&
-		window.self.parent._CMLS.CCC_IFRAME_SETUP
-	) {
-		log('Calling parent iframe setup');
-		window.self.parent._CMLS.CCC_IFRAME_SETUP(window.self);
-	}
-
 	// Handle DFP
 	window.self.INIT_DFP = function INIT_DFP(sizes) {
 		if ( ! window.parent.googletag || ! window.parent.googletag.pubads) {
@@ -227,7 +218,7 @@
 		if (targetingKeys && targetingKeys.length) {
 			targetingKeys.forEach(function(key) {
 				var t = gpa().getTargeting(key);
-				googletag.cmd.push(function() {
+				googletag.cmd.unshift(function() {
 					window.top.console.log('Defining DFP target', key, t);
 					googletag.pubads().setTargeting(key, t);
 				});
@@ -235,7 +226,7 @@
 		}
 
 		log('Setting up DFP slot');
-		googletag.cmd.push(function() {
+		googletag.cmd.unshift(function() {
 			window.top.console.log('Activating DFP slot');
 			var slot = googletag.defineSlot(adPath, sizes, 'div-gpt-cube');
 			if (slot) {
@@ -247,17 +238,27 @@
 			googletag.enableServices();
 		});
 
+		log('googletag.cmd', googletag.cmd);
+
 		(function() {
-			var gads = document.createElement('script');
+			var gads = window.self.document.createElement('script');
 			gads.async = true;
 			gads.type = 'text/javascript';
 			gads.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
-			var node = document.getElementsByTagName('script')[0];
+			var node = window.self.document.getElementsByTagName('script')[0];
 			node.parentNode.insertBefore(gads, node);
 		})();
 
 		log('DFP activated.');
 	};
 
+	// Run parent processor
+	if (
+		window.self.parent._CMLS &&
+		window.self.parent._CMLS.CCC_IFRAME_SETUP
+	) {
+		log('Calling parent iframe setup');
+		window.self.parent._CMLS.CCC_IFRAME_SETUP(window.self);
+	}
 
 }(window.self));
