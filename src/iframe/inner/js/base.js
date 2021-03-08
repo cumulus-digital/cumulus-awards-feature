@@ -187,7 +187,7 @@
 			return;
 		}
 
-		var googletag = googletag || {cmd: []},
+		var googletag = window.self.googletag || {cmd: []},
 			wp = window.parent,
 			g = wp.googletag,
 			gpa = g.pubads,
