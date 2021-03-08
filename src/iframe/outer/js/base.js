@@ -126,7 +126,6 @@
 		log('Activating parent DFP in iframe template for cube', dfpScript);
 		fwin.eval(dfpScript);
 	}
-
 	frame_parent._CMLS.CCC_IFRAME_ACTIVATE_DFP = function CCC_IFRAME_ACTIVATE_DFP(sizes){
 		init_DFP(sizes);
 	};
@@ -207,7 +206,7 @@
 				minSize: 100,
 				heightCalculationMethod: hasTaggedElement ? 'taggedElement' : isOldIE ? 'max' : 'bodyOffset',
 				onInit: function(ifr) {
-					$(ifr).setAttribute('init', true).trigger('cmls-ifr-init');
+					$(ifr).attr('init', true).trigger('cmls-ifr-init');
 					frame_parent.trigger('cmls-ifr-init');
 				}
 			}, '#' + frame_id);
