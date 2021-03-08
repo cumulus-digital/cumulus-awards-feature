@@ -17,7 +17,8 @@
 	}
 
 	var frame_id = 'CMLS_CCC_IFRAME-' + Date.now(),
-		frame_parent = window.self;
+		frame_parent = window.self,
+		dfptimer;
 		frame_parent._CMLS = frame_parent._CMLS || {};
 
 	/**
@@ -33,8 +34,11 @@
 		var $frame = $('#' + frame_id, frame_parent.document);
 
 		if ( ! $frame.length) {
-			log('Could not find generated frame when attempting to activate DFP, setting listener', '#' + frame_id);
-			$(frame_parent).on('cmls-ifr-init', init_DFP(sizes));
+			log('Could not find generated frame when attempting to activate DFP, setting timer', '#' + frame_id);
+			clearTimeout(dfptimer);
+			dfptimer = setTimeout(function() {
+				init_DFP(sizes);
+			}, 500);
 			return;
 		}
 
