@@ -181,12 +181,17 @@
 	window.document.head.appendChild(ifscr);
 
 	// Handle DFP
+	window.self.INIT_DFP_COUNT = 0;
 	window.self.INIT_DFP = function INIT_DFP(sizes) {
 		if ( ! window.self.parent.googletag || ! window.self.parent.googletag.pubads) {
-			log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP, trying again in 1 second');
-			setTimeout(function() {
-				window.self.INIT_DFP(sizes);
-			}, 1000);
+			log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP');
+			if (window.self.INIT_DFP_COUNT < 10) {
+				log('Trying again in 1 second...');
+				window.self.INIT_DFP_COUNT++;
+				setTimeout(function() {
+					window.self.INIT_DFP(sizes);
+				}, 1000);
+			}
 			return;
 		}
 
