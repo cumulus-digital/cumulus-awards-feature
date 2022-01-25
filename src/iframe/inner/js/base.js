@@ -146,7 +146,7 @@
 				$container.remove();
 			});
 
-			$('img,iframe').load(function() {
+			$('img,iframe').on('load', function() {
 				if (window.self.parentIFrame) {
 					window.self.parentIFrame.reset();
 				}
