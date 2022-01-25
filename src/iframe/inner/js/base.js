@@ -23,7 +23,7 @@
 /**
  * Application
  */
-;(function (window, undefined) {
+(function (window, undefined) {
 	
 	// Safe wrapper for console.log
 	function log(){
@@ -35,7 +35,7 @@
 	}
 
 	// For any fake iframes
-	var iiframe = window.document.createElement('iiframe'); // jshint ignore:line
+	window.document.createElement('iiframe'); // jshint ignore:line
 
 	// Throttle from Underscore.js
 	var _throttle = function (func, wait) {
@@ -76,7 +76,7 @@
 		advance: 200,
 		getLoadable: function() {
 			if ( ! this.loadable) {
-				this.loadable = $(this.selector);
+				this.loadable = window.$(this.selector);
 			}
 			return this.loadable;
 		},
@@ -118,11 +118,12 @@
 	// Load jquery
 	log('Injecting jQuery');
 	var jqscr = window.document.createElement('script');
-	jqscr.src = 'https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js';
+	jqscr.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js';
 	jqscr.type = 'text/javascript';
 	jqscr.onload = function(){
 		log('jQuery injected.');
 		var $ = window.jQuery;
+		window.$ = $;
 		var loadedEvent = window.self.document.createEvent('Event');
 		loadedEvent.initEvent('jquery.loaded', true, true);
 		window.self.dispatchEvent(loadedEvent);
@@ -174,7 +175,7 @@
 	// Start up iframe-resizer
 	log('Injecting iframe-resizer contentWindow library');
 	var ifscr = window.document.createElement('script');
-	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.contentWindow.min.js';
+	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js';
 	ifscr.onload = function() {
 		log('iframe-resizer contentWindow loaded.');
 	};

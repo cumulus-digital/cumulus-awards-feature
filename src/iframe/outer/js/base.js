@@ -88,7 +88,7 @@
 		// Inject iFrameResizer into parent window
 		var ifscr = frame_parent.document.createElement('script'),
 			hasTaggedElement = (template_content.indexOf('data-iframe-height') > -1) ? true : false;
-		ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js';
+		ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.min.js';
 		ifscr.type = 'text/javascript';
 		ifscr.onload = function(){
 			var isOldIE = (navigator.userAgent.indexOf("MSIE") !== -1);
