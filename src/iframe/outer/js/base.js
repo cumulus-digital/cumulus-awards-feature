@@ -30,33 +30,37 @@
 		};
 		frame_parent.document.head.appendChild(js);
 	}
-
-	main();
+	if (window.self.Promise) {
+		main();
+	} else {
+		loadScript('https://polyfill.io/v3/polyfill.min.js?features=Promise', main);
+	}
 
 	function main() {
 
+		var Promise = window.Promise;
+
 		// Add title to interior frame from container site
-		frame_parent._CMLS.CCC_IFRAME_SETUP_COUNT = 0;
-		frame_parent._CMLS.CCC_IFRAME_SETUP = function CCC_IFRAME_SETUP() {
-			var $frame = $('#' + frame_id, frame_parent.document);
-
-			if ( ! $frame.length) {
-				log('Could not find generated frame when attempting to setup iframe');
-				if (frame_parent._CMLS.CCC_IFRAME_SETUP_COUNT < 80) {
-					log('Trying again...');
-					frame_parent._CMLS.CCC_IFRAME_SETUP_COUNT++;
-					setTimeout(function(){
-						frame_parent._CMLS.CCC_IFRAME_SETUP();
-					}, 200);
+		function waitForPageTitle() {
+			var timeout = 10000, // 10 seconds,
+			    start = Date.now();
+			function waitingForPageTitle(resolve, reject) {
+				var $frame = $('#' + frame_id, frame_parent.document);
+				if ($frame.length) {
+					resolve($frame);
+				} else if (timeout && (Date.now() - start) >= timeout) {
+					reject(new Error('timeout'));
+				} else {
+					setTimeout(waitingForPageTitle.bind(this, resolve, reject), 50);
 				}
-				return;
 			}
-
-			log('Setting title on generated frame document');
+			return new Promise(waitingForPageTitle);
+		}
+		waitForPageTitle().then(function($frame) {
 			$frame.each(function() {
 				this.contentDocument.title = frame_parent.document.title;
 			});
-		};
+		});
 
 		$(function(){
 
