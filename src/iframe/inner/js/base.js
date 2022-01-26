@@ -133,7 +133,7 @@
 					window.self.dispatchEvent(loadedEvent);
 					resolve();
 				}
-				jqScr.onerror = reject;
+				jqScr.onerror = reject(new Error('Failed to load jQuery!'));
 				document.head.appendChild(jqScr);
 			} else {
 				resolve();
@@ -217,74 +217,76 @@
 
 		log('DFP init requested, waiting for parent googletag...');
 		waitForParentDFP()
-		.then(function(){
+		.then(
+			function(){
 
-			var googletag = window.self.googletag || {cmd: []},
-			    wp = window.self.parent,
-			    g = wp.googletag,
-			    gpa = g.pubads,
-			    adPath = null,
-			    targetingKeys = null;
+				var googletag = window.self.googletag || {cmd: []},
+				    wp = window.self.parent,
+				    g = wp.googletag,
+				    gpa = g.pubads,
+				    adPath = null,
+				    targetingKeys = null;
 
-			// Discover ad path of parent site
-			if (wp.GPT_SITE_ID) {
-				adPath = wp.GPT_SITE_ID;
-			} else {
-				var slots = gpa().getSlots();
-				if (slots.length) {
-					slots.some(function(slot) {
-						var p = slot.getAdUnitPath();
-						if (p.indexOf('/6717') > -1) {
-							adPath = p;
-							return true;
-						}
+				// Discover ad path of parent site
+				if (wp.GPT_SITE_ID) {
+					adPath = wp.GPT_SITE_ID;
+				} else {
+					var slots = gpa().getSlots();
+					if (slots.length) {
+						slots.some(function(slot) {
+							var p = slot.getAdUnitPath();
+							if (p.indexOf('/6717') > -1) {
+								adPath = p;
+								return true;
+							}
+						});
+					}
+				}
+
+				// Make sure we have an adpath
+				if ( ! adPath) {
+					log('Could not determine parent adPath, exiting DFP activation');
+					return;
+				}
+
+				// Find existing global targeting keys from parent window
+				targetingKeys = gpa().getTargetingKeys();
+				if (targetingKeys && targetingKeys.length) {
+					log('Setting DFP targeting keys', targetingKeys);
+					googletag.cmd.unshift(function defineTargets() {
+						targetingKeys.forEach(function(key) {
+							var t = gpa().getTargeting(key);
+							log('Defining GPT target', key, t);
+							googletag.pubads().setTargeting(key, t);
+						});
 					});
 				}
-			}
 
-			// Make sure we have an adpath
-			if ( ! adPath) {
-				log('Could not determine parent adPath, exiting DFP activation');
-				return;
-			}
-
-			// Find existing global targeting keys from parent window
-			targetingKeys = gpa().getTargetingKeys();
-			if (targetingKeys && targetingKeys.length) {
-				log('Setting DFP targeting keys', targetingKeys);
-				googletag.cmd.unshift(function defineTargets() {
-					targetingKeys.forEach(function(key) {
-						var t = gpa().getTargeting(key);
-						log('Defining GPT target', key, t);
-						googletag.pubads().setTargeting(key, t);
-					});
+				googletag.cmd.unshift(function(){
+					log('Setting up DFP slot');
+					var slot = googletag.defineSlot(adPath, sizes, 'div-gpt-cube')
+					           .addService(googletag.pubads())
+					           .setCollapseEmptyDiv(true)
+					           .setTargeting('pos', 'mid');
+					googletag.pubads().enableSingleRequest();
+					googletag.enableServices();
 				});
+
+				(function() {
+					var gads = window.self.document.createElement('script');
+					gads.async = true;
+					gads.type = 'text/javascript';
+					gads.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
+					var node = window.self.document.getElementsByTagName('script')[0];
+					node.parentNode.insertBefore(gads, node);
+				})();
+
+				log('DFP activated.');
+			},
+			function(error){
+				log('Timed out waiting for parent googletag.');
 			}
-
-			googletag.cmd.unshift(function(){
-				log('Setting up DFP slot');
-				var slot = googletag.defineSlot(adPath, sizes, 'div-gpt-cube')
-				           .addService(googletag.pubads())
-				           .setCollapseEmptyDiv(true)
-				           .setTargeting('pos', 'mid');
-				googletag.pubads().enableSingleRequest();
-				googletag.enableServices();
-			});
-
-			(function() {
-				var gads = window.self.document.createElement('script');
-				gads.async = true;
-				gads.type = 'text/javascript';
-				gads.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
-				var node = window.self.document.getElementsByTagName('script')[0];
-				node.parentNode.insertBefore(gads, node);
-			})();
-
-			log('DFP activated.');
-		})
-		.error(function(){
-			log('Timed out waiting for parent googletag.');
-		});
+		);
 
 	};
 
