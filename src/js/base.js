@@ -47,8 +47,8 @@
 			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-			ga('create', id, 'auto', {'name': 'contestTracker'});
-			ga('contestTracker.send', 'pageview');
+			window.ga('create', id, 'auto', {'name': 'contestTracker'});
+			window.ga('contestTracker.send', 'pageview');
 			/*ignore jslint end*/
 			/*jsl:end */
 			/* jshint ignore:end */
@@ -89,4 +89,4 @@
 		};
 	};
 
-}(jQuery, window.self));
+}(window.jQuery, window.self));

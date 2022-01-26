@@ -3,7 +3,7 @@
 
 // Handle iframe templated builds
 
-;(function($, window, undefined){
+(function($, window, undefined){
 
 	window.self._CMLS = window.self._CMLS || {};
 
@@ -77,13 +77,11 @@
 		$new_frame.insertBefore($tag);
 		$tag.detach();
 
-		var new_frame_doc = $new_frame[0].contentDocument;
+		//var new_frame_doc = $new_frame[0].contentDocument;
 
 		// Write contents of template into generated iframe
 		var template_content = $tag.text();
-		new_frame_doc.open();
-		new_frame_doc.write(template_content);
-		new_frame_doc.close();
+		$new_frame.contents()[0].innerHTML = template_content;
 
 		// Inject iFrameResizer into parent window
 		var ifscr = frame_parent.document.createElement('script'),
@@ -114,4 +112,4 @@
 		frame_parent.document.head.appendChild(ifscr);
 
 	}, frame_parent.document);
-}(jQuery, window.self));
+}(window.jQuery, window.self));
