@@ -81,7 +81,7 @@
 
 		// Write contents of template into generated iframe
 		var template_content = $tag.text();
-		$($new_frame).contents()[0].innerHTML = template_content;
+		$new_frame[0].srcdoc = template_content;
 
 		// Inject iFrameResizer into parent window
 		var ifscr = frame_parent.document.createElement('script'),
