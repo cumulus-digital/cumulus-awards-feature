@@ -24,6 +24,8 @@
  * Application
  */
 (function (window, undefined) {
+
+	var Promise = window.Promise;
 	
 	// Safe wrapper for console.log
 	function log(){
@@ -115,19 +117,31 @@
 		}
 	};
 
-	// Load jquery
-	log('Injecting jQuery');
-	var jqscr = window.document.createElement('script');
-	jqscr.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js';
-	jqscr.type = 'text/javascript';
-	jqscr.onload = function(){
-		log('jQuery injected.');
+	// jQuery loader promise
+	window.jQueryLoader = function(){
+		return new Promise(function(resolve, reject) {
+			if ( ! window.hasOwnProperty('jQuery')) {
+				var jqScr = document.createElement('script');
+				jqScr.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js';
+				jqScr.type = 'text/javascript';
+				jqScr.onload = function() {
+					log('jQuery injected.');
+					var $ = window.jQuery;
+					window.$ = $;
+					var loadedEvent = window.self.document.createEvent('Event');
+					loadedEvent.initEvent('jquery.loaded', true, true);
+					window.self.dispatchEvent(loadedEvent);
+					resolve();
+				}
+				jqScr.onerror = reject;
+				document.head.appendChild(jqScr);
+			} else {
+				resolve();
+			}
+		});
+	};
+	window.jQueryLoader().then(function(){
 		var $ = window.jQuery;
-		window.$ = $;
-		var loadedEvent = window.self.document.createEvent('Event');
-		loadedEvent.initEvent('jquery.loaded', true, true);
-		window.self.dispatchEvent(loadedEvent);
-
 		$(function(){
 
 			// Handle our fake iframes
@@ -146,20 +160,12 @@
 				$container.remove();
 			});
 
+			// Load events make parent iframe resize
 			$('img,iframe').on('load', function() {
 				if (window.self.parentIFrame) {
 					window.self.parentIFrame.reset();
 				}
 			});
-
-			// Activate DFP if cube is present
-			if (
-				! window.self.DO_NOT_ACTIVATE_DFP &&
-				window.self.document.getElementById('div-gpt-ad-1418849849333-0') &&
-				window.self.parent._CMLS.CCC_IFRAME_ACTIVATE_DFP
-			) {
-				window.self.parent._CMLS.CCC_IFRAME_ACTIVATE_DFP();
-			}
 
 			// Activate LazyLoader
 			window.self.parent.document.addEventListener("scroll", _throttle(_lazyload.handler, 500));
@@ -169,99 +175,117 @@
 			_lazyload.handler();
 
 		});
-	};
-	window.document.head.appendChild(jqscr);
+	});
 
-	// Start up iframe-resizer
-	log('Injecting iframe-resizer contentWindow library');
-	var ifscr = window.document.createElement('script');
-	ifscr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js';
-	ifscr.onload = function() {
-		log('iframe-resizer contentWindow loaded.');
-		var loadedEvent = window.self.document.createEvent('Event');
-		loadedEvent.initEvent('ifr.loaded', true, true);
-		window.self.dispatchEvent(loadedEvent);
+	window.ifrLoader = function(){
+		return new Promise(function(resolve, reject) {
+			if ( ! window.hasOwnProperty('parentIFrame')) {
+				log('Injecting iframe-resizer contentWindow library');
+				var ifrScr = document.createElement('script');
+				ifrScr.src = 'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js';
+				ifrScr.type = 'text/javascript';
+				ifrScr.onload = function() {
+					log('iframe-resizer contentWindow loaded.');
+					var loadedEvent = window.self.document.createEvent('Event');
+					loadedEvent.initEvent('ifr.loaded', true, true);
+					window.self.dispatchEvent(loadedEvent);
+					resolve();
+				}
+				document.head.appendChild(ifrScr);
+			} else {
+				resolve();
+			}
+		});
 	};
-	window.document.head.appendChild(ifscr);
+	window.ifrLoader();
 
 	// Handle DFP
-	window.self.INIT_DFP_COUNT = 0;
+	function waitForParentDFP() {
+		var timeout = 10000, // 10 seconds,
+		    start = Date.now();
+		return new Promise(function(resolve, reject) {
+			if (window.self.parent.googletag && window.self.parent.googletag.pubads) {
+				resolve(window.self.parent.googletag);
+			} else if (timeout && (Date.now() - start) >= timeout) {
+				reject(new Error('timeout'));
+			} else {
+				setTimeout(waitForParentDFP.bind(this, resolve, reject), 50);
+			}
+		});
+	}
 	window.self.INIT_DFP = function INIT_DFP(sizes) {
-		if ( ! window.self.parent.googletag || ! window.self.parent.googletag.pubads) {
-			log('#CMLS_TEMPLATE requested DFP activation, but parent window does not have DFP');
-			if (window.self.INIT_DFP_COUNT < 10) {
-				log('Trying again in 1 second...');
-				window.self.INIT_DFP_COUNT++;
-				setTimeout(function() {
-					window.self.INIT_DFP(sizes);
-				}, 1000);
-			}
-			return;
-		}
 
-		var googletag = window.self.googletag || {cmd: []},
-			wp = window.self.parent,
-			g = wp.googletag,
-			gpa = g.pubads,
-			slots = gpa().getSlots(),
-			adPath = null,
-			targetingKeys = null;
+		log('DFP init requested, waiting for parent googletag...');
+		waitForParentDFP()
+		.then(function(){
 
-		// Find the slots that correspond to our network ID
-		if (slots.length) {
-			slots.some(function(slot) {
-				var p = slot.getAdUnitPath();
-				if (p.indexOf('/6717/') > -1) {
-					adPath = p;
-					return true;
+			var googletag = window.self.googletag || {cmd: []},
+			    wp = window.self.parent,
+			    g = wp.googletag,
+			    gpa = g.pubads,
+			    adPath = null,
+			    targetingKeys = null;
+
+			// Discover ad path of parent site
+			if (wp.GPT_SITE_ID) {
+				adPath = wp.GPT_SITE_ID;
+			} else {
+				var slots = gpa().getSlots();
+				if (slots.length) {
+					slots.some(function(slot) {
+						var p = slot.getAdUnitPath();
+						if (p.indexOf('/6717') > -1) {
+							adPath = p;
+							return true;
+						}
+					});
 				}
-			});
-		}
-
-		// Make sure we have an adpath
-		if ( ! adPath) {
-			log('Could not determine parent adPath, exiting DFP activation');
-			return;
-		}
-
-		// Find existing global targeting keys from parent window
-		targetingKeys = gpa().getTargetingKeys();
-		log('Setting DFP targeting keys', targetingKeys);
-		if (targetingKeys && targetingKeys.length) {
-			googletag.cmd.unshift(function defineTargets() {
-				targetingKeys.forEach(function(key) {
-					var t = gpa().getTargeting(key);
-					window.top.console.log('Defining DFP target', key, t);
-					googletag.pubads().setTargeting(key, t);
-				});
-			});
-		}
-
-		log('Setting up DFP slot');
-		googletag.cmd.unshift(function defineSlot() {
-			window.top.console.log('Activating DFP slot');
-			var slot = googletag.defineSlot(adPath, sizes, 'div-gpt-cube');
-			if (slot) {
-				slot.addService(googletag.pubads());
-				slot.setCollapseEmptyDiv(true);
-				slot.setTargeting('pos', 'mid');
 			}
-			googletag.pubads().enableSingleRequest();
-			googletag.enableServices();
+
+			// Make sure we have an adpath
+			if ( ! adPath) {
+				log('Could not determine parent adPath, exiting DFP activation');
+				return;
+			}
+
+			// Find existing global targeting keys from parent window
+			targetingKeys = gpa().getTargetingKeys();
+			if (targetingKeys && targetingKeys.length) {
+				log('Setting DFP targeting keys', targetingKeys);
+				googletag.cmd.unshift(function defineTargets() {
+					targetingKeys.forEach(function(key) {
+						var t = gpa().getTargeting(key);
+						log('Defining GPT target', key, t);
+						googletag.pubads().setTargeting(key, t);
+					});
+				});
+			}
+
+			googletag.cmd.unshift(function(){
+				log('Setting up DFP slot');
+				var slot = googletag.defineSlot(adPath, sizes, 'div-gpt-cube')
+				           .addService(googletag.pubads())
+				           .setCollapseEmptyDiv(true)
+				           .setTargeting('pos', 'mid');
+				googletag.pubads().enableSingleRequest();
+				googletag.enableServices();
+			});
+
+			(function() {
+				var gads = window.self.document.createElement('script');
+				gads.async = true;
+				gads.type = 'text/javascript';
+				gads.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
+				var node = window.self.document.getElementsByTagName('script')[0];
+				node.parentNode.insertBefore(gads, node);
+			})();
+
+			log('DFP activated.');
+		})
+		.error(function(){
+			log('Timed out waiting for parent googletag.');
 		});
 
-		log('googletag.cmd', googletag.cmd);
-
-		(function() {
-			var gads = window.self.document.createElement('script');
-			gads.async = true;
-			gads.type = 'text/javascript';
-			gads.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
-			var node = window.self.document.getElementsByTagName('script')[0];
-			node.parentNode.insertBefore(gads, node);
-		})();
-
-		log('DFP activated.');
 	};
 
 	log('Setting document title from parent');
