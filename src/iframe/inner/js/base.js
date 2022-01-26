@@ -12,7 +12,7 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+  js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
@@ -133,7 +133,9 @@
 					window.self.dispatchEvent(loadedEvent);
 					resolve();
 				}
-				jqScr.onerror = reject(new Error('Failed to load jQuery!'));
+				jqScr.onerror = function(){
+					reject(new Error('Failed to load jQuery!'));
+				};
 				document.head.appendChild(jqScr);
 			} else {
 				resolve();
