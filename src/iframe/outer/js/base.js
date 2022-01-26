@@ -77,11 +77,16 @@
 		$new_frame.insertBefore($tag);
 		$tag.detach();
 
-		//var new_frame_doc = $new_frame[0].contentDocument;
-
 		// Write contents of template into generated iframe
 		var template_content = $tag.text();
-		$new_frame[0].srcdoc = template_content;
+		if ( !!('srcdoc' in document.createElement('iframe'))) {
+			$new_frame[0].srcdoc = template_content;
+		} else {
+			var new_frame_doc = $new_frame[0].contentDocument;
+			new_frame_doc.open();
+			new_frame_doc.write(template_content);
+			new_frame_doc.close();
+		}
 
 		// Inject iFrameResizer into parent window
 		var ifscr = frame_parent.document.createElement('script'),

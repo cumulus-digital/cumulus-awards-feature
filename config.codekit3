@@ -1135,7 +1135,7 @@
         "active" : 0
       },
       "no-extra-boolean-cast" : {
-        "active" : 1
+        "active" : 0
       },
       "no-extra-labels" : {
         "active" : 0
