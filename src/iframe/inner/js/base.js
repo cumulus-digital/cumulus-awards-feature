@@ -205,15 +205,16 @@
 	function waitForParentDFP() {
 		var timeout = 10000, // 10 seconds,
 		    start = Date.now();
-		return new Promise(function(resolve, reject) {
+		function waitingForParentDFP(resolve, reject) {
 			if (window.self.parent.googletag && window.self.parent.googletag.pubads) {
 				resolve(window.self.parent.googletag);
 			} else if (timeout && (Date.now() - start) >= timeout) {
 				reject(new Error('timeout'));
 			} else {
-				setTimeout(waitForParentDFP.bind(this, resolve, reject), 50);
+				setTimeout(waitingForParentDFP.bind(this, resolve, reject), 50);
 			}
-		});
+		}
+		return new Promise(waitingForParentDFP);
 	}
 	window.self.INIT_DFP = function INIT_DFP(sizes) {
 
