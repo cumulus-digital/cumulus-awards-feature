@@ -74,19 +74,20 @@
 			style: 'width: 100%',
 		});
 		
-		$new_frame.insertBefore($tag);
-		$tag.detach();
-
 		// Write contents of template into generated iframe
 		var template_content = $tag.text();
 		if ( !!('srcdoc' in document.createElement('iframe'))) {
 			$new_frame[0].srcdoc = template_content;
+			$new_frame.insertBefore($tag);
 		} else {
+			$new_frame.insertBefore($tag);
 			var new_frame_doc = $new_frame[0].contentDocument;
 			new_frame_doc.open();
 			new_frame_doc.write(template_content);
 			new_frame_doc.close();
 		}
+
+		$tag.detach();
 
 		// Inject iFrameResizer into parent window
 		var ifscr = frame_parent.document.createElement('script'),
